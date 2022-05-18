@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-between" mat-dialog-title>
+  <h2 mat-dialog-title>Filter</h2>
+  <div class="click" mat-dialog-close>
+    <img src="assets/icons/x.svg" alt="" />
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form>
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="form-group form_group">
+          <label> Date <span class="text-red">*</span></label>
+          <input
+            #dateQuery
+            type="datetime-local"
+            class="form-control"
+            (change)="getDate(dateQuery.value)"
+          />
+        </div>
+      </div>
+      <!-- <div class="col-md-6 col-12">
+        <div class="form-group form_group">
+          <label>End date <span class="text-red">*</span></label>
+          <input type="date" class="form-control" />
+        </div>
+      </div> -->
+    </div>
+
+    <!-- <p class="fw-bold">Department</p>
+      <div class="row mb-4">
+        <div
+          *ngFor="let item of [1, 2, 3, 4]"
+          class="col-lg-4 col-md-6 col-12 mb-4"
+        >
+          <div>
+            <label class="check-container">
+              <input type="checkbox" name="permissions" id="{{ item }}" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <label for="{{ item }}" class="click ms-5">
+            Business Development Services
+          </label>
+        </div>
+      </div>
+  
+      <p class="fw-bold">Actions</p>
+      <div class="row">
+        <div
+          *ngFor="let item of [1, 2, 3, 4]"
+          class="col-lg-4 col-md-6 col-12 mb-4"
+        >
+          <div>
+            <label class="check-container">
+              <input type="checkbox" name="permissions" id="{{ item }}" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <label for="{{ item }}" class="click ms-5"> Document Upload </label>
+        </div>
+      </div> -->
+    <mat-dialog-actions align="end">
+      <button
+        mat-dialog-close
+        mat-button
+        cdkFocusInitial
+        type="submit"
+        class="btn btn-green btn-md mb-5"
+      >
+        Apply
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

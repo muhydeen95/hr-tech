@@ -1,0 +1,29 @@
+@import "partials/components/forms";
+form {
+  .form_section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    margin-top: 3.2rem;
+    p {
+      font-family: $docstream_font_bold;
+      font-size: 1.4rem;
+      line-height: 2.1rem;
+      color: $text-body;
+      width: fit-content;
+      white-space: nowrap;
+      margin-bottom: 0;
+      margin-right: 1.6rem;
+    }
+    .line {
+      width: -webkit-fill-available;
+      border: 1px solid rgba($blue-700, 0.1);
+    }
+  }
+  .footer {
+    margin-top: 4.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

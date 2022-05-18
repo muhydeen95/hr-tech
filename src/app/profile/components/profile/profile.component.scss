@@ -1,0 +1,192 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+@import "partials/components/forms";
+
+$side_padding: 3rem 10.5rem 3rem 9rem;
+$mobile_side_padding: 1.5rem;
+
+.profile__wrapper {
+  padding: $side_padding;
+  .profile_title {
+    color: $blue-700;
+  }
+  .profile__card {
+    border-radius: 0.85rem;
+    margin-top: 2.5rem;
+    color: $white-100;
+    background: $blue-700 url(../../../../assets/images/profile-bg.svg)
+      no-repeat;
+    padding: 2rem 2rem 0rem 2rem;
+    .profile_img {
+      position: relative;
+      .name-badge {
+        background: $white-100;
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        position: relative;
+        .profile-init {
+          position: absolute;
+          color: $blue-700;
+          font-size: 3.5rem;
+          font-weight: bold;
+          text-align: center;
+          padding-top: 2.4rem;
+          padding-left: 2rem;
+        }
+      }
+      .profile__pix {
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+      }
+      .position-relative {
+        position: absolute;
+        font-size: 0.5rem;
+        bottom: 3.6rem;
+        left: 5.8rem;
+        border: 0.3rem solid $blue-700;
+        padding: 1.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        cursor: pointer;
+        background: $blue-100;
+        .fas {
+          position: absolute;
+          bottom: 0.75rem;
+          right: 0.7rem;
+          font-size: 1.5rem;
+          color: $blue-700;
+        }
+        input[type="file"] {
+          font-size: 10rem;
+          width: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 0;
+          cursor: pointer;
+        }
+      }
+    }
+    .profile_detail {
+      padding: 3.5rem 1rem 1.5rem 1.7rem;
+      h3 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .profile__form {
+    border-radius: 0.85rem;
+    padding: 2rem 2.5rem;
+    background: $blue-100;
+  }
+  .wrapper__login_btn,
+  .change_password_btn,
+  .dummy_btn {
+    width: 23.5%;
+    height: 4.5rem !important;
+    border-radius: 0.8rem;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $white-100;
+    padding: 0.35rem 1rem;
+    transition: 0.6s all ease;
+  }
+  .wrapper__login_btn {
+    background: $green-600;
+    box-shadow: 0rem 0.4rem 0.8rem -0.1rem rgba(0, 74, 77, 0.15);
+    &:hover {
+      background: $green-700;
+    }
+  }
+  .change_password_btn {
+    background: transparent;
+    border: 0.035rem solid $white-100;
+    box-shadow: 0rem 0.4rem 0.8rem -0.1rem rgba($blue-700, 0.15);
+    &:hover {
+      background: $blue-700;
+    }
+  }
+}
+
+@include maxSize($canvas: L) {
+  .profile__wrapper {
+    padding: $mobile_side_padding;
+    .wrapper__login_btn,
+    .change_password_btn {
+      width: 30%;
+    }
+    .change_password_btn {
+      //   margin-top: 1rem;
+    }
+  }
+}
+
+@include maxSize($canvas: M) {
+  .profile__wrapper {
+    padding: $mobile_side_padding;
+    .wrapper__login_btn,
+    .change_password_btn {
+      width: 100%;
+    }
+    .change_password_btn {
+      margin-top: 2rem;
+    }
+    .profile__card {
+      padding: 1.5rem;
+      .profile_img {
+        .profile__pix {
+          height: 7rem;
+          width: 7rem;
+          border-radius: 50%;
+        }
+        .position-relative {
+          font-size: 0.5rem;
+          bottom: 2.5rem;
+          left: 4rem;
+          padding: 1.2rem;
+          height: 1.2rem;
+          width: 1.5rem;
+          .fas {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.4rem;
+            font-size: 1.3rem;
+            color: $blue-700;
+          }
+          input[type="file"] {
+            font-size: 5rem;
+          }
+        }
+      }
+      .profile_detail {
+        padding: 2.5rem 1rem 1.5rem 1.7rem;
+        h3 {
+          font-size: 1.5rem;
+        }
+        p {
+          font-size: 1.15rem;
+        }
+      }
+    }
+  }
+}
+.progress_bar {
+  display: flex;
+  align-items: center;
+  p {
+    margin-left: 0.5rem;
+    margin-bottom:0
+  }
+}

@@ -1,0 +1,326 @@
+<form [formGroup]="stepThreeForm">
+  <div class="info"><app-info></app-info></div>
+
+  <div class="form_section">
+    <p>Available for payment upon presentation of the following Documents</p>
+    <div class="line"></div>
+  </div>
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="2 Original Combined Certificate of Value and Origin (CCVO on form C16 and 3 copies)"
+              formControlName="hasCCVO"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasCCVO')!.errors &&
+                    stepThreeForm.get('hasCCVO')!.touched) ||
+                  (stepThreeForm.get('hasCCVO')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasCCVO')!.errors &&
+                    stepThreeForm.get('hasCCVO')!.touched) ||
+                  (stepThreeForm.get('hasCCVO')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label
+          for="2 Original Combined Certificate of Value and Origin (CCVO on form C16 and 3 copies)"
+          class="click ms-5"
+        >
+          2 Original Combined Certificate of Value and Origin (CCVO on form C16
+          and 3 copies)
+        </label>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="3 Original commercial invoice and 2 copies"
+              formControlName="hasCommercialInvoice"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasCommercialInvoice')!.errors &&
+                    stepThreeForm.get('hasCommercialInvoice')!.touched) ||
+                  (stepThreeForm.get('hasCommercialInvoice')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasCommercialInvoice')!.errors &&
+                    stepThreeForm.get('hasCommercialInvoice')!.touched) ||
+                  (stepThreeForm.get('hasCommercialInvoice')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label
+          for="3 Original commercial invoice and 2 copies"
+          class="click ms-5"
+        >
+          3 Original commercial invoice and 2 copies
+        </label>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="2 Original parking list and 3 copies"
+              formControlName="hasParkingList"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasParkingList')!.errors &&
+                    stepThreeForm.get('hasParkingList')!.touched) ||
+                  (stepThreeForm.get('hasParkingList')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasParkingList')!.errors &&
+                    stepThreeForm.get('hasParkingList')!.touched) ||
+                  (stepThreeForm.get('hasParkingList')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label for="2 Original parking list and 3 copies" class="click ms-5">
+          2 Original parking list and 3 copies
+        </label>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="2 Original manufacturers certificate of production stating standards adopted"
+              formControlName="hasManufacturerCertificateOfProduction"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasManufacturerCertificateOfProduction')!
+                    .errors &&
+                    stepThreeForm.get('hasManufacturerCertificateOfProduction')!
+                      .touched) ||
+                  (stepThreeForm.get('hasManufacturerCertificateOfProduction')!
+                    .errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('hasManufacturerCertificateOfProduction')!
+                    .errors &&
+                    stepThreeForm.get('hasManufacturerCertificateOfProduction')!
+                      .touched) ||
+                  (stepThreeForm.get('hasManufacturerCertificateOfProduction')!
+                    .errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label
+          for="2 Original manufacturers certificate of production stating standards adopted"
+          class="click ms-5"
+        >
+          2 Original manufacturers certificate of production stating standards
+          adopted
+        </label>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="1 original laboratory test certificate"
+              formControlName="laboratoryTestCertificate"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('laboratoryTestCertificate')!.errors &&
+                    stepThreeForm.get('laboratoryTestCertificate')!.touched) ||
+                  (stepThreeForm.get('laboratoryTestCertificate')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('laboratoryTestCertificate')!.errors &&
+                    stepThreeForm.get('laboratoryTestCertificate')!.touched) ||
+                  (stepThreeForm.get('laboratoryTestCertificate')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label for="1 original laboratory test certificate" class="click ms-5">
+          1 original laboratory test certificate
+        </label>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="Certificate issued by the beneficiary stating that one set of documents has been forwarded to Fidelity Bank by courier not later than 21 days after shipment"
+              formControlName="beneficiaryIssuedCertificate"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('beneficiaryIssuedCertificate')!.errors &&
+                    stepThreeForm.get('beneficiaryIssuedCertificate')!
+                      .touched) ||
+                  (stepThreeForm.get('beneficiaryIssuedCertificate')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('beneficiaryIssuedCertificate')!.errors &&
+                    stepThreeForm.get('beneficiaryIssuedCertificate')!
+                      .touched) ||
+                  (stepThreeForm.get('beneficiaryIssuedCertificate')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label
+          for="Certificate issued by the beneficiary stating that one set of documents has been forwarded to Fidelity Bank by courier not later than 21 days after shipment"
+          class="click ms-5"
+        >
+          Certificate issued by the beneficiary stating that one set of
+          documents has been forwarded to Fidelity Bank by courier not later
+          than 21 days after shipment
+        </label>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="form_group">
+        <div class="">
+          <label class="check-container">
+            <input
+              type="checkbox"
+              name="permissions"
+              id="2/3 original (clean/shipped on board) ocean bill of lading and 3 copies (Non-negotiabe) issued to the order and marked freight prepaid endorse to Fidelitybank PLC."
+              formControlName="oceanBillOfLanding"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('oceanBillOfLanding')!.errors &&
+                    stepThreeForm.get('oceanBillOfLanding')!.touched) ||
+                  (stepThreeForm.get('oceanBillOfLanding')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            />
+            <span
+              class="checkmark"
+              [ngClass]="{
+                'is-invalid':
+                  (stepThreeForm.get('oceanBillOfLanding')!.errors &&
+                    stepThreeForm.get('oceanBillOfLanding')!.touched) ||
+                  (stepThreeForm.get('oceanBillOfLanding')!.errors &&
+                    stepThreeFormSubmitted)
+              }"
+            ></span>
+          </label>
+        </div>
+        <label
+          for="2/3 original (clean/shipped on board) ocean bill of lading and 3 copies (Non-negotiabe) issued to the order and marked freight prepaid endorse to Fidelitybank PLC."
+          class="click ms-5"
+        >
+          2/3 original (clean/shipped on board) ocean bill of lading and 3
+          copies (Non-negotiabe) issued to the order and marked freight prepaid
+          endorse to Fidelitybank PLC.
+        </label>
+      </div>
+    </div>
+
+    <div class="col-12 mt-4">
+      <div class="form_group">
+        <label for="firstName" class="form-label"
+          >Airway bill consigned to</label
+        >
+        <textarea
+          cols="30"
+          placeholder="Message"
+          rows="10"
+          class="form-control"
+          formControlName="airwayBillConsigned"
+          [ngClass]="{
+            'is-invalid':
+              (stepThreeForm.get('airwayBillConsigned')!.errors &&
+                stepThreeForm.get('airwayBillConsigned')!.touched) ||
+              (stepThreeForm.get('airwayBillConsigned')!.errors &&
+                stepThreeFormSubmitted)
+          }"
+        ></textarea>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form_group mb-5">
+        <label for="others" class="form-label">Others</label>
+        <textarea
+          name=""
+          id="others"
+          cols="30"
+          placeholder="Message"
+          rows="10"
+          class="form-control"
+          formControlName="otherDetails"
+          [ngClass]="{
+            'is-invalid':
+              (stepThreeForm.get('otherDetails')!.errors &&
+                stepThreeForm.get('otherDetails')!.touched) ||
+              (stepThreeForm.get('otherDetails')!.errors &&
+                stepThreeFormSubmitted)
+          }"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <button class="btn btn-outline-grey btn-md me-4" (click)="back()">
+      Back
+    </button>
+    <button class="btn btn-green btn-md" (click)="continue()">Continue</button>
+  </div>
+</form>

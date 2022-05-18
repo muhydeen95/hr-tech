@@ -1,0 +1,235 @@
+<section class="profile__wrapper">
+  <div class="profile_title">
+    <h1>User Profile</h1>
+    <app-error [error_message]="error_message"></app-error>
+  </div>
+  <div
+    *ngIf="!isFetchingProfile"
+    class="row profile__card d-flex justify-content-between"
+  >
+    <div class="col-md-6 col-lg-6 wrapper__sign_in">
+      <div class="d-flex">
+        <div class="profile_img">
+          <img
+            *ngIf="profile?.profilePictureUrl != null"
+            class="profile__pix"
+            [src]="profile?.profilePictureUrl"
+            alt="profile image"
+          />
+          <div *ngIf="profile?.profilePictureUrl == null" class="name-badge">
+            <p class="profile-init">{{ getInitials() }}</p>
+          </div>
+          <div class="position-relative">
+            <i class="fas fa-camera"></i>
+            <input
+              type="file"
+              name="file-1"
+              id="file-1"
+              accept="image/png,image/jpeg,image/jpg"
+              (change)="changeProfilePic($event)"
+            />
+          </div>
+          <div *ngIf="isUploading" class="progress_bar">
+            <mat-progress-bar
+              mode="determinate"
+              value="{{ fileUploadProgress }}"
+            ></mat-progress-bar>
+            <p>{{ fileUploadProgress }}%</p>
+          </div>
+        </div>
+        <div class="profile_detail">
+          <h3>
+            {{ profile?.firstName + " " + profile?.lastName }}
+          </h3>
+          <p>
+            {{ profile?.email }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="col-md-6 col-lg-5 btn  change_password_btn mb-5"
+      (click)="openModal()"
+    >
+      Change Password
+    </button>
+  </div>
+
+  <div
+    *ngIf="isFetchingProfile"
+    class="row profile__card d-flex justify-content-between"
+  >
+    <div class="col-lg-6 wrapper__sign_in">
+      <div class="d-flex">
+        <div class="profile_img">
+          <app-docstream-skeleton-loader
+            width="10rem"
+            height="10rem"
+            [appearance]="'circle'"
+          ></app-docstream-skeleton-loader>
+        </div>
+        <div class="profile_detail">
+          <app-docstream-skeleton-loader
+            class="d-block"
+            width="15rem"
+            height="2rem"
+          ></app-docstream-skeleton-loader>
+          <app-docstream-skeleton-loader
+            class="d-block"
+            width="25rem"
+            height="2rem"
+          ></app-docstream-skeleton-loader>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 dummy_btn">
+      <app-docstream-skeleton-loader
+        class="pt-4"
+        width="10rem"
+        height="2rem"
+      ></app-docstream-skeleton-loader>
+    </div>
+  </div>
+
+  <div class="profile__form mt-5">
+    <form novalidate [formGroup]="updateProfileForm" *ngIf="!isFetchingProfile">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form_group mb-5">
+            <label for="firstName" class="form-label">First Name </label>
+            <input
+              type="text"
+              id="firstName"
+              class="form-control"
+              placeholder="Enter First Name"
+              formControlName="firstName"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form_group mb-5">
+            <label for="middleName" class="form-label">Middle Name </label>
+            <input
+              type="text"
+              id="middleName"
+              class="form-control"
+              placeholder="Enter Middle Name"
+              formControlName="middleName"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form_group mb-5">
+            <label for="lastName" class="form-label">Last Name </label>
+            <input
+              type="text"
+              id="lastName"
+              class="form-control"
+              placeholder="Enter Last Name"
+              formControlName="lastName"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form_group mb-5">
+            <label for="phoneNo" class="form-label">Phone Number </label>
+            <input
+              type="text"
+              id="phoneNo"
+              class="form-control"
+              placeholder="Enter phone number"
+              formControlName="phoneNumber"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form_group mb-5">
+            <label for="altPhoneNo" class="form-label"
+              >Alternate Phone Number
+            </label>
+            <input
+              type="text"
+              id="altPhoneNo"
+              class="form-control"
+              placeholder="Enter alternate phone number"
+              formControlName="alternatePhoneNumber"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form_group mb-5">
+            <label for="email" class="form-label"
+              >Personal Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              placeholder="Email address"
+              formControlName="email"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form_group mb-5">
+            <label for="altEmail" class="form-label"
+              >Alternate Email Address
+            </label>
+            <input
+              type="email"
+              id="altEmail"
+              class="form-control"
+              placeholder="Enter alternate email address"
+              formControlName="AlternateEmail"
+              [readonly]="!isEditing"
+            />
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="form_group mb-5">
+            <label for="organizationName" class="form-label"
+              >Organization Name
+            </label>
+            <input
+              type="text"
+              id="organizationName"
+              class="form-control"
+              placeholder="Enter organization name"
+              formControlName="organizationName"
+              [attr.disabled]=" true"
+            />
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="d-flex justify-content-end">
+        <button
+          class="btn wrapper__login_btn"
+          (click)="isEditing ? submit() : toggleEdit()"
+        >
+          <app-loading-button
+            [text]="isEditing ? 'Save Changes' : 'Edit Profile'"
+            [condition]="isLoading"
+          ></app-loading-button>
+        </button>
+      </div>
+    </form>
+
+    <div *ngIf="isFetchingProfile">
+      <div class="col-12" *ngFor="let item of [1, 2, 3, 4, 5]">
+        <app-docstream-skeleton-loader
+          class="pt-4 my-4"
+          width="100%"
+          height="2rem"
+        ></app-docstream-skeleton-loader>
+      </div>
+    </div>
+  </div>
+</section>

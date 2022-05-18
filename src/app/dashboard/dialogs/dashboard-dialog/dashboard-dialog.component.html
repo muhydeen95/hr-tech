@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between" mat-dialog-title>
+  <h2 mat-dialog-title>Details</h2>
+  <div class="click" mat-dialog-close>
+    <img src="assets/icons/x.svg" alt="" />
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div>Details view</div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="btn btn-outline-green btn-md me-4">
+    Cancel
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    class="btn btn-green btn-md"
+  >
+    Update
+  </button>
+</mat-dialog-actions>

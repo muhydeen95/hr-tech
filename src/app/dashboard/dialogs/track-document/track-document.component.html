@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-between" mat-dialog-title>
+  <h2 mat-dialog-title>Track my Document</h2>
+  <div class="click" mat-dialog-close>
+    <img src="assets/icons/x.svg" alt="" />
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <label class="mb-2">Enter correspondence number</label>
+    <div class="search-wrapper mb-5">
+      <div class="search-wrapper-input me-4 mb-3 form_group">
+        <span class="_icon">
+          <img src="assets/icons/search.svg" />
+        </span>
+        <input
+          #searchQuery
+          type="text"
+          class="form-control mt-0"
+          (keyup)="getSearchQuery(searchQuery.value, $event)"
+          placeholder="Reference Number"
+        />
+        <span
+          class="_clear"
+          (click)="getSearchQuery('', { keyCode: '' }, true)"
+          *ngIf="searchQuery.value != ''"
+        >
+          <img src="assets/icons/x.svg" />
+        </span>
+      </div>
+
+      <div class="btn-wrapper me-3">
+        <button class="btn btn-green btn-lg">
+          <span class="text-white me-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              role="img"
+              width="1.2em"
+              height="1.2em"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <g fill="none">
+                <path
+                  d="M21 21l-4.486-4.494M19 10.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </g>
+            </svg>
+          </span>
+          <div class="text" (click)="trackPressed()">Track</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

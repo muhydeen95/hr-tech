@@ -1,0 +1,24 @@
+@import "partials/abstract/variables";
+
+.dashboard-wrapper {
+  .dashboard-content {
+    margin-top: 3rem;
+
+    .table-head {
+      color: $blue-700;
+      h4 {
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+      h6 {
+        font-size: 1.4rem;
+        text-decoration: underline;
+      }
+    }
+  }
+  .quick-actions-wrapper {
+    background-color: $blue-100;
+    border-radius: 0.8rem;
+    padding: 1.6rem 2.4rem;
+  }
+}

@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <app-sidebar (showMinimized)='showMinimizedMenu($event)'></app-sidebar>
+  <div class="wrapper__layout" [ngClass]="{'showMinimized': showMinimized}">
+    <app-navbar></app-navbar>
+    <div class="container my-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<app-help-center></app-help-center>

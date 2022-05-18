@@ -1,0 +1,20 @@
+@import "partials/abstract/variables";
+
+.header {
+  font-family: $docstream_font_bold;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  color: $blue-700;
+  margin-bottom: 3.2rem;
+}
+
+ul {
+  list-style: numeric;
+  li {
+    font-family: $docstream_font !important;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    color: $text-body;
+    margin-bottom: 3rem;
+  }
+}

@@ -1,0 +1,167 @@
+@import "partials/abstract/mixins";
+@import "partials/abstract/variables";
+.font12 {
+  font-size: 1.2rem;
+}
+.font14 {
+  font-size: 1.4rem;
+}
+.font-bold {
+  font-weight: 600;
+}
+
+.document_progress {
+  background-color: $blue-100;
+  margin-bottom: 3rem;
+  border-radius: 0.85rem;
+  padding: 2.4rem 1.6rem;
+  @include maxSize($canvas: M) {
+    #formAccordion {
+      .accordion-item {
+        .accordion-button {
+          font-size: 1.3rem;
+        }
+        .accordion-collapse {
+          .accordion-body {
+            border-left: solid 0.25rem $grey-400 !important;
+            margin-left: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: $blue-700;
+            padding-bottom: 0;
+            ul {
+              list-style-type: none;
+              li {
+                padding: 1.15rem 0;
+                h4 {
+                  font-weight: 600;
+                  font-size: 1.35rem;
+                }
+                p {
+                  font-size: 1.25rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .circle {
+    border-radius: 50%;
+    background: $blue-700;
+    display: flex;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0.6rem;
+  }
+  #formAccordion {
+    .accordion-item {
+      box-shadow: none;
+      border: none;
+      background: $blue-100;
+      .accordion-button {
+        padding-left: 0.5rem;
+        padding-right: 0rem;
+        box-shadow: none;
+        color: $blue-700;
+        font-weight: bold;
+        font-size: 1.4rem;
+        cursor: pointer;
+        width: fit-content;
+        white-space: nowrap;
+        background: $blue-100;
+        &::after {
+          display: none;
+        }
+        &:not(.collapsed) {
+          background: $blue-100;
+          border: none;
+          color: $text-body;
+          box-shadow: none;
+          &::after {
+            display: none;
+          }
+        }
+        img {
+          background: $blue-700;
+        }
+      }
+      .w-fill-available {
+        width: -webkit-fill-available;
+        height: 0.2rem;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          right: 0;
+          width: 100%;
+        }
+      }
+      .accordion-collapse {
+        background: $blue-100;
+        .accordion-body {
+          border-left: solid 0.25rem $grey-400 !important;
+          margin-left: 1.4rem;
+          margin-bottom: 2.5rem;
+          color: $blue-700;
+          padding-bottom: 0;
+          ul {
+            list-style-type: none;
+            li {
+              padding: 0.4rem 0;
+              h4 {
+                font-weight: 600;
+                font-size: 1.35rem;
+              }
+              p {
+                font-size: 1.4rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-wrapper {
+  background-color: $white-100;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 1.6rem rgba($blue-700, 0.1);
+  padding: 2.4rem 3.2rem;
+  .title {
+    font-size: 1.8rem;
+    font-family: $docstream_font_bold;
+    color: $blue-700;
+  }
+  .subHeading {
+    margin: 1rem 0rem 1.5rem 0rem;
+    font-size: 1.4rem;
+  }
+  .form-check-input:disabled ~ .form-check-label,
+  .form-check-input[disabled] ~ .form-check-label {
+    opacity: 1;
+  }
+}
+
+.scrollWithin {
+  height: calc(100vh - 163px);
+  overflow-y: scroll;
+  overflow-x: clip;
+  padding: 2rem;
+  &.document_progress {
+    height: calc(100vh - 57px);
+  }
+}
+
+.signature,
+.stamp {
+  max-width: 40%;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  img {
+    width: 100%;
+  }
+}

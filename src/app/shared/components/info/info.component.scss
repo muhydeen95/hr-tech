@@ -1,0 +1,21 @@
+@import "partials/abstract/variables";
+
+.wrapper_form {
+  font-size: 1.2rem;
+  background-color: rgba($info, 0.1);
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  border-radius: 0.8rem;
+  color: $info;
+  margin-bottom: 1rem;
+  &-icon {
+    margin-right: 1.6rem;
+  }
+  &-message {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+  }
+}

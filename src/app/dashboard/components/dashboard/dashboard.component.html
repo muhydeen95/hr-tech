@@ -1,0 +1,183 @@
+<div class="dashboard-wrapper m-0">
+  <div class="container">
+    <section class="dashboard-content mt-5">
+      <section class="my-5 quick-actions-wrapper">
+        <h4>Quick Actions</h4>
+        <div class="pt-4 row">
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+            <app-quick-actions-cards
+              tag="Click to upload Documents"
+              (clickAction)="openUploadDialog()"
+              route=""
+              image="folder"
+            ></app-quick-actions-cards>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+            <app-quick-actions-cards
+              tag="Submit LC Application"
+              route="/application/form"
+              image="application"
+            ></app-quick-actions-cards>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
+            <app-quick-actions-cards
+              tag="Track my Documents"
+              route=""
+              (clickAction)="openTrackDialog()"
+              image="document"
+            ></app-quick-actions-cards>
+          </div>
+        </div>
+      </section>
+      <section class="row my-5">
+        <div class="col-md-6 col-lg-4">
+          <!-- [dayCount]="'0 Today'" -->
+          <app-card
+            [name]="'Untreated Documents'"
+            [count]="dashboardMetrics?.untreatedFiles"
+            color="info"
+            [loading]="isFetchingDashboard"
+            (click)="triggerClick('Untreated')"
+          ></app-card>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <!-- [dayCount]="'0 Today'" -->
+          <app-card
+            [name]="'Pending Documents'"
+            [count]="dashboardMetrics?.pendingFiles"
+            color="warning"
+            [loading]="isFetchingDashboard"
+            (click)="triggerClick('Pending')"
+          ></app-card>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <!-- [dayCount]="'0 Today'" -->
+          <app-card
+            [name]="'Treated Documents'"
+            [count]="dashboardMetrics?.treatedFiles"
+            color="success"
+            [loading]="isFetchingDashboard"
+            (click)="triggerClick('Treated')"
+          ></app-card>
+        </div>
+      </section>
+      <ng-container
+        *ngIf="
+          dashboardMetrics?.customerFileUploads.data.pagedResult.totalItems > 0
+        "
+      >
+        <div class="d-flex justify-content-between table-head">
+          <h4>Recent Documents</h4>
+          <h6 class="click" routerLink="/documents">View All</h6>
+        </div>
+        <section class="table-responsive my-5">
+          <table class="table caption-top text-nowrap">
+            <ng-container>
+              <thead>
+                <tr>
+                  <th>Refrence No.</th>
+                  <th>Document Type</th>
+                  <th>Subject</th>
+                  <th>Date submitted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            </ng-container>
+            <tbody>
+              <ng-container *ngIf="isFetchingDashboard">
+                <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
+                  <td *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+                    <app-docstream-skeleton-loader
+                      width="10rem"
+                      height="2rem"
+                    ></app-docstream-skeleton-loader>
+                  </td></tr
+              ></ng-container>
+              <ng-container>
+                <tr
+                  *ngFor="
+                    let doc of dashboardMetrics?.customerFileUploads.data
+                      .pagedResult.result
+                  "
+                >
+                  <td>{{ doc.correspondenceNo }}</td>
+                  <td>{{ doc.documentType }} type</td>
+                  <td>{{ doc.subject }}</td>
+                  <td>{{ doc.createdAt | date }}</td>
+                  <td>
+                    <span
+                      class="text-light-blue click"
+                      routerLink="/documents/status/{{ doc.fileSubmissionId }}"
+                    >
+                      <img src="assets/icons/eye.svg" class="me-2" />
+                      View details
+                    </span>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </section>
+      </ng-container>
+      <ng-container
+        *ngIf="dashboardMetrics?.customerLCApplications.list.length > 0"
+      >
+        <div class="d-flex justify-content-between table-head pt-5 mt-5">
+          <h4>Recent LC Application</h4>
+          <h6 class="click" routerLink="../application">View All</h6>
+        </div>
+        <section class="table-responsive my-5">
+          <table class="table caption-top text-nowrap">
+            <ng-container>
+              <thead>
+                <tr>
+                  <th>Applicant's Name</th>
+                  <th>Beneficiary's Name</th>
+                  <th>LC Value in figures</th>
+                  <th>LC Expiry Date</th>
+                  <th>Date Submitted</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            </ng-container>
+            <tbody>
+              <ng-container *ngIf="isFetchingDashboard">
+                <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
+                  <td *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+                    <app-docstream-skeleton-loader
+                      width="10rem"
+                      height="2rem"
+                    ></app-docstream-skeleton-loader>
+                  </td></tr
+              ></ng-container>
+              <ng-container>
+                <tr
+                  *ngFor="
+                    let application of dashboardMetrics?.customerLCApplications
+                      .list
+                  "
+                >
+                  <td>{{ application.applicantName }}</td>
+                  <td>{{ application.beneficiaryName }}</td>
+                  <td>{{ application.valueInFigure }}</td>
+                  <td>{{ application.expiryDate | date }}</td>
+                  <td>{{ application.dateSubmitted | date }}</td>
+                  <td>
+                    <span
+                      class="text-light-blue click"
+                      (click)="viewLcApplication(application.lcApplicationId)"
+                    >
+                      <img src="assets/icons/eye.svg" class="me-2" />
+                      View details
+                    </span>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </section>
+      </ng-container>
+    </section>
+  </div>
+</div>

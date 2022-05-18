@@ -1,0 +1,123 @@
+<div class="dashboard-wrapper m-0">
+  <div class="container">
+    <section class="dashboard-content mt-5">
+      <section class="row my-5">
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <!-- [dayCount]="'0 Today'" -->
+          <app-card
+            [name]="'Untreated Documents'"
+            [count]="documentCount.untreatedFiles"
+            color="info"
+            [loading]="documentLoading"
+            (click)="filterDocument('Untreated')"
+          ></app-card>
+        </div>
+
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <!-- [dayCount]="'0 Today'" -->
+          <app-card
+            [name]="'Pending Documents'"
+            [count]="documentCount.pendingFiles"
+            color="warning"
+            [loading]="documentLoading"
+            (click)="filterDocument('Pending')"
+          ></app-card>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <!-- [dayCount]="'0 Today'" -->
+          <app-card
+            [name]="'Treated Documents'"
+            [count]="documentCount.treatedFiles"
+            color="success"
+            [loading]="documentLoading"
+            (click)="filterDocument('Treated')"
+          ></app-card>
+        </div>
+      </section>
+
+      <section class="my-4">
+        <app-searchbar
+          [canFilter]="true"
+          (filterAction)="filterAction()"
+          (searchQuery)="searchQueryAction($event)"
+          (searchAction)="searchDocuments()"
+          btnName="Upload"
+          btnIcon="upload"
+          (btnAction)="openUploadDialog()"
+        ></app-searchbar>
+      </section>
+
+      <section
+        *ngIf="
+          (is_initial && documentLoading) ||
+          !is_initial ||
+          (is_initial && filterableData.length > 0)
+        "
+        class="table-responsive my-5 pt-5"
+      >
+        <table class="table caption-top text-nowrap">
+          <ng-container>
+            <caption>
+              Documents
+            </caption>
+            <thead>
+              <tr>
+                <th>Refrence No.</th>
+                <th>Document Type</th>
+                <th>Subject</th>
+                <th>Date submitted</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+          </ng-container>
+          <tbody>
+            <ng-container *ngIf="documentLoading">
+              <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
+                <td *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+                  <app-docstream-skeleton-loader
+                    width="10rem"
+                    height="2rem"
+                  ></app-docstream-skeleton-loader>
+                </td></tr
+            ></ng-container>
+            <ng-container *ngIf="!documentLoading">
+              <tr *ngFor="let doc of filterableData">
+                <td>{{ doc.correspondenceNo }}</td>
+                <td>{{ doc.documentType }} type</td>
+                <td>{{ doc.subject }}</td>
+                <td>{{ doc.createdAt | date }}</td>
+                <td>
+                  <span
+                    class="text-light-blue click"
+                    routerLink="/documents/status/{{ doc.fileSubmissionId }}"
+                  >
+                    <img src="assets/icons/eye.svg" class="me-2" />
+                    View details
+                  </span>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </section>
+      <mat-paginator
+        *ngIf="filterableData.length > 0"
+        #paginator
+        [length]="paginatedResponse.totalItems"
+        [pageIndex]="paginatedResponse.pageNumber - 1"
+        [pageSize]="paginatedResponse.pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        aria-label="Select page"
+        (page)="paginate($event)"
+      >
+      </mat-paginator>
+      <app-no-data
+        name="Document"
+        [is_initial]="is_initial"
+        [is_loading]="documentLoading"
+        (open_dialog)="openUploadDialog()"
+        *ngIf="filterableData.length == 0"
+      ></app-no-data>
+    </section>
+  </div>
+</div>

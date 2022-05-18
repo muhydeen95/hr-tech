@@ -1,0 +1,127 @@
+@import "partials/components/forms";
+@import "partials/abstract/variables";
+form {
+  .sign_wrapper {
+    background: $white-100;
+    border: 0.1rem solid rgba($blue-700, 0.2);
+    box-sizing: border-box;
+    border-radius: 0.8rem;
+    padding: 2.4rem 2.4rem 1.6rem;
+    ul {
+      li {
+        position: relative;
+        a {
+          background: transparent;
+          font-weight: 500;
+          font-size: 1.4rem;
+          line-height: 2.1rem;
+          display: flex;
+          align-items: center;
+          color: $text-body;
+          &.active:after {
+            position: absolute;
+            content: "";
+            width: 2.3rem;
+            height: 0.3rem;
+            bottom: 0;
+            left: 32%;
+            border-radius: 0.2rem 0.2rem 0rem 0rem;
+            background-color: #2db2a7;
+          }
+        }
+      }
+    }
+    &--pad {
+      background: rgba($blue-700, 0.05);
+      margin-bottom: 2.1rem;
+      border-radius: 0.8rem;
+    }
+    &--upload {
+      background: rgba($blue-700, 0.05);
+      margin-bottom: 2.1rem;
+      border-radius: 0.8rem;
+      padding: 4.8rem 1.6rem;
+      text-align: center;
+      input[type="file"] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      img {
+        height: 100px;
+      }
+      p {
+        font-size: 1.4rem;
+        line-height: 2.1rem;
+        text-align: center;
+        color: $text-body;
+      }
+    }
+    &--actions {
+      margin-top: 1.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  .attachment_wrapper {
+    background: $white-100;
+    border: 0.1rem solid rgba($blue-700, 0.2);
+    box-sizing: border-box;
+    border-radius: 0.8rem;
+    padding: 2.4rem 2.4rem 1.6rem;
+    h4 {
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 3rem;
+      text-align: center;
+      color: $text-body;
+    }
+    p {
+      font-size: 1.4rem;
+      line-height: 2.1rem;
+      text-align: center;
+      color: $text-body;
+    }
+    &--pad {
+      background: rgba($blue-700, 0.05);
+      margin-bottom: 2.1rem;
+      border-radius: 0.8rem;
+      padding: 4.8rem 1.6rem;
+      text-align: center;
+      input[type="file"] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      img {
+        height: 100px;
+      }
+    }
+    &--actions {
+      margin-top: 1.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
+  .footer {
+    margin-top: 4.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.doc.col-lg-6 {
+  @media (max-width: 1169px) {
+    flex: 0 0 auto;
+    width: 100% !important;
+  }
+}

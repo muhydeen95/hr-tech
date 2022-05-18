@@ -1,0 +1,276 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+@import "partials/components/forms";
+
+.document_status_wrapper {
+  padding: 0 0 3rem 2.5rem;
+  .back_btn {
+    font-size: 1.6rem;
+    color: $blue-700;
+    font-weight: 600;
+  }
+  .fas,
+  .document_progress,
+  .chat_wrapper {
+    background: $blue-100;
+  }
+  .document_progress {
+    padding: 2.4rem 1.6rem;
+    margin-bottom: 3rem;
+    border-radius: 0.85rem;
+    .circle {
+      border-radius: 50%;
+      background: $blue-700;
+      display: flex;
+      justify-content: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      padding: 0.6rem;
+    }
+    #formAccordion {
+      .accordion-item {
+        box-shadow: none;
+        border: none;
+        background: $blue-100;
+        .accordion-button {
+          padding-left: 0.5rem;
+          padding-right: 0rem;
+          box-shadow: none;
+          color: $blue-700;
+          font-weight: bold;
+          font-size: 1.4rem;
+          cursor: pointer;
+          width: fit-content;
+          white-space: nowrap;
+          background: $blue-100;
+          &::after {
+            display: none;
+          }
+          &:not(.collapsed) {
+            background: $blue-100;
+            border: none;
+            color: $text-body;
+            box-shadow: none;
+            &::after {
+              display: none;
+            }
+          }
+          img {
+            background: $blue-700;
+          }
+        }
+        .w-fill-available {
+          width: -webkit-fill-available;
+          height: 0.2rem;
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            width: 100%;
+          }
+        }
+        .accordion-collapse {
+          background: $blue-100;
+          .accordion-body {
+            border-left: solid 0.25rem $grey-400 !important;
+            margin-left: 1.4rem;
+            margin-bottom: 2.5rem;
+            color: $blue-700;
+            padding-bottom: 0;
+            ul {
+              list-style-type: none;
+              li {
+                padding: 0.4rem 0;
+                h4 {
+                  font-weight: 600;
+                  font-size: 1.35rem;
+                }
+                p {
+                  font-size: 1.4rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .chat_wrapper {
+    min-height: 70vh;
+    padding: 3rem 1rem 2rem 3rem;
+    border-radius: 0.85rem;
+    position: relative;
+    #chatTemplate {
+      max-height: 100vh;
+      overflow-y: scroll;
+      padding-right: 2rem;
+      padding-bottom: 3rem;
+      .recipient-message,
+      .sender-message {
+        max-width: 65%;
+        padding: 1rem 2rem 0.5rem 2rem;
+        font-size: 1.25rem;
+        border-bottom-left-radius: 0.85rem;
+        border-bottom-right-radius: 0.85rem;
+        margin-top: 1.5rem;
+        margin-bottom: 4.5rem;
+        position: relative;
+        .time {
+          position: absolute;
+          bottom: -3rem;
+          right: 0;
+          color: $text-body;
+        }
+      }
+      .recipient-message {
+        background: $grey-300;
+        color: $text-body;
+        border-top-right-radius: 0.85rem;
+      }
+      .sender-message {
+        background: $blue-700;
+        color: $blue-100;
+        border-top-left-radius: 0.85rem;
+      }
+    }
+    .message_push {
+      width: 93%;
+      height: 40px;
+      bottom: 2rem;
+      padding-bottom: 1.5rem;
+      position: absolute;
+      z-index: 500;
+      background: $blue-100;
+      .search-wrapper {
+        display: flex;
+        &-input {
+          position: relative;
+          flex-grow: 3;
+          ._icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+          }
+          .form-control {
+            padding-right: 4.5rem;
+            background: transparent;
+            border: none;
+            border-radius: 0%;
+            border-bottom: 0.25rem solid $grey-400;
+          }
+        }
+        .btn-attachment {
+          position: relative;
+          cursor: pointer;
+          input[type="file"] {
+            font-size: 10rem;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+          }
+        }
+        .btn-wrapper {
+          .btn-blue {
+            background-color: $blue-700;
+            color: $white-100;
+            display: flex;
+            align-items: center;
+            line-height: 0;
+            transition: all ease 0.3s;
+            &:hover {
+              color: #fff;
+              background-color: $blue-900;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include maxSize($canvas: M) {
+  .document_status_wrapper {
+    padding: 2rem;
+    .document_progress {
+      #formAccordion {
+        .accordion-item {
+          .accordion-button {
+            font-size: 1.3rem;
+          }
+          .accordion-collapse {
+            .accordion-body {
+              border-left: solid 0.25rem $grey-400 !important;
+              margin-left: 2.5rem;
+              margin-bottom: 2.5rem;
+              color: $blue-700;
+              padding-bottom: 0;
+              ul {
+                list-style-type: none;
+                li {
+                  padding: 1.15rem 0;
+                  h4 {
+                    font-weight: 600;
+                    font-size: 1.35rem;
+                  }
+                  p {
+                    font-size: 1.25rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .chat_wrapper {
+      min-height: 40vh;
+      padding: 1.5rem;
+      border-radius: 0.85rem;
+      #chatTemplate {
+        padding-right: 0rem;
+        .chat-template {
+          max-height: 100vh;
+          overflow-y: scroll;
+          &::-webkit-scrollbar {
+            width: 0.5rem;
+            background: $blue-700;
+          }
+          .recipient-message,
+          .sender-message {
+            max-width: 90%;
+            margin-top: 0rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include maxSize($canvas: S) {
+  .chat_wrapper {
+    #chatTemplate {
+      max-height: 100vh;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+.no-attachment {
+  box-shadow: 0px 0px 6px rgba(0, 45, 107, 0.15);
+  background-color: $white-100;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 0.8rem;
+  min-height: 67vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

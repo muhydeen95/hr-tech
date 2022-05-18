@@ -1,0 +1,12 @@
+<div
+  class="wrapper_form"
+  *ngIf="info_message != '' && info_message != null && !loading"
+>
+  <div class="d-flex align-items-center">
+    <div class="wrapper_form-icon">
+      <img src="assets/icons/info.svg" type="" class="me-2" />
+    </div>
+    <div class="wrapper_form-message">{{ info_message }}</div>
+  </div>
+  <ng-content [select]="[content]"></ng-content>
+</div>
