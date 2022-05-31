@@ -20,7 +20,7 @@ body {
   margin: 0;
 }
 hr {
-  background-color: $blue-700;
+  background-color: $purple-700;
   opacity: 0.1;
 }
 .click {
@@ -51,5 +51,5 @@ hr {
   width: fit-content;
 }
 .border {
-  border: 0.1rem solid rgba($blue-700, 0.15) !important;
+  border: 0.1rem solid rgba($purple-700, 0.15) !important;
 }

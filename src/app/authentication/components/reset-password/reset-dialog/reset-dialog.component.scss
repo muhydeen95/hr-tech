@@ -1,16 +1,16 @@
-@import 'partials/abstract/variables';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import "partials/abstract/variables";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 .mat-typography {
-    font-family: 'Poppins', sans-serif;
-    .modal-title {
-        font-size: 3.15rem;
-        font-weight: bold;
-        color: $blue-700;
-    }
-    p {
-        font-size: 1.7rem;
-        line-height: 3rem;
-        color: $text-body;
-    }
+  font-family: "Poppins", sans-serif;
+  .modal-title {
+    font-size: 3.15rem;
+    font-weight: bold;
+    color: $purple-700;
+  }
+  p {
+    font-size: 1.7rem;
+    line-height: 3rem;
+    color: $text-body;
+  }
 }

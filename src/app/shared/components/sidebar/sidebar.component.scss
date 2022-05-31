@@ -8,7 +8,7 @@
   width: 2rem;
   font-size: 2.8rem;
   display: none;
-  z-index: 1;
+  z-index: 9;
   @include maxSize($canvas: L) {
     display: block;
   }
@@ -26,12 +26,13 @@
 }
 .minimizeMenu_container {
   padding: 0rem 1rem 4rem 2rem;
-  display: none;
+
   span {
     color: $white-100;
     font-size: 4rem;
     cursor: pointer;
   }
+  display: none;
   @include minSize($canvas: L) {
     display: block !important;
   }
@@ -43,8 +44,29 @@
   z-index: 3;
   position: fixed;
   bottom: 0;
-  min-height: 100vh;
+  background: $purple-700;
+  height: 100%;
   width: 0% !important;
+
+  &-toggler {
+    position: absolute;
+    top: 69px;
+    right: -16px;
+    z-index: 5;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: $white-100;
+    box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+    display: none;
+    @include minSize($canvas: L) {
+      display: flex !important;
+    }
+  }
   &::-webkit-scrollbar {
     display: none;
   }
@@ -81,29 +103,33 @@
     }
   }
   &-wrapper {
+    position: relative;
     padding: 2rem 0;
-    min-height: 100vh;
-    position: absolute;
-    background-color: $blue-700;
-    // border-right: solid 0.1rem #f4efe3;
+    height: 100%;
     width: 100%;
     @include minSize($canvas: L) {
-      padding: 1rem 0rem 2rem 0rem;
+      padding: 10.4rem 0rem 2rem 0rem;
     }
     .top-list {
-      min-height: calc(100vh - 10rem);
+      height: 100%;
     }
     @include maxSize(L) {
       padding: 7rem 0;
       .top-list {
-        min-height: calc(100vh - 15rem);
+        height: 100%;
       }
     }
     ul {
       padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      .auto {
+        margin-top: auto;
+      }
       li {
         list-style: none;
         .side-link {
+          position: relative;
           font-size: 1.4rem;
           padding: 1.3rem 2.3rem;
           margin: 0.5rem 0;
@@ -117,7 +143,7 @@
             line-height: 0;
           }
           .side-icon {
-            margin-right: 2.7rem !important;
+            margin-right: 2.7rem;
             svg path {
               fill: $white-100;
             }
@@ -127,13 +153,35 @@
           }
           &.active {
             opacity: 1;
-            background-color: rgba($white-100, 0.1);
-            border-right: solid 0.4rem $green-400;
+            .border {
+              display: block;
+            }
             .side-icon {
               svg path {
                 fill: $green-400;
               }
             }
+          }
+          .border {
+            position: absolute;
+            right: 0;
+            display: none;
+            background: $green-400;
+            width: 0.4rem;
+            height: 3.2rem;
+            border-radius: 0 0.3rem 0.3rem 0;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+          }
+        }
+
+        .logout {
+          height: 48px !important;
+          background: rgba(0, 0, 0, 0.5) !important;
+          border-radius: 6px !important;
+          margin: 0rem 1rem;
+          margin-top: auto !important;
+          .side-icon {
+            margin-right: 1.8rem;
           }
         }
       }

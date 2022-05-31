@@ -1,0 +1,15 @@
+<div class="side-d-wrapper">
+  <nav id="{{ elementId }}" class="side">
+    <div class="container d-none" id="c_container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="form-wrapper">
+            <ng-content select=".drawer-header"></ng-content>
+            <ng-content select=".drawer-body"></ng-content>
+            <ng-content select=".drawer-footer"></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

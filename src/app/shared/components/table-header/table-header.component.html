@@ -1,0 +1,13 @@
+<div class="head">
+  <h4 class="font-weight-bold py-3">{{ table_name }}</h4>
+  <div>
+    <button
+      class="btn btn-purple btn-md"
+      (click)="btnPressed()"
+      *ngIf="btn_name"
+    >
+      <span class="me-3"> <img src="assets/icons/add.svg" /> </span
+      >{{ btn_name }}
+    </button>
+  </div>
+</div>

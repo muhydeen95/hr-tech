@@ -14,7 +14,7 @@
   flex: 1;
   &.active {
     .step-counter {
-      border: 1px solid $blue-700;
+      border: 1px solid $purple-700;
     }
   }
   @media (max-width: 768px) {
@@ -26,7 +26,7 @@
   position: absolute;
   content: "";
   border-radius: 2px;
-  border-bottom: 2px solid rgba($green-600, 0.1);
+  border-bottom: 2px solid rgba($purple-700, 0.1);
   width: 100%;
   top: 1.6rem;
   left: -50%;
@@ -36,7 +36,7 @@
 .stepper-item::after {
   position: absolute;
   content: "";
-  border-bottom: 2px solid rgba($green-600, 0.1);
+  border-bottom: 2px solid rgba($purple-700, 0.1);
   width: 80%;
   top: 1.6rem;
   left: 60%;
@@ -44,7 +44,7 @@
 }
 
 .stepper-item .step-counter {
-  font-family: $docstream_font_bold;
+  font-family: $walsheim_font_bold;
   position: relative;
   z-index: 5;
   display: flex;
@@ -63,8 +63,8 @@
 }
 
 .stepper-item.completed .step-counter {
-  font-family: $docstream_font_bold;
-  background: $blue-700;
+  font-family: $walsheim_font_bold;
+  background: $purple-700;
   color: $white-100;
 }
 

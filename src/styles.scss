@@ -63,18 +63,18 @@ $docstream-theme: mat.define-light-theme(
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $green-600;
+  background: $purple-700;
   border-radius: 1rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $green-700;
+  background: $purple-700;
 }
 
 .docstream_snackbar_success {
   background: $white-100;
-  box-shadow: 0rem 0.4rem 0.8rem rgba($blue-700, 0.15);
+  box-shadow: 0rem 0.4rem 0.8rem rgba($purple-700, 0.15);
   border-radius: 0.8rem;
   font-size: 1.4rem;
   line-height: 2.1rem;
@@ -94,10 +94,10 @@ $docstream-theme: mat.define-light-theme(
 }
 
 .mat-dialog-title {
-  color: $blue-700;
+  color: $purple-700;
   font-size: 1.8rem;
   line-height: 2.7rem;
-  font-family: $docstream_font_bold;
+  font-family: $walsheim_font_bold;
 }
 
 .mat-dialog-container {
@@ -118,6 +118,27 @@ button {
     outline: none;
     box-shadow: none;
   }
+}
+.form-control {
+  height: 4.8rem;
+  background: $grey-300;
+  border-radius: 0.8rem;
+  font-size: 1.5rem;
+  color: $text-body;
+  width: 100%;
+  border: none;
+  padding: 1rem 1.5rem;
+  &::placeholder {
+    color: $text-body;
+    font-size: 1.4rem;
+  }
+  &:focus {
+    background: rgba($purple-700, 0.071);
+  }
+}
+textarea.form-control {
+  min-height: 4.8rem;
+  height: auto;
 }
 
 .form-group {
@@ -168,7 +189,7 @@ button {
 
   /* When the checkbox is checked, add a colored background */
   input:checked ~ .checkmark {
-    border: solid 0.6rem $green-600;
+    border: solid 0.6rem $purple-700;
   }
 
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -202,7 +223,7 @@ button {
 
 table.table {
   caption {
-    color: $blue-700;
+    color: $purple-700;
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 1rem;

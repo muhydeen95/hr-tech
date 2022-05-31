@@ -34,6 +34,7 @@ export class DocumentComponent implements OnInit {
   paginationQuery = InitialSearchDTO;
   documentStatus: string = '0';
   data: DocumentResponse[] = [];
+  public btnName: string = 'Upload New';
   public paginatedResponse: PaginationResponse<any[]> = new PaginationResponse<
     any[]
   >();

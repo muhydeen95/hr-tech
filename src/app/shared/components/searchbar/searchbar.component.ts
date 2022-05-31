@@ -40,8 +40,10 @@ export class SearchbarComponent implements OnInit {
     this.sortAction.emit(this.currentSort);
   }
 
-  public filterPressed(): void {
-    this.filterAction.emit();
+  public filterPressed(e?: any): void {
+    if (this.canFilter) {
+      this.filterAction.emit();
+    }
   }
   public searchPressed(): void {
     this.searchAction.emit(true);

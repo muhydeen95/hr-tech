@@ -1,41 +1,13 @@
 <div class="dashboard-wrapper m-0">
   <div class="container">
     <section class="dashboard-content mt-5">
-      <section class="my-5 quick-actions-wrapper">
-        <h4>Quick Actions</h4>
-        <div class="pt-4 row">
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
-            <app-quick-actions-cards
-              tag="Click to upload Documents"
-              (clickAction)="openUploadDialog()"
-              route=""
-              image="folder"
-            ></app-quick-actions-cards>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
-            <app-quick-actions-cards
-              tag="Submit LC Application"
-              route="/application/form"
-              image="application"
-            ></app-quick-actions-cards>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-3">
-            <app-quick-actions-cards
-              tag="Track my Documents"
-              route=""
-              (clickAction)="openTrackDialog()"
-              image="document"
-            ></app-quick-actions-cards>
-          </div>
-        </div>
-      </section>
       <section class="row my-5">
         <div class="col-md-6 col-lg-4">
           <!-- [dayCount]="'0 Today'" -->
           <app-card
             [name]="'Untreated Documents'"
             [count]="dashboardMetrics?.untreatedFiles"
-            color="info"
+            img="assets/icons/blue.svg"
             [loading]="isFetchingDashboard"
             (click)="triggerClick('Untreated')"
           ></app-card>
@@ -46,7 +18,7 @@
           <app-card
             [name]="'Pending Documents'"
             [count]="dashboardMetrics?.pendingFiles"
-            color="warning"
+            img="assets/icons/amber.svg"
             [loading]="isFetchingDashboard"
             (click)="triggerClick('Pending')"
           ></app-card>
@@ -56,127 +28,169 @@
           <app-card
             [name]="'Treated Documents'"
             [count]="dashboardMetrics?.treatedFiles"
-            color="success"
+            img="assets/icons/green.svg"
             [loading]="isFetchingDashboard"
             (click)="triggerClick('Treated')"
           ></app-card>
         </div>
       </section>
-      <ng-container
-        *ngIf="
-          dashboardMetrics?.customerFileUploads.data.pagedResult.totalItems > 0
-        "
-      >
-        <div class="d-flex justify-content-between table-head">
-          <h4>Recent Documents</h4>
-          <h6 class="click" routerLink="/documents">View All</h6>
+      <section class="my-5 quick">
+        <div class="row">
+          <div class="col-sm-3 col-md-2 col-lg-3">
+            <div class="quick_upload">
+              <img src="assets/icons/file.svg" alt="" />
+              <div class="d-flex justify-content-center">
+                <button
+                  (click)="openUploadDialog()"
+                  class="btn btn-purple btn-lg"
+                >
+                  Upload Document
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 col-md-10 col-lg-9">
+            <div class="quick_track">
+              <app-filetra-card
+                ><div>
+                  <div class="quick_track-head">
+                    <h4>Track my Document</h4>
+                  </div>
+                  <div>
+                    <label>Correspondence number</label>
+                    <div class="search-wrapper">
+                      <div class="search-wrapper-input me-4 form_group">
+                        <span class="_icon">
+                          <img src="assets/icons/search.svg" />
+                        </span>
+                        <input
+                          #searchQuery
+                          type="text"
+                          class="form-control mt-0"
+                          (keyup)="getSearchQuery(searchQuery.value, $event)"
+                          placeholder="Enter correspondence number"
+                        />
+                        <span
+                          class="_clear"
+                          (click)="getSearchQuery('', { keyCode: '' }, true)"
+                          *ngIf="searchQuery.value != ''"
+                        >
+                          <img src="assets/icons/x.svg" />
+                        </span>
+                      </div>
+
+                      <div class="btn-wrapper me-3">
+                        <button class="btn btn-purple btn-lg">
+                          <span class="text-white me-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              aria-hidden="true"
+                              role="img"
+                              width="1.2em"
+                              height="1.2em"
+                              preserveAspectRatio="xMidYMid meet"
+                              viewBox="0 0 24 24"
+                            >
+                              <g fill="none">
+                                <path
+                                  d="M21 21l-4.486-4.494M19 10.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0z"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                />
+                              </g>
+                            </svg>
+                          </span>
+                          <div class="text" (click)="trackPressed()">
+                            Track Document
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </app-filetra-card>
+            </div>
+          </div>
         </div>
-        <section class="table-responsive my-5">
-          <table class="table caption-top text-nowrap">
-            <ng-container>
-              <thead>
-                <tr>
-                  <th>Refrence No.</th>
-                  <th>Document Type</th>
-                  <th>Subject</th>
-                  <th>Date submitted</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-            </ng-container>
-            <tbody>
-              <ng-container *ngIf="isFetchingDashboard">
-                <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
-                  <td *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
-                    <app-docstream-skeleton-loader
-                      width="10rem"
-                      height="2rem"
-                    ></app-docstream-skeleton-loader>
-                  </td></tr
-              ></ng-container>
-              <ng-container>
-                <tr
-                  *ngFor="
-                    let doc of dashboardMetrics?.customerFileUploads.data
-                      .pagedResult.result
+      </section>
+
+      <ng-container>
+        <app-filetra-card
+          ><div>
+            <app-table-header
+              [btn_name]="'View All'"
+              [table_name]="'Recent Documents'"
+            ></app-table-header>
+            <section class="table-responsive">
+              <table class="table caption-top text-nowrap">
+                <ng-container
+                  *ngIf="
+                    dashboardMetrics?.customerFileUploads.data.pagedResult
+                      .totalItems > 0 || isFetchingDashboard
                   "
                 >
-                  <td>{{ doc.correspondenceNo }}</td>
-                  <td>{{ doc.documentType }} type</td>
-                  <td>{{ doc.subject }}</td>
-                  <td>{{ doc.createdAt | date }}</td>
-                  <td>
-                    <span
-                      class="text-light-blue click"
-                      routerLink="/documents/status/{{ doc.fileSubmissionId }}"
+                  <thead>
+                    <tr>
+                      <th>Refrence No.</th>
+                      <th>Document Type</th>
+                      <th>Subject</th>
+                      <th>Date submitted</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                </ng-container>
+                <tbody>
+                  <ng-container *ngIf="isFetchingDashboard">
+                    <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
+                      <td *ngFor="let item of [1, 2, 3, 4, 5]">
+                        <app-docstream-skeleton-loader
+                          width="10rem"
+                          height="2rem"
+                        ></app-docstream-skeleton-loader>
+                      </td></tr
+                  ></ng-container>
+                  <ng-container *ngIf="!isFetchingDashboard">
+                    <tr
+                      *ngFor="
+                        let doc of dashboardMetrics?.customerFileUploads.data
+                          .pagedResult.result
+                      "
                     >
-                      <img src="assets/icons/eye.svg" class="me-2" />
-                      View details
-                    </span>
-                  </td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </section>
-      </ng-container>
-      <ng-container
-        *ngIf="dashboardMetrics?.customerLCApplications.list.length > 0"
-      >
-        <div class="d-flex justify-content-between table-head pt-5 mt-5">
-          <h4>Recent LC Application</h4>
-          <h6 class="click" routerLink="../application">View All</h6>
-        </div>
-        <section class="table-responsive my-5">
-          <table class="table caption-top text-nowrap">
-            <ng-container>
-              <thead>
-                <tr>
-                  <th>Applicant's Name</th>
-                  <th>Beneficiary's Name</th>
-                  <th>LC Value in figures</th>
-                  <th>LC Expiry Date</th>
-                  <th>Date Submitted</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-            </ng-container>
-            <tbody>
-              <ng-container *ngIf="isFetchingDashboard">
-                <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
-                  <td *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
-                    <app-docstream-skeleton-loader
-                      width="10rem"
-                      height="2rem"
-                    ></app-docstream-skeleton-loader>
-                  </td></tr
-              ></ng-container>
-              <ng-container>
-                <tr
-                  *ngFor="
-                    let application of dashboardMetrics?.customerLCApplications
-                      .list
-                  "
-                >
-                  <td>{{ application.applicantName }}</td>
-                  <td>{{ application.beneficiaryName }}</td>
-                  <td>{{ application.valueInFigure }}</td>
-                  <td>{{ application.expiryDate | date }}</td>
-                  <td>{{ application.dateSubmitted | date }}</td>
-                  <td>
-                    <span
-                      class="text-light-blue click"
-                      (click)="viewLcApplication(application.lcApplicationId)"
-                    >
-                      <img src="assets/icons/eye.svg" class="me-2" />
-                      View details
-                    </span>
-                  </td>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </section>
+                      <td>{{ doc.correspondenceNo }}</td>
+                      <td>{{ doc.documentType }} type</td>
+                      <td>{{ doc.subject }}</td>
+                      <td>{{ doc.createdAt | date }}</td>
+                      <td>
+                        <span
+                          class="text-light-blue click"
+                          routerLink="/documents/status/{{
+                            doc.fileSubmissionId
+                          }}"
+                        >
+                          <img src="assets/icons/eye.svg" class="me-2" />
+                          View details
+                        </span>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </section>
+            <app-no-data
+              name="Recent Document"
+              [showActionButton]="false"
+              [is_initial]="true"
+              (open_dialog)="routeToDocuments()"
+              [is_loading]="isFetchingDashboard"
+              *ngIf="
+                dashboardMetrics?.customerFileUploads.data.pagedResult
+                  .totalItems == 0
+              "
+            ></app-no-data>
+          </div>
+        </app-filetra-card>
       </ng-container>
     </section>
   </div>

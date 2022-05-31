@@ -1,5 +1,5 @@
 <ng-container *ngIf="!is_loading">
-  <h4 *ngIf="is_initial == true" class="mt-5">{{ name + "s" }}</h4>
+  <!-- <h4 *ngIf="is_initial == true" class="mt-5">{{ name + "s" }}</h4> -->
   <div class="wrapper">
     <div class="text-center">
       <div class="wrapper_image">
@@ -26,8 +26,8 @@
           }}
         </p>
       </div>
-      <div class="wrapper_action">
-        <button class="btn btn-green btn-lg">
+      <div class="wrapper_action" *ngIf="showActionButton">
+        <button class="btn btn-purple btn-lg">
           <span class="text-white me-2">
             <img src="assets/icons/add.svg" />
           </span>

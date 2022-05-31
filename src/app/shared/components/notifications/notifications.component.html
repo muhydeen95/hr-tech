@@ -1,0 +1,11 @@
+<ng-container>
+  <div *ngFor="let notification of notifications; index as i">
+    <div class="notification">
+      <app-notification
+        [notification]="notification"
+        [indexToRemove]="i"
+        (index)="getIndex($event)"
+      ></app-notification>
+    </div>
+  </div>
+</ng-container>

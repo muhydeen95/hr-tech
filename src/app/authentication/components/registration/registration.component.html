@@ -1,9 +1,6 @@
 <div class="wrapper">
   <div class="wrapper__logo">
-    <embed
-      src="assets/images/docstream_logo.svg"
-      alt="Docstream Logo"
-    />
+    <embed src="assets/images/Filetra_logo2.svg" alt="Docstream Logo" />
   </div>
   <div class="wrapper__header">
     <h1>Create your account</h1>
@@ -28,10 +25,11 @@
               [ngClass]="{
                 'is-invalid':
                   (registrationForm.get('FirstName')?.errors &&
-                  registrationForm.get('FirstName')?.touched) ||
+                    registrationForm.get('FirstName')?.touched) ||
                   (registrationForm.get('FirstName')?.hasError('required') &&
                     registerFormSubmitted) ||
-                  (registrationForm.get('FirstName')?.hasError('firstName') && registerFormSubmitted)
+                  (registrationForm.get('FirstName')?.hasError('firstName') &&
+                    registerFormSubmitted)
               }"
             />
             <div
@@ -49,9 +47,7 @@
         </div>
         <div class="col-lg-4">
           <div class="form_group mb-5">
-            <label for="middleName" class="form-label"
-              >Middle Name
-            </label>
+            <label for="middleName" class="form-label">Middle Name </label>
             <input
               type="text"
               id="middleName"
@@ -76,10 +72,11 @@
               [ngClass]="{
                 'is-invalid':
                   (registrationForm.get('LastName')?.errors &&
-                  registrationForm.get('LastName')?.touched) ||
+                    registrationForm.get('LastName')?.touched) ||
                   (registrationForm.get('LastName')?.hasError('required') &&
                     registerFormSubmitted) ||
-                  (registrationForm.get('LastName')?.hasError('LastName') && registerFormSubmitted)
+                  (registrationForm.get('LastName')?.hasError('LastName') &&
+                    registerFormSubmitted)
               }"
             />
             <div
@@ -110,10 +107,13 @@
               [ngClass]="{
                 'is-invalid':
                   (registrationForm.get('PhoneNumber')?.errors &&
-                  registrationForm.get('PhoneNumber')?.touched) ||
+                    registrationForm.get('PhoneNumber')?.touched) ||
                   (registrationForm.get('PhoneNumber')?.hasError('required') &&
                     registerFormSubmitted) ||
-                  (registrationForm.get('PhoneNumber')?.hasError('PhoneNumber') && registerFormSubmitted)
+                  (registrationForm
+                    .get('PhoneNumber')
+                    ?.hasError('PhoneNumber') &&
+                    registerFormSubmitted)
               }"
             />
             <div
@@ -158,10 +158,11 @@
               [ngClass]="{
                 'is-invalid':
                   (registrationForm.get('Email')?.errors &&
-                  registrationForm.get('Email')?.touched) ||
+                    registrationForm.get('Email')?.touched) ||
                   (registrationForm.get('Email')?.hasError('required') &&
                     registerFormSubmitted) ||
-                  (registrationForm.get('Email')?.hasError('Email') && registerFormSubmitted)
+                  (registrationForm.get('Email')?.hasError('Email') &&
+                    registerFormSubmitted)
               }"
             />
             <div
@@ -178,7 +179,7 @@
             <div
               class="invalid-feedback"
               *ngIf="
-              registrationForm.get('Email')?.hasError('Email') &&
+                registrationForm.get('Email')?.hasError('Email') &&
                 registerFormSubmitted
               "
             >
@@ -199,13 +200,17 @@
               formControlName="AlternateEmail"
               [ngClass]="{
                 'is-invalid':
-                  (registrationForm.get('AlternateEmail')?.hasError('AlternateEmail') && registerFormSubmitted)
+                  registrationForm
+                    .get('AlternateEmail')
+                    ?.hasError('AlternateEmail') && registerFormSubmitted
               }"
             />
             <div
               class="invalid-feedback"
               *ngIf="
-              registrationForm.get('AlternateEmail')?.hasError('AlternateEmail')
+                registrationForm
+                  .get('AlternateEmail')
+                  ?.hasError('AlternateEmail')
               "
             >
               Enter a valid email
@@ -241,10 +246,11 @@
                 [ngClass]="{
                   'is-invalid':
                     (registrationForm.get('Password')?.errors &&
-                    registrationForm.get('Password')?.touched) ||
+                      registrationForm.get('Password')?.touched) ||
                     (registrationForm.get('Password')?.hasError('required') &&
                       registerFormSubmitted) ||
-                    (registrationForm.get('Password')?.hasError('Password') && registerFormSubmitted)
+                    (registrationForm.get('Password')?.hasError('Password') &&
+                      registerFormSubmitted)
                 }"
               />
               <i
@@ -259,17 +265,21 @@
                 ></i>
               </ng-template>
             </div>
-            <div class="text-danger" 
-              *ngIf="registrationForm.get('Password')?.invalid &&
-              registrationForm.get('Password')?.value != '' 
-            ">
-              <span>Password must container at least 8 character with one uppercase, one lowercase and one number</span>
-            </div>
             <div
               class="text-danger"
               *ngIf="
-                registrationForm.get('Password')?.value == ''
+                registrationForm.get('Password')?.invalid &&
+                registrationForm.get('Password')?.value != ''
               "
+            >
+              <span
+                >Password must container at least 8 character with one
+                uppercase, one lowercase and one number</span
+              >
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="registrationForm.get('Password')?.value == ''"
             >
               Required
             </div>
@@ -305,8 +315,12 @@
                 ></i>
               </ng-template>
             </div>
-            <div class="text-danger"
-              *ngIf="registrationForm.get('Password')?.value !== registrationForm.get('ConfirmPassword')?.value"
+            <div
+              class="text-danger"
+              *ngIf="
+                registrationForm.get('Password')?.value !==
+                registrationForm.get('ConfirmPassword')?.value
+              "
             >
               Passwords must match
             </div>
@@ -314,11 +328,19 @@
         </div>
       </div>
 
-      <div class="row d-flex flex-column-reverse flex-lg-row justify-content-between">
+      <div
+        class="row d-flex flex-column-reverse flex-lg-row justify-content-between"
+      >
         <div class="col-md-6 order-md-12 wrapper__sign_in">
-          <p>Already have an account? <a routerLink="/authentication/login"><span>Sign In</span></a></p>
+          <p>
+            Already have an account?
+            <a routerLink="/authentication/login"><span>Sign In</span></a>
+          </p>
         </div>
-        <button class="col-md-5 order-md-1 btn wrapper__login_btn" (click)="register()">
+        <button
+          class="col-md-5 order-md-1 btn wrapper__login_btn"
+          (click)="register()"
+        >
           <app-loading-button
             [text]="'Create Account'"
             [condition]="isSiginingUp"

@@ -1,0 +1,50 @@
+@import "partials/abstract/variables";
+.notification_wrapper {
+  background: $white-100;
+  border-bottom: 0.1rem solid rgba(42, 9, 94, 0.1);
+  border-radius: 0.8rem;
+  padding: 1.6rem 1.6rem 2.6rem 1.6rem;
+  &__main {
+    &_head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4rem;
+      &--left {
+        display: flex;
+        align-items: center;
+        img {
+        }
+        h4 {
+          font-family: $walsheim_font_bold;
+          font-weight: 700;
+          font-size: 1.4rem;
+          line-height: 2.1rem;
+          color: $text-body;
+          margin-left: 1rem;
+          margin-bottom: 0;
+        }
+      }
+      .delete {
+        cursor: pointer;
+      }
+    }
+    &_message {
+      h5 {
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        color: $text-body;
+        margin-bottom: 0 !important;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+
+    &--action {
+      margin-left: auto;
+      cursor: pointer;
+    }
+  }
+}

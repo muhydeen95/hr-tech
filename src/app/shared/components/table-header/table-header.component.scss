@@ -1,0 +1,19 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  @include maxSize($canvas: M) {
+    display: block;
+  }
+  h4 {
+    font-family: $walsheim_font_bold;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: $text-body;
+  }
+}

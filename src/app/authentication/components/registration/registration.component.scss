@@ -7,50 +7,62 @@ $mobile_side_padding: 3rem;
 
 .wrapper {
   height: 100%;
-  // padding: $side_padding;
-  &__logo {
-    margin-bottom: 5.6rem;
+  max-width: 68.4rem;
+  width: 100%;
+  @include minSize($canvas: L) {
+    max-width: 68.4rem;
+    width: 68.4rem;
   }
-
+  &__logo {
+    margin-bottom: 2.4rem;
+    text-align: center;
+  }
   &__header {
     h1 {
-      font-family: $docstream_font_bold !important;
+      font-family: $walsheim_font_bold !important;
+      font-weight: 700;
       font-size: 3.2rem;
       line-height: 4.8rem;
+      text-align: center;
+      margin-bottom: 0.4rem;
     }
     p {
+      font-style: normal;
+      font-weight: 400;
       font-size: 1.4rem;
       line-height: 2.1rem;
-      color: $blue-700;
-      margin-bottom: 5.6rem;
+      text-align: center;
+      color: $text-body;
+      margin-bottom: 3.9rem;
     }
   }
- .position-relative {
-   .invalid-feedback,
+  .position-relative {
+    .invalid-feedback,
     .fa {
       position: absolute;
       font-size: 1.5rem;
       top: 1.8rem;
       right: 1.5rem;
     }
-  } 
+  }
   &__sign_in {
     padding-top: 1.4rem;
-    a,p {
-      color: $blue-700;
+    a,
+    p {
+      color: $purple-700;
       font-weight: 600;
       font-size: 1.4rem;
       line-height: 1.8rem;
       text-decoration: none;
     }
     span {
-      color: $green-600;
+      color: $purple-700;
     }
   }
   &__login_btn {
     width: 30%;
     height: 4.5rem !important;
-    background: $green-600;
+    background: $purple-700;
     box-shadow: 0rem 0.4rem 0.8rem -0.1rem rgba(0, 74, 77, 0.15);
     border-radius: 0.8rem;
     font-weight: 600;
@@ -61,10 +73,10 @@ $mobile_side_padding: 3rem;
     justify-content: center;
     text-align: center;
     color: $white-100;
-    padding: .35rem 0;
+    padding: 0.35rem 0;
     transition: 0.6s all ease;
     &:hover {
-      background: $green-700;
+      background: $purple-700;
     }
   }
 }

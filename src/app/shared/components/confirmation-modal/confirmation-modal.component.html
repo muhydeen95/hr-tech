@@ -15,14 +15,14 @@
   <button
     (click)="action(false)"
     [mat-dialog-close]="false"
-    class="btn btn-outline-green btn-md me-4 px-4"
+    class="btn btn-outline-purple btn-md me-4 px-4"
     #close
   >
     Go Back
   </button>
   <button
     [mat-dialog-close]="true"
-    class="btn btn-green btn-md px-4"
+    class="btn btn-purple btn-md px-4"
     (click)="action(true)"
   >
     {{ modalData.actionButtonText }}

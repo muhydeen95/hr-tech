@@ -51,16 +51,16 @@
                 <ul class="px-3 m-0">
                   <li>
                     <h4>Document Type</h4>
-                    <p>{{ documentDetail.documentType || "--" }}</p>
+                    <p>{{ documentDetail?.documentType || "--" }}</p>
                   </li>
                   <li>
                     <h4>Subject</h4>
-                    <p>{{ documentDetail.subject || "--" }}</p>
+                    <p>{{ documentDetail?.subject || "--" }}</p>
                   </li>
                   <li>
                     <h4>Status</h4>
                     <p>
-                      {{ documentDetail.treatmentStatusId || "--" }}
+                      {{ documentDetail?.treatmentStatusId || "--" }}
                     </p>
                   </li>
                 </ul>
@@ -72,7 +72,7 @@
         <div
           class="accordion"
           id="formAccordion"
-          *ngIf="documentDetail.files.length > 0"
+          *ngIf="documentDetail?.files?.length! > 0"
         >
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -102,7 +102,7 @@
                   <li
                     class="d-flex align-items-center click"
                     (click)="attachmentLink = file"
-                    *ngFor="let file of documentDetail.files"
+                    *ngFor="let file of documentDetail?.files"
                   >
                     <img src="assets/images/pdf.svg" alt="" />
                     <p class="d-inline-block ps-3">{{ file.name }}</p>

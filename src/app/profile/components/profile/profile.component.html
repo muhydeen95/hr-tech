@@ -1,11 +1,10 @@
 <section class="profile__wrapper">
   <div class="profile_title">
-    <h1>User Profile</h1>
     <app-error [error_message]="error_message"></app-error>
   </div>
   <div
     *ngIf="!isFetchingProfile"
-    class="row profile__card d-flex justify-content-between"
+    class="profile__card d-flex justify-content-between"
   >
     <div class="col-md-6 col-lg-6 wrapper__sign_in">
       <div class="d-flex">
@@ -49,7 +48,7 @@
     </div>
 
     <button
-      class="col-md-6 col-lg-5 btn  change_password_btn mb-5"
+      class="col-md-6 col-lg-5 btn change_password_btn mb-5"
       (click)="openModal()"
     >
       Change Password
@@ -58,7 +57,7 @@
 
   <div
     *ngIf="isFetchingProfile"
-    class="row profile__card d-flex justify-content-between"
+    class="profile__card d-flex justify-content-between"
   >
     <div class="col-lg-6 wrapper__sign_in">
       <div class="d-flex">
@@ -203,7 +202,7 @@
               class="form-control"
               placeholder="Enter organization name"
               formControlName="organizationName"
-              [attr.disabled]=" true"
+              [attr.disabled]="true"
             />
           </div>
         </div>

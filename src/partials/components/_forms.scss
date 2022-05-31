@@ -1,32 +1,29 @@
 @import "partials/abstract/variables";
 
 .form_group {
-  font-family: $docstream_font !important;
+  font-family: $walsheim_font !important;
+  margin-bottom: 1.6rem !important;
   label {
-    color: $blue-700;
-    font-weight: 600;
+    font-weight: 400;
+    color: $text-body;
     font-size: 1.2rem;
     line-height: 1.8rem;
+    margin-bottom: 0.4rem;
     span {
       color: $error;
       margin-left: 0.4rem;
-      &.is-invalid {
-        border: 0.1rem solid $error !important;
-      }
     }
   }
 
   input,
-  select,
-  textarea {
+  select {
     width: 100%;
-    margin-top: 0.4rem;
     height: 4.8rem;
-    border-radius: 0.8rem;
+    border-radius: 0.6rem;
     font-size: 1.4rem;
-    color: $blue-700;
+    color: $purple-700;
     padding: 1.35rem 1.6rem;
-    background: rgba($blue-700, 0.07);
+    background: rgba($purple-700, 0.07);
 
     &.is-invalid {
       border: 0.1rem solid $error !important;
@@ -34,31 +31,17 @@
     }
     &:focus {
       background: $white-100;
-      color: $blue-700;
-      border: 0.1rem solid rgba($blue-700, 0.4);
+      color: $purple-700;
+      border: 0.1rem solid rgba($purple-700, 0.4);
       box-shadow: none;
     }
-  }
-  textarea {
-    height: 13.4rem;
-  }
-
-  input[type="date"] {
-    background: rgba($blue-700, 0.07) url("../../assets/icons/Calendar.svg")
-      no-repeat 97% 50%;
-    &:focus {
-      background: $white-100 url("../../assets/icons/Calendar.svg") no-repeat
-        97% 50%;
+    &::placeholder {
+      color: $text-body;
     }
-  }
-  input[type="date"]::-webkit-inner-spin-button,
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    -webkit-appearance: none;
   }
 
   select {
-    background: rgba($blue-700, 0.07) url("../../assets/icons/arrow-down.svg")
+    background: rgba($purple-700, 0.07) url("../../assets/icons/arrow-down.svg")
       no-repeat 97% 50%;
     &:focus {
       background: $white-100 url("../../assets/icons/arrow-down.svg") no-repeat
@@ -81,20 +64,20 @@
     height: 4.8rem;
     border-radius: 0.8rem;
     font-size: 1.4rem;
-    color: $blue-700;
+    color: $purple-700;
     padding: 1.35rem 1.6rem;
-    background: rgba($blue-700, 0.07);
+    background: rgba($purple-700, 0.07);
     display: flex;
     align-items: center;
   }
   .ng-select.ng-select-focused.ng-select-opened > .ng-select-container {
     background: $white-100 !important;
-    color: $blue-700;
-    border: 0.1rem solid rgba($blue-700, 0.4);
+    color: $purple-700;
+    border: 0.1rem solid rgba($purple-700, 0.4);
     box-shadow: none;
   }
   .ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
-    border-color: rgba($blue-700, 0.4);
+    border-color: rgba($purple-700, 0.4);
     box-shadow: none;
   }
   /* Border Color */

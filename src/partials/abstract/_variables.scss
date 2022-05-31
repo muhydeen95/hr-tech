@@ -1,11 +1,13 @@
 // colors and fonts go here.
 
 // Brand Colours
-$blue-100: #f0f2f9;
+
+$purple-100: #f6f4f9;
 $blue-300: #1890ff;
+$purple-700: #4c11ab;
 $blue-700: #182252;
-$blue-900: #161b37;
-$green-400: #2db2a7;
+$purple-900: #2a095e;
+$green-400: #b3ee54;
 $green-600: #00a5ab;
 $green-700: #008085;
 
@@ -14,12 +16,12 @@ $white-100: #ffffff;
 $white-200: #f7f7f7;
 $white-300: #fafafa;
 $white-700: #f2f2f2;
-$text-body: #464e75;
+$text-body: #3a2e4d;
 $black-100: #000000;
 $black-850: #1f1f1f;
-$grey-300: rgba($blue-700, 0.07);
-$grey-400: rgba($blue-700, 0.1);
-$grey-500: rgba($blue-900, 0.2);
+$grey-300: rgba($purple-700, 0.07);
+$grey-400: rgba($purple-700, 0.1);
+$grey-500: rgba($purple-900, 0.2);
 
 // Alerts
 $success: #5fa171;
@@ -29,5 +31,5 @@ $info: #418ed9;
 $tip: #4d4d4d;
 
 //Fonts specified by Emmanuel
-$docstream_font: "poppins", sans-serif;
-$docstream_font_bold: "poppins bold", sans-serif;
+$walsheim_font: "GT Walsheim Pro", sans-serif;
+$walsheim_font_bold: "GT Walsheim Pro bold", sans-serif;

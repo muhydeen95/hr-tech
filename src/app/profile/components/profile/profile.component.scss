@@ -8,14 +8,13 @@ $mobile_side_padding: 1.5rem;
 .profile__wrapper {
   padding: $side_padding;
   .profile_title {
-    color: $blue-700;
+    color: $purple-700;
   }
   .profile__card {
-    border-radius: 0.85rem;
+    border: 0.1rem solid rgba(76, 17, 171, 0.2);
+    border-radius: 1.2rem;
     margin-top: 2.5rem;
-    color: $white-100;
-    background: $blue-700 url(../../../../assets/images/profile-bg.svg)
-      no-repeat;
+
     padding: 2rem 2rem 0rem 2rem;
     .profile_img {
       position: relative;
@@ -27,7 +26,7 @@ $mobile_side_padding: 1.5rem;
         position: relative;
         .profile-init {
           position: absolute;
-          color: $blue-700;
+          color: $purple-700;
           font-size: 3.5rem;
           font-weight: bold;
           text-align: center;
@@ -45,20 +44,20 @@ $mobile_side_padding: 1.5rem;
         font-size: 0.5rem;
         bottom: 3.6rem;
         left: 5.8rem;
-        border: 0.3rem solid $blue-700;
+        border: 0.3rem solid $purple-700;
         padding: 1.5rem;
         height: 2.5rem;
         width: 2.5rem;
         border-radius: 50%;
         display: flex;
         cursor: pointer;
-        background: $blue-100;
+        background: $purple-100;
         .fas {
           position: absolute;
           bottom: 0.75rem;
           right: 0.7rem;
           font-size: 1.5rem;
-          color: $blue-700;
+          color: $purple-700;
         }
         input[type="file"] {
           font-size: 10rem;
@@ -74,17 +73,25 @@ $mobile_side_padding: 1.5rem;
     .profile_detail {
       padding: 3.5rem 1rem 1.5rem 1.7rem;
       h3 {
-        font-size: 2rem;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 36px;
+        color: $text-body;
       }
       p {
-        font-size: 1.2rem;
+        font-weight: 500;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: $text-body;
+        opacity: 0.8;
       }
     }
   }
   .profile__form {
-    border-radius: 0.85rem;
+    background: $white-100;
+    box-shadow: 0rem 0.4rem 1.6rem rgba(0, 0, 0, 0.05);
+    border-radius: 1.2rem;
     padding: 2rem 2.5rem;
-    background: $blue-100;
   }
   .wrapper__login_btn,
   .change_password_btn,
@@ -104,18 +111,24 @@ $mobile_side_padding: 1.5rem;
     transition: 0.6s all ease;
   }
   .wrapper__login_btn {
-    background: $green-600;
+    background: $purple-700;
     box-shadow: 0rem 0.4rem 0.8rem -0.1rem rgba(0, 74, 77, 0.15);
     &:hover {
-      background: $green-700;
+      background: $purple-700;
     }
   }
   .change_password_btn {
     background: transparent;
-    border: 0.035rem solid $white-100;
-    box-shadow: 0rem 0.4rem 0.8rem -0.1rem rgba($blue-700, 0.15);
+    border: 0.15rem solid rgba(58, 46, 77, 0.2);
+    border-radius: 0.8rem;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 2.1rem;
+    color: $text-body;
+
     &:hover {
-      background: $blue-700;
+      background: $purple-700;
+      color: $white-100;
     }
   }
 }
@@ -163,7 +176,7 @@ $mobile_side_padding: 1.5rem;
             bottom: 0.5rem;
             right: 0.4rem;
             font-size: 1.3rem;
-            color: $blue-700;
+            color: $purple-700;
           }
           input[type="file"] {
             font-size: 5rem;
@@ -187,6 +200,6 @@ $mobile_side_padding: 1.5rem;
   align-items: center;
   p {
     margin-left: 0.5rem;
-    margin-bottom:0
+    margin-bottom: 0;
   }
 }

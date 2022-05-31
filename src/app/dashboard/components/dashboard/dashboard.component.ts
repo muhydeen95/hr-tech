@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 // import { DialogModel } from '@shared/components/models/dialog.model';
 import { Subscription } from 'rxjs';
@@ -18,6 +24,9 @@ import { DashboardService } from 'app/dashboard/services/dashboard.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
+  @ViewChild('searchQuery') searchQueryElement!: ElementRef;
+  public searchTerm: string = '';
+
   private sub: Subscription = new Subscription();
   public isDocumentFetching: boolean = true;
   public applicationLoading: boolean = true;
@@ -37,7 +46,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getDashboard();
   }
 
-  public getDashboard(): void {
+  public getDashboard(initial?: boolean): void {
     this._dashboard.getCustomerDashboard().subscribe({
       next: (res: ResponseModel<DashboardResponseDTO>) => {
         this.isFetchingDashboard = false;
@@ -62,6 +71,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   routeToPage(query: string, isSearching: boolean): void {
     this.router.navigate([`documents/status/${query}`], this.navigationExtras);
   }
+  routeToDocuments(): void {
+    this.router.navigate([`documents`]);
+  }
   triggerClick(query: string): void {
     const param: NavigationExtras = {
       queryParams: { query },
@@ -85,11 +97,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public viewDocument(documentId: string): void {
     this.routeToPage(documentId, false);
   }
-  public viewLcApplication(lcApplicationId: number): void {
-    this.router.navigate(['application/detail', lcApplicationId]);
-  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  public trackPressed(): void {
+    if (this.searchTerm != '') {
+      this.routeToPage(this.searchTerm, true);
+    }
+  }
+
+  public getSearchQuery(
+    searchQuery: string,
+    event: KeyboardEvent | any,
+    clear?: boolean
+  ): void {
+    clear ? (this.searchQueryElement.nativeElement.value = '') : null;
+    this.searchTerm = searchQuery.toLocaleLowerCase().trim();
+    var key = event.key || event.keyCode;
+    if (key == 'Enter' || searchQuery == '') {
+      this.searchTerm = '';
+      // this.routeToPage(this.searchTerm, true);
+    }
   }
 }

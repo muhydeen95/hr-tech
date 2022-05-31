@@ -2,17 +2,17 @@
 @import "partials/abstract/mixins";
 
 h4 {
-  font-family: $docstream_font_bold;
+  font-family: $walsheim_font_bold;
   font-size: 1.8rem;
   line-height: 2.7rem;
-  color: $blue-700;
+  color: $purple-700;
   margin-bottom: 1rem;
   margin-top: -4rem;
   text-transform: capitalize;
 }
 .wrapper {
   background: $white-100;
-  box-shadow: 0rem 0rem 0.8rem rgba($blue-700, 0.15);
+  box-shadow: 0rem 0rem 0.8rem rgba($purple-700, 0.15);
   border-radius: 0.8rem;
   display: flex;
   justify-content: center;

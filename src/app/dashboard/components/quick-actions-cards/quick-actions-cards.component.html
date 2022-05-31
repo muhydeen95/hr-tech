@@ -1,4 +1,8 @@
-<div class="quick-actions-card" (click)="triggerClick()" routerLink="{{route}}">
-    <img src="assets/icons/{{image}}.svg" alt="" />
-    <p class="mb-0 ms-4">{{tag}}</p>
+<div class="quick" (click)="triggerClick()" routerLink="{{ route }}">
+  <div class="quick_left">
+    <p>{{ tag }}</p>
+    <h6></h6>
+    <p class="day"></p>
   </div>
+  <img src="assets/icons/{{ image }}.svg" alt="" />
+</div>

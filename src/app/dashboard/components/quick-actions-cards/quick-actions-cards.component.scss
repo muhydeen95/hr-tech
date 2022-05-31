@@ -1,21 +1,19 @@
 @import "partials/abstract/variables";
 
-
-
-    h4 {
-      font-weight: 700;
-      font-size: 1.6rem;
-    }
-    .quick-actions-card {
-      display: flex;
-      align-items: center;
-      background-color: $white-100;
-      border-radius: 0.8rem;
-      box-shadow: 0px, 4px rgba($blue-700, 0.15);
-      padding: 1.2rem 1.6rem;
-      cursor: pointer;
-      p{
-        font-size: 1.4rem;
-      }
-    }
-  
+h4 {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.quick {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $white-100;
+  box-shadow: 0px 0px 8px rgba($black-100, 0.05);
+  border-radius: 1.2rem;
+  padding: 1.6rem 2.4rem;
+  cursor: pointer;
+  p {
+    font-size: 1.4rem;
+  }
+}

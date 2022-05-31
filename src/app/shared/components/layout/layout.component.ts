@@ -13,4 +13,7 @@ export class LayoutComponent implements OnInit {
   public showMinimizedMenu(value: any): void {
     this.showMinimized = value;
   }
+  public minimizeMenu(): void {
+    this.showMinimized = !this.showMinimized;
+  }
 }

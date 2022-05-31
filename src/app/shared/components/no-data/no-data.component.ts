@@ -8,6 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class NoDataComponent implements OnInit {
   //Please specify name in singular
   @Input('name') name!: string;
+  @Input('showActionButton') showActionButton: boolean = true;
+
   @Input('is_loading') is_loading!: boolean;
   @Input('is_initial') is_initial: boolean = true;
   @Output() open_dialog: EventEmitter<boolean> = new EventEmitter<boolean>();

@@ -5,72 +5,43 @@ $side_bar_width: 59rem;
 $medium_side_bar_width: 35rem;
 $small_side_bar_width: 23rem;
 
-$side_padding: 8.4rem 9rem 12.4rem 8.2rem;
+$side_padding: 12.4rem 26rem 12.4rem 14.2rem;
 $mobile_side_padding: 3rem;
 
 .wrapper {
-  height: 100vh;
-  width: 100vw;
-
-  &__side {
-    width: $side_bar_width;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
+  background: $purple-100 url(../../../assets/images/pattern.svg) no-repeat;
+  // width: 100%;
+  min-height: 100vh;
+  display: flex;
   &__layout {
-    position: absolute;
-    width: calc(100% - #{$side_bar_width});
-    right: 0;
-
-    &--content {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding: $side_padding;
-      overflow-y: auto;
-    }
+    background: $white-100;
+    box-shadow: 0rem 0rem 2rem rgba($purple-700, 0.1);
+    border-radius: 12px;
+    padding: 6rem 5rem 9rem;
+    margin: auto;
   }
 }
 @include maxSize($canvas: M) {
   .wrapper {
-    &__side {
-      width: 0;
-      display: none;
-    }
     &__layout {
-      width: 100%;
-      &--content {
-        padding: $mobile_side_padding;
-      }
+      // width: 100%;
+      padding: $mobile_side_padding;
     }
   }
 }
 @include screenSize($canvas: L) {
   .wrapper {
-    &__side {
-      width: $medium_side_bar_width;
-      // display: none;
-    }
     &__layout {
-      width: calc(100% - #{$medium_side_bar_width});
-      &--content {
-        padding: $mobile_side_padding;
-      }
+      // width: 100%;
+      padding: $mobile_side_padding;
     }
   }
 }
 @include screenSize($canvas: M) {
   .wrapper {
-    &__side {
-      width: $small_side_bar_width;
-    }
     &__layout {
-      width: calc(100% - #{$small_side_bar_width});
-      &--content {
-        padding: $mobile_side_padding;
-      }
+      // width: 100%;
+      padding: $mobile_side_padding;
     }
   }
 }

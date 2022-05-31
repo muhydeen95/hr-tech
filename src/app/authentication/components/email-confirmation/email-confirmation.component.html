@@ -1,21 +1,15 @@
 <div class="wrapper text-center">
-    <div class="wrapper__logo">
-      <embed
-        src="assets/images/docstream_logo.svg"
-        alt="Docstream Logo"
-      />
-    </div>
-    <div class="wrapper__header">
-      <h1>Email Verified</h1>
-      <p>Hey Champ, your email has been verified successfully</p>
-    </div>
-    <button 
-        class="btn btn-green btn-lg"
-        (click)="goToDashboard()"
-    >
-        <app-loading-button
-            [text]="'Proceed to Dashboard'"
-            [condition]="isLoading"
-        ></app-loading-button>
-    </button>
+  <div class="wrapper__logo">
+    <embed src="assets/images/Filetra_logo2.svg" alt="Docstream Logo" />
   </div>
+  <div class="wrapper__header">
+    <h1>Email Verified</h1>
+    <p>Hey Champ, your email has been verified successfully</p>
+  </div>
+  <button class="btn btn-purple btn-lg" (click)="goToDashboard()">
+    <app-loading-button
+      [text]="'Proceed to Dashboard'"
+      [condition]="isLoading"
+    ></app-loading-button>
+  </button>
+</div>
