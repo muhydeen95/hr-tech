@@ -5,7 +5,7 @@ import { LoadingButtonComponent } from './components/loading-button/loading-butt
 import { LoaderComponent } from './components/loader/loader.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
-import { DocstreamSkeletonLoaderComponent } from './components/docstream-skeleton-loader/docstream-skeleton-loader.component';
+import { FiletraSkeletonLoaderComponent } from './components/filetra-skeleton-loader/filetra-skeleton-loader.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
@@ -35,7 +35,7 @@ import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.d
     NavbarComponent,
     LayoutComponent,
     ErrorComponent,
-    DocstreamSkeletonLoaderComponent,
+    FiletraSkeletonLoaderComponent,
     NoDataComponent,
     ConfirmationModalComponent,
     CardComponent,
@@ -66,7 +66,7 @@ import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.d
     NavbarComponent,
     LayoutComponent,
     ErrorComponent,
-    DocstreamSkeletonLoaderComponent,
+    FiletraSkeletonLoaderComponent,
     NgxSkeletonLoaderModule,
     NoDataComponent,
     ConfirmationModalComponent,

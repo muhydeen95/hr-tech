@@ -6,15 +6,15 @@ import {
 import { SnackType } from '@core/models/snack.model';
 
 @Component({
-  selector: 'app-docstream-snackbar',
-  templateUrl: './docstream-snackbar.component.html',
-  styleUrls: ['./docstream-snackbar.component.scss'],
+  selector: 'app-filetra-snackbar',
+  templateUrl: './filetra-snackbar.component.html',
+  styleUrls: ['./filetra-snackbar.component.scss'],
 })
-export class DocstreamSnackbarComponent implements OnInit {
+export class FiletraSnackbarComponent implements OnInit {
   public snackType = SnackType;
   constructor(
     @Inject(MAT_SNACK_BAR_DATA) public data: any,
-    private _snackRef: MatSnackBarRef<DocstreamSnackbarComponent>
+    private _snackRef: MatSnackBarRef<FiletraSnackbarComponent>
   ) {}
 
   ngOnInit(): void {}

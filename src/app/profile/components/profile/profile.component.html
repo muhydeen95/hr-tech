@@ -62,32 +62,32 @@
     <div class="col-lg-6 wrapper__sign_in">
       <div class="d-flex">
         <div class="profile_img">
-          <app-docstream-skeleton-loader
+          <app-filetra-skeleton-loader
             width="10rem"
             height="10rem"
             [appearance]="'circle'"
-          ></app-docstream-skeleton-loader>
+          ></app-filetra-skeleton-loader>
         </div>
         <div class="profile_detail">
-          <app-docstream-skeleton-loader
+          <app-filetra-skeleton-loader
             class="d-block"
             width="15rem"
             height="2rem"
-          ></app-docstream-skeleton-loader>
-          <app-docstream-skeleton-loader
+          ></app-filetra-skeleton-loader>
+          <app-filetra-skeleton-loader
             class="d-block"
             width="25rem"
             height="2rem"
-          ></app-docstream-skeleton-loader>
+          ></app-filetra-skeleton-loader>
         </div>
       </div>
     </div>
     <div class="col-lg-5 dummy_btn">
-      <app-docstream-skeleton-loader
+      <app-filetra-skeleton-loader
         class="pt-4"
         width="10rem"
         height="2rem"
-      ></app-docstream-skeleton-loader>
+      ></app-filetra-skeleton-loader>
     </div>
   </div>
 
@@ -223,11 +223,11 @@
 
     <div *ngIf="isFetchingProfile">
       <div class="col-12" *ngFor="let item of [1, 2, 3, 4, 5]">
-        <app-docstream-skeleton-loader
+        <app-filetra-skeleton-loader
           class="pt-4 my-4"
           width="100%"
           height="2rem"
-        ></app-docstream-skeleton-loader>
+        ></app-filetra-skeleton-loader>
       </div>
     </div>
   </div>

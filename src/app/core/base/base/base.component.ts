@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Injectable, Injector } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, TeardownLogic } from 'rxjs';
-import { DocstreamSnackbarComponent } from '../docstream-snackbar/docstream-snackbar.component';
+import { FiletraSnackbarComponent } from '../filetra-snackbar/filetra-snackbar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -31,11 +31,11 @@ export abstract class BaseComponent {
   public openSnackBar(message: string, type?: string, timeDuration = 3000) {
     const _type: string = type !== undefined ? type : 'success';
     if (message) {
-      this.snackBar.openFromComponent(DocstreamSnackbarComponent, {
+      this.snackBar.openFromComponent(FiletraSnackbarComponent, {
         duration: timeDuration,
         verticalPosition: 'top',
         horizontalPosition: 'center',
-        panelClass: ['docstream_snackbar_success'],
+        panelClass: ['snackbar_success'],
         data: { message: message, type: _type },
       });
     }

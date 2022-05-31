@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-docstream-skeleton-loader',
-  templateUrl: './docstream-skeleton-loader.component.html',
-  styleUrls: ['./docstream-skeleton-loader.component.scss'],
+  selector: 'app-filetra-skeleton-loader',
+  templateUrl: './filetra-skeleton-loader.component.html',
+  styleUrls: ['./filetra-skeleton-loader.component.scss'],
 })
-export class DocstreamSkeletonLoaderComponent implements OnInit {
+export class FiletraSkeletonLoaderComponent implements OnInit {
   @Input('count') count: number = 1;
   @Input('appearance') appearance: 'circle' | 'line' = 'line';
   @Input('animation') animation: 'progress' | 'progress-dark' | 'pulse' =

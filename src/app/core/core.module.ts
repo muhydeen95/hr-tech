@@ -1,11 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DocstreamSnackbarComponent } from './base/docstream-snackbar/docstream-snackbar.component';
+import { FiletraSnackbarComponent } from './base/filetra-snackbar/filetra-snackbar.component';
 
 @NgModule({
-  declarations: [DocstreamSnackbarComponent],
+  declarations: [FiletraSnackbarComponent],
   imports: [CommonModule],
-  entryComponents: [DocstreamSnackbarComponent],
+  entryComponents: [FiletraSnackbarComponent],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

@@ -20,16 +20,16 @@ export class CurrentUserService {
   }
 
   public isLoggedIn(): boolean {
-    const docstream_token = JSON.parse(
-      localStorage.getItem('docstream_token') || 'null'
+    const filetra_token = JSON.parse(
+      localStorage.getItem('filetra_token') || 'null'
     );
     // const currentUser = JSON.parse(
-    //   localStorage.getItem('docstream_user_credential') || 'null'
+    //   localStorage.getItem('filetra_user_credential') || 'null'
     // );
     if (
-      docstream_token !== null &&
-      docstream_token !== undefined &&
-      !this._jwt.isTokenExpired(docstream_token)
+      filetra_token !== null &&
+      filetra_token !== undefined &&
+      !this._jwt.isTokenExpired(filetra_token)
       // &&
       // currentUser !== undefined &&
       // currentUser !== null
@@ -45,7 +45,7 @@ export class CurrentUserService {
 
   /**
    *
-   * @param docstream_token
+   * @param filetra_token
    * @returns
    * TODO:
    * -Setup when you see the structure
@@ -59,7 +59,7 @@ export class CurrentUserService {
       unique_name: jwtData.unique_name,
     };
     localStorage.setItem('user_credential', JSON.stringify(data_to_store));
-    localStorage.setItem('docstream_token', JSON.stringify(responseData.token));
+    localStorage.setItem('filetra_token', JSON.stringify(responseData.token));
   }
 
   public storeUserDetails(userDetails: any) {
@@ -69,22 +69,22 @@ export class CurrentUserService {
       email: userDetails.email,
       phoneNumber: userDetails.phoneNumber,
     };
-    this.localStorageAS.set('docstream_user_details', user_data_to_store);
+    this.localStorageAS.set('filetra_user_details', user_data_to_store);
   }
 
-  private decrypt_jwt(docstream_token: string): any {
-    if (docstream_token) {
-      const decoded = this._jwt.decodeToken(docstream_token);
+  private decrypt_jwt(filetra_token: string): any {
+    if (filetra_token) {
+      const decoded = this._jwt.decodeToken(filetra_token);
       return decoded;
     }
     return null;
   }
 
   public getAuthToken(): string {
-    const docstream_token = JSON.parse(
-      localStorage.getItem('docstream_token') || 'null'
+    const filetra_token = JSON.parse(
+      localStorage.getItem('filetra_token') || 'null'
     );
-    return docstream_token;
+    return filetra_token;
   }
 
   // public getUser(): Observable<ResponseModel> {

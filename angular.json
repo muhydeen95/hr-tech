@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Docstream-Admin": {
+    "Filetra-Customer": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Docstream-Customer",
+            "outputPath": "dist/Filetra-Customer",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -100,10 +100,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Docstream-Admin:build:production"
+              "browserTarget": "Filetra-Customer:build:production"
             },
             "development": {
-              "browserTarget": "Docstream-Admin:build:development"
+              "browserTarget": "Filetra-Customer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -111,7 +111,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Docstream-Admin:build"
+            "browserTarget": "Filetra-Customer:build"
           }
         },
         "test": {
@@ -130,5 +130,5 @@
       }
     }
   },
-  "defaultProject": "Docstream-Customer"
+  "defaultProject": "Filetra-Customer"
 }
