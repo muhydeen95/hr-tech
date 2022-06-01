@@ -122,6 +122,7 @@
             <app-table-header
               [btn_name]="'View All'"
               [table_name]="'Recent Documents'"
+              (btnAction)="routeToDocuments()"
             ></app-table-header>
             <section class="table-responsive">
               <table class="table caption-top text-nowrap">

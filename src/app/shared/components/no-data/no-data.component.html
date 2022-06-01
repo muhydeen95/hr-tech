@@ -27,11 +27,11 @@
         </p>
       </div>
       <div class="wrapper_action" *ngIf="showActionButton">
-        <button class="btn btn-purple btn-lg">
+        <button class="btn btn-purple btn-lg" (click)="openAddDialog()">
           <span class="text-white me-2">
             <img src="assets/icons/add.svg" />
           </span>
-          <div class="text" (click)="openAddDialog()">New {{ name }}</div>
+          <div class="text">New {{ name }}</div>
         </button>
       </div>
     </div>

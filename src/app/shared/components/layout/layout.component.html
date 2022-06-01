@@ -1,7 +1,19 @@
 <div class="wrapper">
   <app-navbar></app-navbar>
-  <app-sidebar (showMinimized)="showMinimizedMenu($event)"></app-sidebar>
+  <!-- <app-sidebar (showMinimized)="showMinimizedMenu($event)"></app-sidebar> -->
+  <app-sidebar [showMinimizedMenu]="showMinimized"></app-sidebar>
+
   <div class="wrapper__layout" [ngClass]="{ showMinimized: showMinimized }">
+    <div class="wrapper__layout-toggler" (click)="minimizeMenu()">
+      <img
+        [src]="
+          showMinimizedMenu
+            ? 'assets/icons/arrow-right.svg'
+            : 'assets/icons/arrow-leftt.svg'
+        "
+        alt=""
+      />
+    </div>
     <div class="container">
       <router-outlet></router-outlet>
     </div>

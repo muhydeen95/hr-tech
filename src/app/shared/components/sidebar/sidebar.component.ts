@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CurrentUserService } from '@core/services/current-user.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CurrentUserService } from '@core/services/current-user.service';
 })
 export class SidebarComponent implements OnInit {
   public isOpen: boolean = false;
-  public showMinimizedMenu: boolean = false;
+  @Input() showMinimizedMenu: boolean = false;
 
   @Output() showMinimized = new EventEmitter();
   constructor(private _currentUser: CurrentUserService) {}
