@@ -54,7 +54,11 @@
       isOpen ? 'sidebar-isOpen' : ''
     ]"
   >
-    <!-- <div class="sidebar-toggler" (click)="minimizeMenu()">
+    <div
+      class="sidebar-toggler"
+      [ngClass]="[showMinimizedMenu ? 'sidebar-toggler_minimized' : '']"
+      (click)="minimizeMenu()"
+    >
       <img
         [src]="
           showMinimizedMenu
@@ -63,7 +67,7 @@
         "
         alt=""
       />
-    </div> -->
+    </div>
     <div class="sidebar-wrapper">
       <ul class="top-list">
         <li>
@@ -165,10 +169,7 @@
             <span class="border"></span>
           </a>
         </li>
-      </ul>
-
-      <ul class="mt-auto mb-5">
-        <li>
+        <li class="auto">
           <a class="side-link click">
             <span class="side-icon">
               <svg
