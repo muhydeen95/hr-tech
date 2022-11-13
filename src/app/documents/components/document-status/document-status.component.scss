@@ -6,7 +6,7 @@
   padding: 0 0 3rem 2.5rem;
   .back_btn {
     font-size: 1.6rem;
-    color: $purple-700;
+    color: $purple-900;
     font-weight: 600;
   }
   .fas,
@@ -20,11 +20,11 @@
     border-radius: 0.85rem;
     .circle {
       border-radius: 50%;
-      background: $purple-700;
+      background: $purple-900;
       display: flex;
       justify-content: center;
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 3.2rem;
+      height: 3.2rem;
       padding: 0.6rem;
     }
     #formAccordion {
@@ -73,7 +73,7 @@
         .accordion-collapse {
           background: $purple-100;
           .accordion-body {
-            border-left: solid 0.25rem $grey-400 !important;
+            border-left: solid 0.15rem rgba($blue-700, 0.2) !important;
             margin-left: 1.4rem;
             margin-bottom: 2.5rem;
             color: $purple-700;
@@ -82,6 +82,7 @@
               list-style-type: none;
               li {
                 padding: 0.4rem 0;
+                color: $text-body;
                 h4 {
                   font-weight: 600;
                   font-size: 1.35rem;

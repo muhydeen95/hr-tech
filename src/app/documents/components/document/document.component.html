@@ -50,11 +50,11 @@
         ></app-searchbar>
         <section class="table-responsive">
           <app-filetra-card
-            ><div>
+            ><div *ngIf="filterableData.length > 0 || documentLoading">
               <app-table-header
                 [btn_name]="btnName"
                 [table_name]="'Documents'"
-                (btnAction)="openDialog({ isEditing: false })"
+                (btnAction)="openUploadDialog()"
               ></app-table-header>
               <table class="table caption-top text-nowrap">
                 <ng-container>
@@ -71,7 +71,7 @@
                 <tbody>
                   <ng-container *ngIf="documentLoading">
                     <tr *ngFor="let dummy of [1, 2, 3, 4, 5]">
-                      <td *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+                      <td *ngFor="let item of [1, 2, 3, 4, 5]">
                         <app-filetra-skeleton-loader
                           width="10rem"
                           height="2rem"

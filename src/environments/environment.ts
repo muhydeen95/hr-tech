@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://filetrav2.azurewebsites.net/api/',
+  api_url: 'https://filetraapiv3.azurewebsites.net/api/',
 };
 
 /*

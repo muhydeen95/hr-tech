@@ -122,14 +122,10 @@
         class="btn btn-purple btn-md"
         [disabled]="uploadForm.invalid"
       >
-        Upload
-        <app-loader
-          *ngIf="isLoading"
-          class="ms-2"
-          [loading]="isLoading"
-          color="white"
-          [width]="10"
-        ></app-loader>
+        <app-loading-button
+          [text]="'Upload'"
+          [condition]="isLoading"
+        ></app-loading-button>
       </button>
     </mat-dialog-actions>
   </form>
