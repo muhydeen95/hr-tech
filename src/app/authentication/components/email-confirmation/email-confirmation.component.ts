@@ -37,7 +37,6 @@ export class EmailConfirmationComponent implements OnInit {
       email: this.email
     }
       this.isLoading = true;
-      console.log(payload)
       this._auth.confirmEmail(payload).subscribe({
         next: (res: ResponseModel<confirmEmail>) => {
           console.log(res)

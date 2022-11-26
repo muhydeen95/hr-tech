@@ -29,9 +29,8 @@ export class RegistrationComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
-    // private router: Router,
     private _auth: AuthService
-  ) // private _current: CurrentUserService
+  )
   {}
 
   ngOnInit() {
@@ -57,7 +56,7 @@ export class RegistrationComponent implements OnInit {
         ],
         ConfirmPassword: ['', [Validators.required]],
       },
-      { validators: [this.passwordMatchValidator] }
+      { validators: [this.passwordMatchValidator, this.EmailMatchValidator] }
     );
   }
 
@@ -65,6 +64,12 @@ export class RegistrationComponent implements OnInit {
     return f.get('Password')?.value === f.get('ConfirmPassword')?.value
       ? null
       : { passwordMismatch: true };
+  }
+
+  EmailMatchValidator(f: FormGroup) {
+    return f.get('Email')?.value === f.get('AlternateEmail')?.value
+      ? null
+      : { emailMismatch: true };
   }
 
   public register(): void {
@@ -111,6 +116,10 @@ export class RegistrationComponent implements OnInit {
     dialogConfig.data = {
       email: `${this.registrationForm.get('Email')?.value}`,
       counter: '00:05',
+      name: `
+        ${this.registrationForm.get('FirstName')?.value}  
+        ${this.registrationForm.get('LastName')?.value}
+      `
     };
     const dialogRef = this.dialog.open(
       RegistrationDialogComponent,

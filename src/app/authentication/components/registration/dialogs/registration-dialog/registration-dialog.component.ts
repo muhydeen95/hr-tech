@@ -1,4 +1,3 @@
-// import { HttpErrorResponse } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
 import { 
   Component,
@@ -14,7 +13,6 @@ import { ResendLink } from '@auth/models/auth.model';
 import { AuthService } from '@auth/services/auth.service';
 import { ResponseModel } from 'app/models/response.model';
 import { timer, Subscription } from 'rxjs';
-// import { ResponseModel } from 'app/models/response.model';
 
 @Component({
   selector: 'app-leave-dialog',
@@ -24,7 +22,7 @@ import { timer, Subscription } from 'rxjs';
 export class RegistrationDialogComponent implements OnInit, OnDestroy {
   @Input() btnAction: boolean = false;
   public countDown: Subscription = new Subscription();
-  public counter = 10;
+  public counter = 180;
   public tick = 1000;
   public sending: boolean = false;
   public error_message: string = '';

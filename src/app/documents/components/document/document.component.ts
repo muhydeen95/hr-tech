@@ -108,7 +108,12 @@ export class DocumentComponent implements OnInit {
     });
 
     dialogRef.componentInstance.event.subscribe(
-      (event: DialogModel<any>) => {}
+      (event: DialogModel<any>) => {
+        const index = this.data.findIndex((point: any) => {
+          return point.correspondenceNo == event?.editObject?.correspondenceNo;
+        });
+        this.data[index] = event?.editObject;
+      }
     );
   }
 
