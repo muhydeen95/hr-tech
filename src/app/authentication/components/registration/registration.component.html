@@ -195,6 +195,35 @@
             <input
               type="email"
               id="altEmail"
+              (paste)="(false)"
+              class="form-control"
+              placeholder="Enter alternate email address"
+              formControlName="ConfirmEmail"
+              [ngClass]="{
+                'is-invalid':
+                  registrationForm.errors &&
+                  registrationForm.get('ConfirmEmail')?.touched
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                registrationForm.get('Email')?.value !==
+                registrationForm.get('ConfirmEmail')?.value
+              "
+            >
+              Email does not match
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form_group mb-5">
+            <label for="altEmail" class="form-label"
+              >Alternate Email Address
+            </label>
+            <input
+              type="email"
+              id="altEmail"
               class="form-control"
               placeholder="Enter alternate email address"
               formControlName="AlternateEmail"
@@ -295,6 +324,7 @@
             <div class="position-relative">
               <input
                 class="form-control pr-2"
+                (paste)="false"
                 [type]="showConfirmPassword ? 'text' : 'password'"
                 placeholder="Re-enter password"
                 formControlName="ConfirmPassword"

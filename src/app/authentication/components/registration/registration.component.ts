@@ -46,6 +46,7 @@ export class RegistrationComponent implements OnInit {
         PhoneNumber: ['', Validators.required],
         AlternatePhoneNumber: [''],
         Email: ['', [Validators.required, Validators.email]],
+        ConfirmEmail: ['', Validators.email],
         AlternateEmail: ['', Validators.email],
         OrganizationName: [''],
         Password: ['', 
@@ -67,7 +68,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   EmailMatchValidator(f: FormGroup) {
-    return f.get('Email')?.value === f.get('AlternateEmail')?.value
+    return f.get('Email')?.value === f.get('ConfirmEmail')?.value
       ? null
       : { emailMismatch: true };
   }
