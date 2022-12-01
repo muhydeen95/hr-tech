@@ -98,24 +98,47 @@
               >Phone Number
               <span>● </span>
             </label>
-            <input
-              type="text"
-              id="phoneNo"
-              class="form-control"
-              placeholder="Enter phone number"
-              formControlName="PhoneNumber"
-              [ngClass]="{
-                'is-invalid':
-                  (registrationForm.get('PhoneNumber')?.errors &&
-                    registrationForm.get('PhoneNumber')?.touched) ||
-                  (registrationForm.get('PhoneNumber')?.hasError('required') &&
-                    registerFormSubmitted) ||
-                  (registrationForm
-                    .get('PhoneNumber')
-                    ?.hasError('PhoneNumber') &&
-                    registerFormSubmitted)
-              }"
-            />
+            <div class="search-wrapper">
+              <div class="btn-wrapper dropdown">
+                <button
+                  class="btn btn-outline-grey px-3 btn-lg dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{ code }}
+                </button>
+          
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <label
+                    for="{{ item }}"
+                    class="d-flex dropdown-item click"
+                    *ngFor="let item of countryCodes"
+                    (click)="getCountryCode(item)"
+                  >
+                    <span>
+                      {{ item.code }} ({{ item.dial_code }})
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="search-wrapper-input">
+                <input
+                  type="tel"
+                  class="form-control"
+                  placeholder="Enter Mobile Number"
+                  formControlName="PhoneNumber"
+                  [ngClass]="{
+                    'is-invalid':
+                      (registrationForm.get('PhoneNumber')?.errors &&
+                        registrationForm.get('PhoneNumber')?.touched) ||
+                      (registrationForm.get('PhoneNumber')?.hasError('required') &&
+                      registerFormSubmitted)
+                  }"
+                />
+              </div>
+            </div>
             <div
               class="invalid-feedback"
               *ngIf="
