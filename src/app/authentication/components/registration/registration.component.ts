@@ -93,6 +93,7 @@ export class RegistrationComponent implements OnInit {
       if(payload.AlternateEmail == '') {
         delete payload.AlternateEmail;
       }
+      delete payload.code;
       this._auth.register(payload).subscribe({
         next: (res: ResponseModel<RegisterRequestDTO>) => {
           this.isSiginingUp = false;
