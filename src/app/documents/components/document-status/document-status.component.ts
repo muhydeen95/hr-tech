@@ -105,7 +105,7 @@ export class DocumentStatusComponent implements OnInit {
     this.sub.add(
       this._docService.getDocumentByIdRequest(id).subscribe({
         next: (res: ResponseModel<DocumentDTO>) => {
-          console.log(res);
+          // console.log(res);
           this.loading = false;
           this.documentDetail = res.response;
         },

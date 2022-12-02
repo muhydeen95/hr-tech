@@ -31,7 +31,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public isDocumentFetching: boolean = true;
   public applicationLoading: boolean = true;
   public isFetchingDashboard: boolean = true;
-  public dashboardMetrics!: DashboardResponseDTO;
+  public dashboardMetrics: DashboardResponseDTO = {
+    customerFileUploads: null,
+    customerLCApplications: null,
+    pendingFiles: 0,
+    treatedFiles: 0,
+    untreatedFiles: 0,
+  };
   navigationExtras: NavigationExtras = {
     queryParams: { isSearching: true },
   };

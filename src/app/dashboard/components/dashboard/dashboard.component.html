@@ -6,7 +6,7 @@
           <!-- [dayCount]="'0 Today'" -->
           <app-card
             [name]="'Untreated Documents'"
-            [count]="dashboardMetrics?.untreatedFiles"
+            [count]="dashboardMetrics.untreatedFiles"
             img="assets/icons/blue.svg"
             [loading]="isFetchingDashboard"
             (click)="triggerClick('Untreated')"
@@ -17,7 +17,7 @@
           <!-- [dayCount]="'0 Today'" -->
           <app-card
             [name]="'Pending Documents'"
-            [count]="dashboardMetrics?.pendingFiles"
+            [count]="dashboardMetrics.pendingFiles"
             img="assets/icons/amber.svg"
             [loading]="isFetchingDashboard"
             (click)="triggerClick('Pending')"
@@ -27,7 +27,7 @@
           <!-- [dayCount]="'0 Today'" -->
           <app-card
             [name]="'Treated Documents'"
-            [count]="dashboardMetrics?.treatedFiles"
+            [count]="dashboardMetrics.treatedFiles"
             img="assets/icons/green.svg"
             [loading]="isFetchingDashboard"
             (click)="triggerClick('Treated')"
