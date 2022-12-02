@@ -40,7 +40,7 @@ export class UploadDocumentComponent implements OnInit {
   public error_message: string = '';
   public showPassword: boolean = false;
   public gettingDocTypes: boolean = true;
-  public searchQuery: SearchDTO = InitialSearchDTO;
+  public searchQuery: SearchDTO = { ...InitialSearchDTO, pageSize: 50 };
   public gettingDocTypesFailed: boolean = false;
   public docTypes: Array<DocTypeDTO> = [];
   public files: File[] = [];
