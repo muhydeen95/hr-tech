@@ -22,12 +22,32 @@
   border-radius: 0.8rem;
   color: $text-body;
   font-size: 1.4rem;
-  padding: 2rem 4.3rem 2.1rem 2rem;
+  padding: 1.2rem;
   line-height: 2.1rem;
   transition: all ease-in-out 0.3s;
   box-shadow: 0.2rem 0.25rem #888888;
   position: fixed;
   z-index: 2000;
+  &-container {
+    background: $purple-100;
+    text-align: center;
+    padding: 1.5rem;
+    margin: 1rem auto;
+    .img_wrapper {
+      height: 5rem;
+      width: 5rem;
+      background: rgba($purple-700, 0.1);
+      margin: 1rem auto;
+      border-radius: 1.5rem;
+      img {
+        margin-top: 1rem;
+      }
+    }
+    a {
+      color: $text-body;
+      font-size: 1.6rem;
+    }
+  }
   &.close {
     height: 0;
     overflow: hidden;

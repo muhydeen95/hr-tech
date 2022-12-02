@@ -7,7 +7,8 @@
 <mat-dialog-content class="mat-typography text-center">
   <h1 class="modal-title py-4">Verification Link Sent </h1>
   <app-error [error_message]="error_message"></app-error>
-  <p>Hey Champ, we’ve sent a verification link to your email 
+  <p>Hey <span class="font-weight-bold">{{ modalData?.name }}</span>, 
+    we’ve sent a verification link to your email 
     <span class="text-primary">{{ modalData?.email }}</span>,
     kindly click the link to complete your registration.
   </p>
@@ -20,14 +21,4 @@
     Resend Link
     <i *ngIf="sending" class="fa fa-spin fa-spinner"></i>
  </p>
-  <!-- <button
-    *ngIf="counter <= 0"
-    class="btn timer" 
-    (click)="submit()"
-  >
-    <app-loading-button
-        [text]="'Resend Link'"
-        [condition]="sending"
-    ></app-loading-button>
-  </button> -->
 </mat-dialog-content>

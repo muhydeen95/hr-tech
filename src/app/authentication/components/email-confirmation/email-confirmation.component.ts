@@ -16,12 +16,13 @@ export class EmailConfirmationComponent implements OnInit {
   public email: string = '';
   public error_message: string = '';
   public isLoading: boolean = false;
+  public userInfo: any;
 
   constructor(
     private _route: ActivatedRoute,
     private _current: CurrentUserService,
     private router: Router,
-    private _auth: AuthService
+    private _auth: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -37,10 +38,9 @@ export class EmailConfirmationComponent implements OnInit {
       email: this.email
     }
       this.isLoading = true;
-      console.log(payload)
       this._auth.confirmEmail(payload).subscribe({
         next: (res: ResponseModel<confirmEmail>) => {
-          console.log(res)
+          // console.log(res);
           this.isLoading = false;
           this._current.storeUserCredentials(res.response);
           this.router.navigate(['dashboard']);

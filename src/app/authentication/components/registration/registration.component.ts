@@ -1,11 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { countryCodes } from '@core/models/country-code.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-// import { Router } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 import { RegisterRequestDTO } from '@auth/models/auth.model';
-// import { CurrentUserService } from '@core/services/current-user.service';
 import { Subscription } from 'rxjs';
 import { RegistrationDialogComponent } from './dialogs/registration-dialog/registration-dialog.component';
 import { ResponseModel } from 'app/models/response.model';
@@ -25,13 +24,14 @@ export class RegistrationComponent implements OnInit {
   public isSiginingUp: boolean = false;
   public registerFormSubmitted: boolean = false;
   public error_message: string = '';
+  public countryCodes: { name: string, dial_code: string, code: string}[] = countryCodes;
+  public code: any = 'NG (+234)';
 
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
-    // private router: Router,
     private _auth: AuthService
-  ) // private _current: CurrentUserService
+  )
   {}
 
   ngOnInit() {
@@ -47,6 +47,7 @@ export class RegistrationComponent implements OnInit {
         PhoneNumber: ['', Validators.required],
         AlternatePhoneNumber: [''],
         Email: ['', [Validators.required, Validators.email]],
+        ConfirmEmail: ['', Validators.email],
         AlternateEmail: ['', Validators.email],
         OrganizationName: [''],
         Password: ['', 
@@ -57,7 +58,7 @@ export class RegistrationComponent implements OnInit {
         ],
         ConfirmPassword: ['', [Validators.required]],
       },
-      { validators: [this.passwordMatchValidator] }
+      { validators: [this.passwordMatchValidator, this.EmailMatchValidator] }
     );
   }
 
@@ -65,6 +66,19 @@ export class RegistrationComponent implements OnInit {
     return f.get('Password')?.value === f.get('ConfirmPassword')?.value
       ? null
       : { passwordMismatch: true };
+  }
+
+  EmailMatchValidator(f: FormGroup) {
+    return f.get('Email')?.value === f.get('ConfirmEmail')?.value
+      ? null
+      : { emailMismatch: true };
+  }
+
+  public getCountryCode(event: any) {
+    this.code = event.code + ` ( ${event.dial_code} )`;
+    this.registrationForm.patchValue({
+      PhoneNumber: event.dial_code,
+    })
   }
 
   public register(): void {
@@ -79,6 +93,7 @@ export class RegistrationComponent implements OnInit {
       if(payload.AlternateEmail == '') {
         delete payload.AlternateEmail;
       }
+      delete payload.code;
       this._auth.register(payload).subscribe({
         next: (res: ResponseModel<RegisterRequestDTO>) => {
           this.isSiginingUp = false;
@@ -111,6 +126,10 @@ export class RegistrationComponent implements OnInit {
     dialogConfig.data = {
       email: `${this.registrationForm.get('Email')?.value}`,
       counter: '00:05',
+      name: `
+        ${this.registrationForm.get('FirstName')?.value}  
+        ${this.registrationForm.get('LastName')?.value}
+      `
     };
     const dialogRef = this.dialog.open(
       RegistrationDialogComponent,

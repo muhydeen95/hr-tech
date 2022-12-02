@@ -63,7 +63,7 @@
         }"
         type="text"
         class="form-control"
-        placeholder="Quomodo Systems Limited"
+        placeholder="Enter Subject Matter Here..."
       />
     </div>
     <div class="form-group form_group">
@@ -83,7 +83,6 @@
             OR
           </p>
           <div class="btn btn-purple btn-lg">Browse documents</div>
-          <div class="text-red mt-5">NB: Only PDF files are allowed</div>
         </div>
         <input
           type="file"
@@ -92,7 +91,6 @@
           hidden
           multiple
           (change)="onFileDropped($event)"
-          [accept]="AcceptedFileTypes"
         />
       </label>
       <div class="row mt-4">
@@ -120,7 +118,6 @@
         cdkFocusInitial
         type="submit"
         class="btn btn-purple btn-md"
-        [disabled]="uploadForm.invalid"
       >
         <app-loading-button
           [text]="'Upload'"
