@@ -78,7 +78,20 @@ export class DocumentStatusComponent implements OnInit {
   ];
   public CustomerTransactionStatus = CustomerTransactionStatus;
   private sub: Subscription = new Subscription();
-  public documentDetail!: DocumentDTO;
+  public documentDetail: DocumentDTO =  {
+    confidentialityLevel: 0,
+    createdAt: '',
+    dateCreated: '',
+    documentType: '',
+    fileSubmissionId: 0,
+    files: [{
+      name: '',
+      path: '',
+      uniqueName: '',
+    }],
+    subject: '',
+    treatmentStatusId: '',
+  };
   public loading: boolean = false;
   public docId: string = '';
   public isSearching: boolean = false;
