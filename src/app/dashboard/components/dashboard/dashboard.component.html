@@ -128,8 +128,8 @@
               <table class="table caption-top text-nowrap">
                 <ng-container
                   *ngIf="
-                    dashboardMetrics?.customerFileUploads.data.pagedResult
-                      .totalItems > 0 || isFetchingDashboard
+                    dashboardMetrics?.customerFileUploads?.data?.pagedResult
+                      ?.totalItems > 0 || isFetchingDashboard
                   "
                 >
                   <thead>
@@ -155,8 +155,8 @@
                   <ng-container *ngIf="!isFetchingDashboard">
                     <tr
                       *ngFor="
-                        let doc of dashboardMetrics?.customerFileUploads.data
-                          .pagedResult.result
+                        let doc of dashboardMetrics?.customerFileUploads?.data
+                          ?.pagedResult?.result
                       "
                     >
                       <td>{{ doc.correspondenceNo }}</td>
@@ -186,8 +186,8 @@
               (open_dialog)="routeToDocuments()"
               [is_loading]="isFetchingDashboard"
               *ngIf="
-                dashboardMetrics?.customerFileUploads.data.pagedResult
-                  .totalItems == 0
+                dashboardMetrics?.customerFileUploads?.data?.pagedResult
+                  ?.totalItems == 0
               "
             ></app-no-data>
           </div>
