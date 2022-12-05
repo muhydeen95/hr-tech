@@ -26,7 +26,17 @@ export class ProfileComponent implements OnInit {
   public isUploading: boolean = false;
   public isEditing: boolean = false;
   public updateProfileForm!: UntypedFormGroup;
-  public profile!: Profile;
+  public profile: Profile = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    email: '',
+    alternateEmail: '',
+    phoneNumber: '',
+    alternatePhoneNumber: '',
+    organizationName: '',
+    profilePictureUrl: ''
+};
   public fileUploadProgress: number = 0;
   public error_message: string = '';
   public isError: boolean = false;

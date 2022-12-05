@@ -85,9 +85,12 @@ export class DocumentStatusComponent implements OnInit {
     documentType: '',
     fileSubmissionId: 0,
     files: [{
+      fileType: '',
+      base64String: '',
       name: '',
       path: '',
       uniqueName: '',
+      url: '',
     }],
     subject: '',
     treatmentStatusId: '',
@@ -95,6 +98,7 @@ export class DocumentStatusComponent implements OnInit {
   public loading: boolean = false;
   public docId: string = '';
   public isSearching: boolean = false;
+  public jumpToSelectedFileIndex: number = 0;
 
   constructor(
     private _docService: DocumentService,

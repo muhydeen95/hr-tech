@@ -129,7 +129,7 @@
         <div class="no-attachment" *ngIf="!attachmentLink.path">
           Select an attachment to preview.
         </div>
-        <div *ngIf="attachmentLink.path">
+        <!-- <div *ngIf="attachmentLink.path">
           <pdf-viewer
             [src]="attachmentLink.path"
             [render-text]="true"
@@ -138,6 +138,13 @@
             [fit-to-page]="true"
             style="width: 100%; min-height: 70vh"
           ></pdf-viewer>
+        </div> -->
+        <div class="wrapper_body">
+          <app-file-viewer
+            [files]="documentDetail.files"
+            [jumpToIndex]="jumpToSelectedFileIndex"
+          >
+          </app-file-viewer>
         </div>
       </ng-container>
     </div>
