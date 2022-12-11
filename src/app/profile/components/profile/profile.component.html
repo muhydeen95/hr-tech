@@ -172,7 +172,7 @@
               class="form-control"
               placeholder="Email address"
               formControlName="email"
-              [readonly]="!isEditing"
+              [attr.disabled]="true"
             />
           </div>
         </div>
@@ -211,6 +211,7 @@
       <div class="d-flex justify-content-end">
         <button
           class="btn wrapper__login_btn"
+          [disabled]="isLoading"
           (click)="isEditing ? submit() : toggleEdit()"
         >
           <app-loading-button
