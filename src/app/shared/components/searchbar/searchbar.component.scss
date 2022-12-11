@@ -4,6 +4,10 @@
 .search-wrapper {
   margin: 4.8rem 0 3.2rem;
   display: flex;
+  align-items: center;
+  @include maxSize(M) {
+    flex-wrap: wrap;
+  }
   &-input {
     position: relative;
     flex-grow: 3;
@@ -69,9 +73,7 @@
       }
     }
   }
-  @include maxSize(M) {
-    flex-wrap: wrap;
-  }
+
   .dropdown {
     &-toggle {
       &::after {
@@ -111,4 +113,34 @@
       }
     }
   }
+}
+
+.view_wrapper {
+  margin-right: auto;
+  display: flex;
+  min-width: 11rem;
+  justify-content: space-between;
+  background: $white-100;
+  box-shadow: 0 0.4rem 1.6rem rgba(0, 0, 0, 0.08);
+  border-radius: 0.7rem;
+  padding: 1rem;
+
+  &-item {
+    border-radius: 0.4rem;
+    padding: 0.2rem 1rem;
+    svg path {
+      fill: $text-body !important;
+    }
+    &.active {
+      background: $purple-700;
+      svg path {
+        fill: $white-100 !important;
+      }
+    }
+  }
+}
+.flex {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }

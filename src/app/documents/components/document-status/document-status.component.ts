@@ -78,10 +78,27 @@ export class DocumentStatusComponent implements OnInit {
   ];
   public CustomerTransactionStatus = CustomerTransactionStatus;
   private sub: Subscription = new Subscription();
-  public documentDetail!: DocumentDTO;
+  public documentDetail: DocumentDTO =  {
+    confidentialityLevel: 0,
+    createdAt: '',
+    dateCreated: '',
+    documentType: '',
+    fileSubmissionId: 0,
+    files: [{
+      fileType: '',
+      base64String: '',
+      name: '',
+      path: '',
+      uniqueName: '',
+      url: '',
+    }],
+    subject: '',
+    treatmentStatusId: '',
+  };
   public loading: boolean = false;
   public docId: string = '';
   public isSearching: boolean = false;
+  public jumpToSelectedFileIndex: number = 0;
 
   constructor(
     private _docService: DocumentService,
@@ -139,23 +156,4 @@ export class DocumentStatusComponent implements OnInit {
     this.message += event.char;
   }
 
-  submit() {
-    let date = new Date();
-    let hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
-    let am_pm = date.getHours() >= 12 ? 'pm' : 'am';
-    hours = hours < 10 ? 0 + hours : hours;
-    let minutes =
-      date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-    let time = hours + ':' + minutes + ' ' + am_pm;
-    const chat = {
-      id: 5,
-      user: 'sender',
-      message: this.message,
-      time: time,
-    };
-    if (this.message != '') {
-      this.userChats.push(chat);
-    }
-    this.message = '';
-  }
 }

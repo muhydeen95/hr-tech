@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ForgotPassswordDTO } from '@auth/models/auth.model';
@@ -16,7 +16,7 @@ import { DialogComponent } from './dialog/dialog.component';
 })
 export class ForgotPasswordComponent implements OnInit {
   public sub: Subscription = new Subscription()
-  public forgotPasswordForm!: FormGroup;
+  public forgotPasswordForm!: UntypedFormGroup;
   public forgotPasswordFormSubmitted: boolean = false;
   public isLoggingIn: boolean = false;
   public error_message: string = '';
@@ -24,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _auth: AuthService, 
     private router: Router
   ) { }

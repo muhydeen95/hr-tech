@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { countryCodes } from '@core/models/country-code.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthService } from '@auth/services/auth.service';
@@ -15,11 +15,11 @@ import { ResponseModel } from 'app/models/response.model';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-  public registrationForm!: FormGroup;
+  public registrationForm!: UntypedFormGroup;
   public isLoggingIn: boolean = false;
   public showPassword: boolean = false;
   public showConfirmPassword: boolean = false;
-  public loginForm!: FormGroup;
+  public loginForm!: UntypedFormGroup;
   private sub: Subscription = new Subscription();
   public isSiginingUp: boolean = false;
   public registerFormSubmitted: boolean = false;
@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _auth: AuthService
   ) {}
 
@@ -63,13 +63,13 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  passwordMatchValidator(f: FormGroup) {
+  passwordMatchValidator(f: UntypedFormGroup) {
     return f.get('Password')?.value === f.get('ConfirmPassword')?.value
       ? null
       : { passwordMismatch: true };
   }
 
-  EmailMatchValidator(f: FormGroup) {
+  EmailMatchValidator(f: UntypedFormGroup) {
     return f.get('Email')?.value === f.get('ConfirmEmail')?.value
       ? null
       : { emailMismatch: true };
@@ -94,7 +94,6 @@ export class RegistrationComponent implements OnInit {
       if (payload.AlternateEmail == '') {
         delete payload.AlternateEmail;
       }
-      delete payload.code;
       this._auth.register(payload).subscribe({
         next: (res: ResponseModel<RegisterRequestDTO>) => {
           this.isSiginingUp = false;

@@ -51,16 +51,16 @@
                 <ul class="px-3 m-0">
                   <li>
                     <h4>Document Type</h4>
-                    <p>{{ documentDetail?.documentType || "--" }}</p>
+                    <p>{{ documentDetail.documentType || "--" }}</p>
                   </li>
                   <li>
                     <h4>Subject</h4>
-                    <p>{{ documentDetail?.subject || "--" }}</p>
+                    <p>{{ documentDetail.subject || "--" }}</p>
                   </li>
                   <li>
                     <h4>Status</h4>
                     <p>
-                      {{ documentDetail?.treatmentStatusId || "--" }}
+                      {{ documentDetail.treatmentStatusId || "--" }}
                     </p>
                   </li>
                 </ul>
@@ -126,18 +126,15 @@
       </ng-container>
 
       <ng-container *ngIf="!loading">
-        <div class="no-attachment" *ngIf="!attachmentLink.path">
+        <div class="no-attachment" *ngIf="documentDetail.files.length === 0">
           Select an attachment to preview.
         </div>
-        <div *ngIf="attachmentLink.path">
-          <pdf-viewer
-            [src]="attachmentLink.path"
-            [render-text]="true"
-            [show-all]="true"
-            [original-size]="false"
-            [fit-to-page]="true"
-            style="width: 100%; min-height: 70vh"
-          ></pdf-viewer>
+       <div class="wrapper_body" *ngIf="documentDetail.files.length > 0">
+          <app-file-viewer
+            [files]="documentDetail.files"
+            [jumpToIndex]="jumpToSelectedFileIndex"
+          >
+          </app-file-viewer>
         </div>
       </ng-container>
     </div>
