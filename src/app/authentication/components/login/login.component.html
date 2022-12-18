@@ -52,23 +52,39 @@
         </div>
       </div>
       <div class="form_group mb-3">
-        <label for="password" class="form-label">Password </label>
-        <input
-          type="password"
-          class="form-control"
-          placeholder="Enter password"
-          id="password"
-          formControlName="password"
-          (keyup)="checkForKeyEnter($event)"
-          autocomplete="current-password"
-          [ngClass]="{
-            'is-invalid':
-              (loginForm.get('password')?.errors &&
-                loginForm.get('password')?.touched) ||
-              (loginForm.get('password')?.hasError('required') &&
-                loginFormSubmitted)
-          }"
-        />
+        <label for="password" class="form-label"
+          >Password
+          <!-- <span>● </span> -->
+        </label>
+        <div class="position-relative">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control"
+            placeholder="Enter password"
+            id="password"
+            formControlName="password"
+            (keyup)="checkForKeyEnter($event)"
+            autocomplete="current-password"
+            [ngClass]="{
+              'is-invalid':
+                (loginForm.get('password')?.errors &&
+                  loginForm.get('password')?.touched) ||
+                (loginForm.get('password')?.hasError('required') &&
+                  loginFormSubmitted)
+            }"
+          />
+          <i
+            class="fa fa-eye-slash click"
+            *ngIf="showPassword; else hidePassword"
+            (click)="showPassword = !showPassword"
+          ></i>
+          <ng-template #hidePassword>
+            <i
+              class="fa fa-eye click"
+              (click)="showPassword = !showPassword"
+            ></i>
+          </ng-template>
+        </div>
         <div
           class="invalid-feedback"
           *ngIf="

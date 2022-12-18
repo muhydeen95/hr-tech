@@ -26,6 +26,8 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { NotificationComponent } from './components/notification/notification.component';
 import { ReusableSideDrawerComponent } from './components/reusable-side-drawer/reusable-side-drawer.component';
 import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.directive';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { FileViewerComponent } from './components/file-viewer/file-viewer.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.d
     NotificationComponent,
     ReusableSideDrawerComponent,
     ReusableSideDrawerDirective,
+    FileViewerComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +61,7 @@ import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.d
     NgxSkeletonLoaderModule,
     MatDialogModule,
     NgSelectModule,
+    NgxDocViewerModule
   ],
   exports: [
     LoadingButtonComponent,
@@ -83,6 +87,7 @@ import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.d
     NotificationComponent,
     ReusableSideDrawerComponent,
     ReusableSideDrawerDirective,
+    FileViewerComponent
   ],
 })
 export class SharedModule {}

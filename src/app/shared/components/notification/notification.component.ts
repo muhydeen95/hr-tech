@@ -18,7 +18,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotificationComponent implements OnInit {
-  @Input('notification') notification!: Notification;
+  @Input('notification') notification: Notification = {
+    id: 0,
+    status: 0,
+    title: 'string',
+    message: 'string',
+  };
   @Input('indexToRemove') indexToRemove!: number;
 
   @Output() index: EventEmitter<number> = new EventEmitter();

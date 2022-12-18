@@ -9,39 +9,68 @@ $side_padding: 12.4rem 26rem 12.4rem 14.2rem;
 $mobile_side_padding: 3rem;
 
 .wrapper {
+  height: 100%;
   background: $purple-100 url(../../../assets/images/pattern.svg) no-repeat;
-  // width: 100%;
-  min-height: 100vh;
+   &_logo {
+    padding-top: 5.6rem;
+    margin-bottom: 2.4rem;
+    text-align: center;
+    img {
+      height: 4.8rem;
+      width: 4.8rem;
+    }
+    h1{
+        font-family: $walsheim_font_bold !important;
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 3.8rem;
+      color: $black-100;
+      text-align: center;
+      margin-bottom: 0;
+    }
+  }
+ &_main{
+  min-height:calc(100vh - 29rem) ;
   display: flex;
-  &__layout {
+   &-layout {
     background: $white-100;
     box-shadow: 0rem 0rem 2rem rgba($purple-700, 0.1);
     border-radius: 12px;
-    padding: 6rem 5rem 9rem;
+    padding: 4rem 4.2rem 4rem;
     margin: auto;
+    // margin-left: auto;
+    // margin-right: auto;
+    // margin-bottom: auto;
   }
+ }
 }
 @include maxSize($canvas: M) {
   .wrapper {
-    &__layout {
-      // width: 100%;
-      padding: $mobile_side_padding;
-    }
+    &_main{
+   &-layout {
+     background: transparent;
+ padding: $mobile_side_padding;
+   }}
+   
   }
 }
 @include screenSize($canvas: L) {
   .wrapper {
-    &__layout {
-      // width: 100%;
-      padding: $mobile_side_padding;
-    }
+    &_main{
+   &-layout {
+    //  background: transparent;
+ padding: $mobile_side_padding;
+   }}
+   
   }
 }
 @include screenSize($canvas: M) {
   .wrapper {
-    &__layout {
-      // width: 100%;
-      padding: $mobile_side_padding;
-    }
+    &_main{
+   &-layout {
+     background: transparent;
+ padding: $mobile_side_padding;
+   }}
+   
   }
 }

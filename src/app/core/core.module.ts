@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FiletraSnackbarComponent } from './base/filetra-snackbar/filetra-snackbar.component';
 
 @NgModule({
-  declarations: [FiletraSnackbarComponent],
-  imports: [CommonModule],
-  entryComponents: [FiletraSnackbarComponent],
+    declarations: [FiletraSnackbarComponent],
+    imports: [CommonModule]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

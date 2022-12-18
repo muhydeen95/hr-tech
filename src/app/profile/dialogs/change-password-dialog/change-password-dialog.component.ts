@@ -8,7 +8,7 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseComponent } from '@core/base/base/base.component';
 import { ResponseModel } from 'app/models/response.model';
@@ -24,7 +24,7 @@ import { ProfileService } from 'app/profile/services/profile.service';
 export class ChangePasswordDialogComponent implements OnInit {
   @ViewChild('close') close!: ElementRef;
   @Input() btnAction: boolean = false;
-  public changePasswordForm!: FormGroup;
+  public changePasswordForm!: UntypedFormGroup;
   public CurrentPassword: boolean = false;
   public showPassword: boolean = false;
   public showConfirmPassword: boolean = false;
@@ -36,7 +36,7 @@ export class ChangePasswordDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ChangePasswordDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public modalData: any,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _base: BaseComponent,
     private _profile: ProfileService
   ) {}
@@ -58,7 +58,7 @@ export class ChangePasswordDialogComponent implements OnInit {
     }, {validators: [ this.passwordMatchValidator]})
   }
 
-  passwordMatchValidator(f: FormGroup) {
+  passwordMatchValidator(f: UntypedFormGroup) {
     return f.get('NewPassword')?.value === f.get('confirmPassword')?.value ? null : {'passwordMismatch' : true};
 }
 

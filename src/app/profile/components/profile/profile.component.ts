@@ -4,7 +4,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BaseComponent } from '@core/base/base/base.component';
 // import { CurrentUserService } from '@core/services/current-user.service';
@@ -25,8 +25,18 @@ export class ProfileComponent implements OnInit {
   public isFetchingProfile: boolean = false;
   public isUploading: boolean = false;
   public isEditing: boolean = false;
-  public updateProfileForm!: FormGroup;
-  public profile!: Profile;
+  public updateProfileForm!: UntypedFormGroup;
+  public profile: Profile = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    email: '',
+    alternateEmail: '',
+    phoneNumber: '',
+    alternatePhoneNumber: '',
+    organizationName: '',
+    profilePictureUrl: ''
+};
   public fileUploadProgress: number = 0;
   public error_message: string = '';
   public isError: boolean = false;
@@ -37,7 +47,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _profile: ProfileService,
     private _base: BaseComponent
   ) {}

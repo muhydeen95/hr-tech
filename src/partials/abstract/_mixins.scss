@@ -7,7 +7,7 @@ $XL: 1200px; // desktops..
 @mixin screenSize($canvas) {
   @if $canvas==XS {
     /* Smaller Mobile devices */
-    @media only screen and(max-width: calc(#{$S - 1px}) ) {
+    @media only screen and (max-width: calc(#{$S - 1px}) ) {
       @content;
     }
   } @else if $canvas==S {

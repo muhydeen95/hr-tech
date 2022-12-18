@@ -8,7 +8,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseComponent } from '@core/base/base/base.component';
 import { DialogModel } from '@shared/components/models/dialog.model';
@@ -34,7 +34,7 @@ export class UploadDocumentComponent implements OnInit {
   @Output() isUploaded: EventEmitter<boolean> = new EventEmitter<boolean>();
   public AcceptedFileTypes: string = 'application/PDF';
   public fileNames: Array<string> = [];
-  public uploadForm!: FormGroup;
+  public uploadForm!: UntypedFormGroup;
   public isLoading: boolean = false;
   public uploadFormSubmitted: boolean = false;
   public error_message: string = '';
@@ -45,7 +45,7 @@ export class UploadDocumentComponent implements OnInit {
   public docTypes: Array<DocTypeDTO> = [];
   public files: File[] = [];
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _base: BaseComponent,
     private dashboardService: DashboardService,
     @Inject(MAT_DIALOG_DATA) public data: DialogModel<UploadDocDTO>

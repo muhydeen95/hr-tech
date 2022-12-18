@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ResetPasswordDTO } from '@auth/models/auth.model';
@@ -15,7 +15,7 @@ import { ResetDialogComponent } from './reset-dialog/reset-dialog.component';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-  public resetPasswordForm!: FormGroup;
+  public resetPasswordForm!: UntypedFormGroup;
   public showPassword: boolean = false;
   public showConfirmPassword: boolean = false;
   public isLoading: boolean = false;
@@ -27,7 +27,7 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private _base: BaseComponent,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _auth: AuthService, 
     // private _router: Router,
     private _route: ActivatedRoute,
@@ -55,7 +55,7 @@ export class ResetPasswordComponent implements OnInit {
     }, { validators: [this.passwordMatchValidator] })
   }
 
-  passwordMatchValidator(f: FormGroup) {
+  passwordMatchValidator(f: UntypedFormGroup) {
     return f.get('Password')?.value === f.get('confirmPassword')?.value
       ? null
       : { passwordMismatch: true };

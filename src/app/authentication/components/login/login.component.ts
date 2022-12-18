@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginResponseDTO } from '@auth/models/auth.model';
 import { AuthService } from '@auth/services/auth.service';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public loginForm!: FormGroup;
+  public loginForm!: UntypedFormGroup;
   private sub: Subscription = new Subscription();
   public isLoggingIn: boolean = false;
   public loginFormSubmitted: boolean = false;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   public showPassword: boolean = false;
   constructor(
     private router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _auth: AuthService,
     private _current: CurrentUserService
   ) {}
