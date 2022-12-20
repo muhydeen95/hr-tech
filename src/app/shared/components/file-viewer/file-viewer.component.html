@@ -55,7 +55,6 @@
           files[currentViewingFileIndex]?.fileType != fileTypeEnum.PDF
         "
       >
-        <!-- <iframe [src]="sanitizedUrl" frameborder="0" allowfullscreen></iframe> -->
         <ngx-doc-viewer
           [url]="files[currentViewingFileIndex].path"
           viewer="office"
@@ -63,19 +62,6 @@
         ></ngx-doc-viewer>
       </div>
       <div class="wrapper_main-pdf">
-        <!-- <ngx-extended-pdf-viewer
-          [base64Src]="files[currentViewingFileIndex].base64String!"
-          *ngIf="files[currentViewingFileIndex]?.fileType == fileTypeEnum.PDF"
-          backgroundColor="#333333"
-          [useBrowserLocale]="true"
-          [handTool]="false"
-          [showHandToolButton]="false"
-          [showBorders]="false"
-          [showPropertiesButton]="false"
-          [showToolbar]="true"
-          [sidebarVisible]="false"
-        >
-        </ngx-extended-pdf-viewer> -->
         <ngx-doc-viewer
           [url]="files[currentViewingFileIndex].path"
           viewer="google"
