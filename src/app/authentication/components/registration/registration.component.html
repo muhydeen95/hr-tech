@@ -109,7 +109,7 @@
                 >
                   {{ code }}
                 </button>
-          
+
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <label
                     for="{{ item }}"
@@ -117,9 +117,7 @@
                     *ngFor="let item of countryCodes"
                     (click)="getCountryCode(item)"
                   >
-                    <span>
-                      {{ item.code }} ({{ item.dial_code }})
-                    </span>
+                    <span> {{ item.code }} ({{ item.dial_code }}) </span>
                   </label>
                 </div>
               </div>
@@ -133,8 +131,10 @@
                     'is-invalid':
                       (registrationForm.get('PhoneNumber')?.errors &&
                         registrationForm.get('PhoneNumber')?.touched) ||
-                      (registrationForm.get('PhoneNumber')?.hasError('required') &&
-                      registerFormSubmitted)
+                      (registrationForm
+                        .get('PhoneNumber')
+                        ?.hasError('required') &&
+                        registerFormSubmitted)
                   }"
                 />
               </div>
@@ -213,7 +213,7 @@
         <div class="col-lg-6">
           <div class="form_group mb-5">
             <label for="altEmail" class="form-label"
-              >Verify Email Address
+              >Verify Email Address <span>● </span>
             </label>
             <input
               type="email"
@@ -224,10 +224,23 @@
               formControlName="ConfirmEmail"
               [ngClass]="{
                 'is-invalid':
-                  registrationForm.get('ConfirmEmail')?.errors &&
-                  registrationForm.get('ConfirmEmail')?.touched
+                  registrationForm.get('ConfirmEmail')?.hasError('required') &&
+                  registerFormSubmitted &&
+                  !registrationForm.get('ConfirmEmail')?.hasError('Email') &&
+                  registerFormSubmitted
               }"
             />
+            <div
+              class="invalid-feedback"
+              *ngIf="
+                registrationForm.get('ConfirmEmail')?.hasError('required') &&
+                registerFormSubmitted &&
+                !registrationForm.get('ConfirmEmail')?.hasError('Email') &&
+                registerFormSubmitted
+              "
+            >
+              Required
+            </div>
             <div
               class="invalid-feedback"
               *ngIf="
@@ -242,7 +255,7 @@
         <div class="col-lg-6 col-12">
           <div class="form_group mb-5">
             <label for="OrganizationName" class="form-label"
-              >Orghanization Name
+              >Organization Name
             </label>
             <input
               type="text"
@@ -265,6 +278,7 @@
                 class="form-control pr-2"
                 [type]="showPassword ? 'text' : 'password'"
                 placeholder="Enter new password"
+                autocomplete="new-password"
                 formControlName="Password"
                 [ngClass]="{
                   'is-invalid':
@@ -302,7 +316,12 @@
             </div>
             <div
               class="text-danger"
-              *ngIf="registrationForm.get('Password')?.value == ''"
+              *ngIf="
+                registrationForm.get('Password')?.hasError('required') &&
+                registerFormSubmitted &&
+                !registrationForm.get('Password')?.hasError('Password') &&
+                registerFormSubmitted
+              "
             >
               Required
             </div>
