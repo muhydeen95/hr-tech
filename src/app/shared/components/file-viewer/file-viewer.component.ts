@@ -35,6 +35,7 @@ export class FileViewerComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges(changes: any): void {
     this.checkFileTypeAndDisplay(changes);
     this.currentViewingFileIndex = this.jumpToIndex;
+    console.log(this.currentViewingFileIndex)
   }
 
   public getFileType() {
@@ -120,15 +121,15 @@ export class FileViewerComponent implements OnInit, OnChanges, OnDestroy {
   }
   public goBack(): void {
     this.currentViewingFileIndex = this.currentViewingFileIndex - 1;
-    this.ngOnChanges({
-      files: { currentValue: this.files, previousValue: this.files },
-    });
+    // this.ngOnChanges({
+    //   files: { currentValue: this.files, previousValue: this.files },
+    // });
   }
   public goForward(): void {
     this.currentViewingFileIndex = this.currentViewingFileIndex + 1;
-    this.ngOnChanges({
-      files: { currentValue: this.files, previousValue: this.files },
-    });
+    // this.ngOnChanges({
+    //   files: { currentValue: this.files, previousValue: this.files },
+    // });
   }
 
   ngOnDestroy() {
