@@ -10,6 +10,7 @@ import { ResponseModel } from 'app/models/response.model';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BaseComponent } from '@core/base/base/base.component';
+import { FileType } from 'app/application/components/application-form/components/final/models/filetype.model';
 @Component({
   selector: 'app-document-status',
   templateUrl: './document-status.component.html',
@@ -85,7 +86,7 @@ export class DocumentStatusComponent implements OnInit {
     documentType: '',
     fileSubmissionId: 0,
     files: [{
-      fileType: '',
+      fileType: 'img',
       base64String: '',
       name: '',
       path: '',
@@ -99,6 +100,7 @@ export class DocumentStatusComponent implements OnInit {
   public docId: string = '';
   public isSearching: boolean = false;
   public jumpToSelectedFileIndex: number = 0;
+  public fileType = FileType;
 
   constructor(
     private _docService: DocumentService,
@@ -154,6 +156,26 @@ export class DocumentStatusComponent implements OnInit {
 
   handleSelection(event: any) {
     this.message += event.char;
+  }
+
+  getFileIndex(file: any) {
+    let index = this.documentDetail.files.indexOf(file);
+    this.jumpToSelectedFileIndex = index;
+  }
+
+  public getFileType(fileType: string) {
+    switch (true) {
+      case fileType?.toLocaleLowerCase()?.includes(FileType.PDF):
+        return 'assets/images/pdf.svg';
+      case fileType?.toLocaleLowerCase()?.includes(FileType.WORD):
+        return 'assets/images/word.svg';
+      case fileType?.toLocaleLowerCase()?.includes(FileType.IMG):
+        return 'assets/images/img.svg';
+      case fileType?.toLocaleLowerCase()?.includes(FileType.EXCEL):
+        return 'assets/images/xls.png';
+      default:
+        return 'assets/images/img.svg';
+    }
   }
 
 }

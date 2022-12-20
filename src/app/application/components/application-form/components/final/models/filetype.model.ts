@@ -5,4 +5,5 @@ export enum FileType {
   JPEG = 'jpeg',
   PNG = 'png',
   IMG = 'image',
+  EXCEL = 'xlsx',
 }
