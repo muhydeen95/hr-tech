@@ -1,6 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { countryCodes } from '@core/models/country-code.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AuthService } from '@auth/services/auth.service';
@@ -47,14 +51,14 @@ export class RegistrationComponent implements OnInit {
         PhoneNumber: ['+234', Validators.required],
         AlternatePhoneNumber: [''],
         Email: ['', [Validators.required, Validators.email]],
-        ConfirmEmail: ['', Validators.email],
+        ConfirmEmail: ['', [Validators.required, Validators.email]],
         AlternateEmail: ['', Validators.email],
         OrganizationName: [''],
         Password: [
           '',
           [
             Validators.required,
-            Validators.pattern(/^(?=.?[A-Z])(?=.?[a-z])(?=.*?[0-9]).{8,}$/),
+            Validators.pattern(/[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/),
           ],
         ],
         ConfirmPassword: ['', [Validators.required]],
