@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group form_group">
-      <label>Select Receiving Office<span class="text-red">●</span></label>
+      <label>Receiving Office<span class="text-red">●</span></label>
       <div class="d-flex justify-content-end">
         <div
           class="p-0 m-0 click d-flex justify-content-end align-items-center"
@@ -80,8 +80,11 @@
               uploadFormSubmitted)
         }"
       >
-        <option value="">Receiving Department</option>
-        <option value="{{ item.departmentId }}" *ngFor="let item of receivingDepts">
+        <option value="">Select an Office</option>
+        <option
+          value="{{ item.departmentId }}"
+          *ngFor="let item of receivingDepts"
+        >
           {{ item.departmentName }}
         </option>
       </select>

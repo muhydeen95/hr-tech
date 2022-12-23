@@ -59,6 +59,7 @@ export interface DocumentResponse {
   createdAt: string;
   dateCreated: string;
   documentType: string;
+  receivingOffice: string;
   fileSubmissionId: number;
   subject: string;
   treatmentStatusId: string;

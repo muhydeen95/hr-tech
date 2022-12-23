@@ -137,6 +137,7 @@
                       <th>Refrence No.</th>
                       <th>Document Type</th>
                       <th>Subject</th>
+                      <th>Receiving Office</th>
                       <th>Date submitted</th>
                       <th>Action</th>
                     </tr>
@@ -160,8 +161,9 @@
                       "
                     >
                       <td>{{ doc.correspondenceNo }}</td>
-                      <td>{{ doc.documentType }} type</td>
+                      <td>{{ doc.documentType }}</td>
                       <td>{{ doc.subject }}</td>
+                      <td>{{ doc.receivingOffice }}</td>
                       <td>{{ doc.createdAt | date }}</td>
                       <td>
                         <span
