@@ -69,6 +69,27 @@
               ],
               "outputHashing": "all"
             },
+            "fmtlive": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "15mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2mb",
+                  "maximumError": "10mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.fmtlive.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "staging": {
               "budgets": [
                 {
