@@ -40,9 +40,12 @@ export class UploadDocumentComponent implements OnInit {
   public error_message: string = '';
   public showPassword: boolean = false;
   public gettingDocTypes: boolean = true;
+  public gettingDept: boolean = true;
   public searchQuery: SearchDTO = { ...InitialSearchDTO, pageSize: 50 };
   public gettingDocTypesFailed: boolean = false;
+  public gettingDeptFailed: boolean = false;
   public docTypes: Array<DocTypeDTO> = [];
+  public receivingDepts: Array<any> = [];
   public files: File[] = [];
   constructor(
     private fb: UntypedFormBuilder,
@@ -54,6 +57,7 @@ export class UploadDocumentComponent implements OnInit {
   ngOnInit(): void {
     this.initUploadForm();
     this.getDocumentTypes();
+    this.getReceivingDepts();
   }
 
   public getDocumentTypes(): void {
@@ -66,6 +70,21 @@ export class UploadDocumentComponent implements OnInit {
       error: (error: HttpErrorResponse) => {
         this.gettingDocTypes = false;
         this.gettingDocTypesFailed = true;
+        this.error_message = error?.error?.message;
+      },
+    });
+  }
+
+  public getReceivingDepts(): void {
+    this.gettingDept = true;
+    this.dashboardService.getReceivingMailDepartments(this.searchQuery).subscribe({
+      next: (res: ResponseModel<any>) => {
+        this.gettingDept = false;
+        this.receivingDepts = res.response['result'];
+      },
+      error: (error: HttpErrorResponse) => {
+        this.gettingDept = false;
+        this.gettingDeptFailed = true;
         this.error_message = error?.error?.message;
       },
     });

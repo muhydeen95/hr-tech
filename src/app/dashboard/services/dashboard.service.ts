@@ -31,6 +31,11 @@ export class DashboardService {
     return this.http.makeRequestWithData('post', endpoint, {}, payload);
   }
 
+  public getReceivingMailDepartments(payload: any): Observable<ResponseModel<any>> {
+    const endpoint = 'Admin/get-departments-external-correspondence';
+    return this.http.makeRequestWithData('post', endpoint, {}, payload);
+  }
+
   public getCustomerDashboard(): Observable<ResponseModel<any>> {
     const endpoint = 'IncomingMail/get-customer-dashboard';
     return this.http.getRequest(endpoint);
