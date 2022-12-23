@@ -48,6 +48,46 @@
     </div>
 
     <div class="form-group form_group">
+      <label>Select Receiving Office<span class="text-red">●</span></label>
+      <div class="d-flex justify-content-end">
+        <div
+          class="p-0 m-0 click d-flex justify-content-end align-items-center"
+          (click)="getReceivingDepts()"
+          *ngIf="gettingDeptFailed"
+        >
+          Retry &nbsp;
+          <mat-icon [ngClass]="{ spin: gettingDept }">refresh</mat-icon>
+        </div>
+        <app-loader
+          *ngIf="gettingDept"
+          class="ms-2"
+          [loading]="gettingDept"
+          color="black"
+          [width]="10"
+        ></app-loader>
+      </div>
+      <select
+        class="form-control"
+        formControlName="DepartmentId"
+        autocomplete="DepartmentId"
+        [ngClass]="{
+          'is-invalid':
+            (uploadForm.get('DepartmentId')?.errors &&
+              uploadForm.get('DepartmentId')?.touched) ||
+            (uploadForm.get('DepartmentId')?.hasError('required') &&
+              uploadFormSubmitted) ||
+            (uploadForm.get('DepartmentId')?.hasError('DepartmentId') &&
+              uploadFormSubmitted)
+        }"
+      >
+        <option value="">Receiving Department</option>
+        <option value="{{ item.departmentId }}" *ngFor="let item of receivingDepts">
+          {{ item.departmentName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group form_group">
       <label>Subject Matter <span class="text-red">●</span></label>
       <input
         formControlName="SubjectMatter"

@@ -173,6 +173,10 @@ export class DocumentStatusComponent implements OnInit {
         return 'assets/images/img.svg';
       case fileType?.toLocaleLowerCase()?.includes(FileType.EXCEL):
         return 'assets/images/xls.png';
+      case fileType?.toLocaleLowerCase()?.includes(FileType.PPT):
+        return 'assets/images/ppt.svg';
+      case fileType?.toLocaleLowerCase()?.includes(FileType.PPTX):
+        return 'assets/images/ppt.svg';
       default:
         return 'assets/images/img.svg';
     }

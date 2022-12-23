@@ -6,4 +6,6 @@ export enum FileType {
   PNG = 'png',
   IMG = 'image',
   EXCEL = 'xlsx',
+  PPT = 'ppt',
+  PPTX = 'pptx',
 }
