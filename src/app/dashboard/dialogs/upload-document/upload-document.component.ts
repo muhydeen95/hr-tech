@@ -95,6 +95,7 @@ export class UploadDocumentComponent implements OnInit {
       DocumentType: ['', Validators.required],
       SubjectMatter: ['', Validators.required],
       Files: ['', Validators.required],
+      DepartmentId: ['', Validators.required],
     });
   }
 

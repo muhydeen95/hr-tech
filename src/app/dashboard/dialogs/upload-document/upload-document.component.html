@@ -68,15 +68,15 @@
       </div>
       <select
         class="form-control"
-        formControlName="DocumentType"
-        autocomplete="DocumentType"
+        formControlName="DepartmentId"
+        autocomplete="DepartmentId"
         [ngClass]="{
           'is-invalid':
-            (uploadForm.get('DocumentType')?.errors &&
-              uploadForm.get('DocumentType')?.touched) ||
-            (uploadForm.get('DocumentType')?.hasError('required') &&
+            (uploadForm.get('DepartmentId')?.errors &&
+              uploadForm.get('DepartmentId')?.touched) ||
+            (uploadForm.get('DepartmentId')?.hasError('required') &&
               uploadFormSubmitted) ||
-            (uploadForm.get('DocumentType')?.hasError('DocumentType') &&
+            (uploadForm.get('DepartmentId')?.hasError('DepartmentId') &&
               uploadFormSubmitted)
         }"
       >
