@@ -28,6 +28,7 @@ import { ReusableSideDrawerComponent } from './components/reusable-side-drawer/r
 import { ReusableSideDrawerDirective } from './directives/reusable-side-drawer.directive';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { FileViewerComponent } from './components/file-viewer/file-viewer.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FileViewerComponent } from './components/file-viewer/file-viewer.compon
     NgxSkeletonLoaderModule,
     MatDialogModule,
     NgSelectModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    PickerModule
   ],
   exports: [
     LoadingButtonComponent,

@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BaseComponent } from '@core/base/base/base.component';
 import { FileType } from 'app/application/components/application-form/components/final/models/filetype.model';
+import { ViewDocumentDialogComponent } from 'app/documents/dialogs/view-document-dialog/view-document-dialog.component';
+import { DialogModel } from '@shared/components/models/dialog.model';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-document-status',
   templateUrl: './document-status.component.html',
@@ -28,55 +31,6 @@ export class DocumentStatusComponent implements OnInit {
     path: '',
     uniqueName: '',
   };
-  public userChats = [
-    {
-      id: 1,
-      user: 'recipient',
-      message: 'Lorem ipsum dolor sit amet,',
-      time: '2:00pm',
-    },
-    {
-      id: 2,
-      user: 'sender',
-      message: 'Lorem ipsum dolor sit amet,',
-      time: '2:05pm',
-    },
-    {
-      id: 3,
-      user: 'recipient',
-      message:
-        'Programming is the process of creating a set of instructions that tell a computer how to perform a task. Programming can be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:10pm',
-    },
-    {
-      id: 4,
-      user: 'recipient',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:12pm',
-    },
-    {
-      id: 5,
-      user: 'sender',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:35pm',
-    },
-    {
-      id: 6,
-      user: 'recipient',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:35pm',
-    },
-    {
-      id: 7,
-      user: 'sender',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:35pm',
-    },
-  ];
   public CustomerTransactionStatus = CustomerTransactionStatus;
   private sub: Subscription = new Subscription();
   public documentDetail: DocumentDTO =  {
@@ -102,11 +56,45 @@ export class DocumentStatusComponent implements OnInit {
   public jumpToSelectedFileIndex: number = 0;
   public fileType = FileType;
 
+  public chats = [
+    { id: 1, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 2, file: null, time: '2011-08-12T20:17:46.384Z', sender: 2,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 3, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 4, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 5, file: null, time: '2011-08-12T20:17:46.384Z', sender: 2,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 6, file: {name: 'attachment.pdf', size: '5.63MB', type: 'pdf' }, 
+      time: '2011-08-12T20:17:46.384Z', sender: 1, message: ''
+    },
+    { id: 7, file: null, time: '2011-08-12T20:17:46.384Z', sender: 2,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 8, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+    { id: 9, file: {name: 'attachment.pdf', size: '5.63MB', type: 'pdf' }, 
+      time: '2011-08-12T20:17:46.384Z', sender: 2, message: ''
+    },
+    { id: 10, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
+      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
+    },
+  ]
+
   constructor(
     private _docService: DocumentService,
     private activatedRoute: ActivatedRoute,
     private dashboardService: DashboardService,
-    private _popper: BaseComponent
+    private _popper: BaseComponent,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -161,6 +149,9 @@ export class DocumentStatusComponent implements OnInit {
   getFileIndex(file: any) {
     let index = this.documentDetail.files.indexOf(file);
     this.jumpToSelectedFileIndex = index;
+    this.viewFileDialog(
+      { isEditing: false, editObject: {files: this.documentDetail.files, index: index}}
+      )
   }
 
   public getFileType(fileType: string) {
@@ -180,6 +171,21 @@ export class DocumentStatusComponent implements OnInit {
       default:
         return 'assets/images/img.svg';
     }
+  }
+
+  public viewFileDialog(
+    payload: { isEditing?: boolean; editObject?: any } | any
+  ): void {
+    let object: DialogModel<any> = payload;
+    // object.source = 'memo';
+    const dialogRef = this.dialog.open(ViewDocumentDialogComponent, {
+      // panelClass: 'modal-width',
+      data: object,
+    });
+    dialogRef.componentInstance.event.subscribe((event: DialogModel<any>) => {
+      if (event?.isEditing) {
+      }
+    });
   }
 
 }
