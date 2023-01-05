@@ -1,0 +1,12 @@
+<mat-dialog-content class="mat-typography" *ngIf="data?.source == 'task'">
+    <!-- <app-global-file-viewer [files]="data.editObject" [jumpToIndex]="0">
+    </app-global-file-viewer> -->
+  </mat-dialog-content>
+  <mat-dialog-content class="mat-typography">
+    <app-file-viewer
+        [files]="data.editObject.files"
+        [jumpToIndex]="jumpToSelectedFileIndex"
+    >
+    </app-file-viewer>
+</mat-dialog-content>
+  

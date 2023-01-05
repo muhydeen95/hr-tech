@@ -12,7 +12,7 @@
   .fas,
   .document_progress,
   .chat_wrapper {
-    background: $purple-100;
+    background: $white-100;
   }
   .document_progress {
     padding: 2.4rem 1.6rem;
@@ -31,7 +31,7 @@
       .accordion-item {
         box-shadow: none;
         border: none;
-        background: $purple-100;
+        background: $white-100;
         .accordion-button {
           padding-left: 0.5rem;
           padding-right: 0rem;
@@ -42,7 +42,7 @@
           cursor: pointer;
           width: fit-content;
           white-space: nowrap;
-          background: $purple-100;
+          background: $white-100 !important;
           &::after {
             display: none;
           }
@@ -71,7 +71,7 @@
           }
         }
         .accordion-collapse {
-          background: $purple-100;
+          background: $white-100;
           .accordion-body {
             border-left: solid 0.15rem rgba($blue-700, 0.2) !important;
             margin-left: 1.4rem;
@@ -99,7 +99,8 @@
   }
   .chat_wrapper {
     min-height: 70vh;
-    padding: 3rem 1rem 2rem 3rem;
+    border: 0.2rem solid rgba(76, 17, 171, 0.1);
+    // padding: 3rem 1rem 2rem 3rem;
     border-radius: 0.85rem;
     position: relative;
     #chatTemplate {
