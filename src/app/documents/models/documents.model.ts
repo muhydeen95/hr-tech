@@ -73,3 +73,10 @@ export const CustomerTransactionStatus: any = {
   2: 'NeedsAdditionalInfo',
   3: 'PutAway',
 };
+
+export interface AddFileSubmissionResponse {
+  FileSubmissionId: number,
+  Message: string,
+  Type: number,
+  Files: Array<File>
+}

@@ -54,40 +54,10 @@ export class DocumentStatusComponent implements OnInit {
   public docId: string = '';
   public isSearching: boolean = false;
   public jumpToSelectedFileIndex: number = 0;
+  public fileSubmissionId: number = 0;
   public fileType = FileType;
-
-  public chats = [
-    { id: 1, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 2, file: null, time: '2011-08-12T20:17:46.384Z', sender: 2,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 3, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 4, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 5, file: null, time: '2011-08-12T20:17:46.384Z', sender: 2,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 6, file: {name: 'attachment.pdf', size: '5.63MB', type: 'pdf' }, 
-      time: '2011-08-12T20:17:46.384Z', sender: 1, message: ''
-    },
-    { id: 7, file: null, time: '2011-08-12T20:17:46.384Z', sender: 2,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 8, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-    { id: 9, file: {name: 'attachment.pdf', size: '5.63MB', type: 'pdf' }, 
-      time: '2011-08-12T20:17:46.384Z', sender: 2, message: ''
-    },
-    { id: 10, file: null, time: '2011-08-12T20:17:46.384Z', sender: 1,
-      message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit urna nulla aliquam quis metus facilisi nisi nullam. Sit enim mauris non sollicitudin suscipit viverra mi libero. Ornare.'
-    },
-  ]
+  public resLoading!: boolean;
+  public chats = [];
 
   constructor(
     private _docService: DocumentService,
@@ -109,12 +79,15 @@ export class DocumentStatusComponent implements OnInit {
 
   public getDocumentDetail(id: string): void {
     this.loading = true;
+    this.resLoading = true;
     this.sub.add(
       this._docService.getDocumentByIdRequest(id).subscribe({
         next: (res: ResponseModel<DocumentDTO>) => {
           // console.log(res);
           this.loading = false;
           this.documentDetail = res.response;
+          this.fileSubmissionId = this.documentDetail.fileSubmissionId;
+          this.getChatResponse(this.fileSubmissionId);
         },
         error: (error: ResponseModel<null>) => {
           this.loading = false;
@@ -140,6 +113,21 @@ export class DocumentStatusComponent implements OnInit {
         );
       },
     });
+  }
+
+  public getChatResponse(fileSubmissionId: number): void {
+    this.resLoading = true;
+    this.sub.add(
+      this._docService.getFileSubmissionResponse(fileSubmissionId).subscribe({
+        next: (res: any) => {
+          this.resLoading = false;
+         this.chats = res.response;
+        },
+        error: (error: ResponseModel<null>) => {
+          this.resLoading = false;
+        },
+      })
+    );
   }
 
   handleSelection(event: any) {
@@ -186,6 +174,10 @@ export class DocumentStatusComponent implements OnInit {
       if (event?.isEditing) {
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
