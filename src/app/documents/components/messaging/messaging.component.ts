@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { 
-  Component, 
-  OnInit, 
-  Input
-} from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { fileTypeEnum } from '@shared/components/file-viewer/file-viewer.component';
 import { DialogModel } from '@shared/components/models/dialog.model';
@@ -28,16 +28,19 @@ export class MessagingComponent implements OnInit {
   @Input() resLoading: boolean = false;
   public isLoading: boolean = false;
   public failed: boolean = false;
+  public user!: any;
 
   constructor(
     private fb: UntypedFormBuilder,
     private _documentService: DocumentService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user_credential') || '');
+    console.log(this.user);
     this.groupMessages();
-    this.initChatForm()
+    this.initChatForm();
   }
 
   initChatForm() {
@@ -46,7 +49,7 @@ export class MessagingComponent implements OnInit {
       Message: ['', Validators.required],
       Type: [2, Validators.required],
       Files: [[]],
-    })
+    });
   }
 
   public groupMessages() {
@@ -58,12 +61,12 @@ export class MessagingComponent implements OnInit {
       groups[date].push(messages);
       return groups;
     }, {});
-    
+
     // Edit: to add it in the array format instead
     const groupArrays = Object.keys(groups).map((date) => {
       return {
         date,
-        messages: groups[date]
+        messages: groups[date],
       };
     });
     this.filteredMessages = groupArrays;
@@ -93,16 +96,16 @@ export class MessagingComponent implements OnInit {
 
   public isYesterday(someDateTimeStamp: any) {
     var dt = new Date(someDateTimeStamp),
-        date = dt.getDate(),
-        diffDays = new Date().getDate() - date,
-        diffMonths = new Date().getMonth() - dt.getMonth(),
-        diffYears = new Date().getFullYear() - dt.getFullYear();
+      date = dt.getDate(),
+      diffDays = new Date().getDate() - date,
+      diffMonths = new Date().getMonth() - dt.getMonth(),
+      diffYears = new Date().getFullYear() - dt.getFullYear();
 
-    if(diffYears === 0 && diffDays === 0 && diffMonths === 0){
-      return "Today";
-    }else if(diffYears === 0 && diffDays === 1) {
-      return "Yesterday";
-    }else {
+    if (diffYears === 0 && diffDays === 0 && diffMonths === 0) {
+      return 'Today';
+    } else if (diffYears === 0 && diffDays === 1) {
+      return 'Yesterday';
+    } else {
       return someDateTimeStamp;
     }
   }
@@ -124,7 +127,7 @@ export class MessagingComponent implements OnInit {
       this.addFilesToList(event.target.files);
     }
   }
-  
+
   public removeFile(index: number): void {
     this.files.splice(index, 1);
   }
@@ -146,11 +149,12 @@ export class MessagingComponent implements OnInit {
     }
   }
 
-  public getFileIndex(files: any,file: any) {
+  public getFileIndex(files: any, file: any) {
     let index = files.indexOf(file);
-    this.viewFileDialog(
-      { isEditing: false, editObject: {files: files, index: index, source:'chat'}}
-      )
+    this.viewFileDialog({
+      isEditing: false,
+      editObject: { files: files, index: index, source: 'chat' },
+    });
   }
 
   public viewFileDialog(
@@ -160,7 +164,7 @@ export class MessagingComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewDocumentDialogComponent, {
       // panelClass: 'dialog-width',
       data: object,
-      position: {left:'5rem', top: '1rem'} 
+      position: { left: '5rem', top: '1rem' },
     });
     dialogRef.componentInstance.event.subscribe((event: DialogModel<any>) => {
       if (event?.isEditing) {
@@ -182,42 +186,42 @@ export class MessagingComponent implements OnInit {
       this.submit();
     }
   }
-  
+
   public submit(): void {
-     if (this.chatForm.valid) {
-       this.isLoading = true;
-       this.failed = false;
-       const payload = this.chatForm.value;
-       const Files = this.files; 
-       let files: any = [];
-       this.files.map((file: File) =>{
-          files.push(
-            {
-              fileName: file.name,
-              filePath: '',
-              fileSubmissionResponseAttachmentId: 0,
-              fileSubmissionResponseId: this.fileSubmissionId
-            }
-          )
-       });
-       payload.Files = files;
-       const message = {
+    if (this.chatForm.valid) {
+      this.isLoading = true;
+      this.failed = false;
+      const payload = this.chatForm.value;
+      const Files = this.files;
+      let files: any = [];
+      this.files.map((file: File) => {
+        files.push({
+          fileName: file.name,
+          filePath: '',
+          fileSubmissionResponseAttachmentId: 0,
+          fileSubmissionResponseId: this.fileSubmissionId,
+        });
+      });
+      payload.Files = files;
+      const message = {
         dateSent: new Date().toISOString(),
         fileSubmissionId: this.fileSubmissionId,
         fileSubmissionResponseAttachments: files,
         type: 2,
         fileSubmissionResponseId: 0,
         message: payload.Message,
-        sender: null
+        sender: null,
       };
       this.chatForm.patchValue({
-        Message: ''
+        Message: '',
       });
       this.files = [];
       this.isLoading = false;
       this.messages.push(message);
       this.groupMessages();
-        this._documentService.addFileSubmissionResponse(payload, Files).subscribe({
+      this._documentService
+        .addFileSubmissionResponse(payload, Files)
+        .subscribe({
           next: (res: ResponseModel<any>) => {
             this.isLoading = false;
             this.initChatForm();
@@ -227,7 +231,6 @@ export class MessagingComponent implements OnInit {
             this.failed = true;
           },
         });
-     }
+    }
   }
-
 }
