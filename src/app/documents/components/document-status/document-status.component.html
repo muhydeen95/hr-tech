@@ -106,11 +106,17 @@
                     *ngFor="let file of documentDetail?.files"
                   >
                     <img 
-                      [src]="getFileType(file.fileType)" 
+                      [src]="getFileType(file.name)" 
                       alt="" 
                       class="wrapper_ext" 
                     />
-                    <p class="d-inline-block ps-3">{{ file.name }}</p>
+                    <p class="d-inline-block ps-3">
+                      {{
+                        (file.name.length>15) ? 
+                        (file.name | slice:0:15)+'...' :
+                        (file.name)
+                    }}
+                    </p>
                   </li>
                 </ul>
               </div>
