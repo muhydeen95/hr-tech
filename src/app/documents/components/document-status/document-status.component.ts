@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BaseComponent } from '@core/base/base/base.component';
 import { FileType } from 'app/application/components/application-form/components/final/models/filetype.model';
+import { ViewDocumentDialogComponent } from 'app/documents/dialogs/view-document-dialog/view-document-dialog.component';
+import { DialogModel } from '@shared/components/models/dialog.model';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-document-status',
   templateUrl: './document-status.component.html',
@@ -28,55 +31,6 @@ export class DocumentStatusComponent implements OnInit {
     path: '',
     uniqueName: '',
   };
-  public userChats = [
-    {
-      id: 1,
-      user: 'recipient',
-      message: 'Lorem ipsum dolor sit amet,',
-      time: '2:00pm',
-    },
-    {
-      id: 2,
-      user: 'sender',
-      message: 'Lorem ipsum dolor sit amet,',
-      time: '2:05pm',
-    },
-    {
-      id: 3,
-      user: 'recipient',
-      message:
-        'Programming is the process of creating a set of instructions that tell a computer how to perform a task. Programming can be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:10pm',
-    },
-    {
-      id: 4,
-      user: 'recipient',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:12pm',
-    },
-    {
-      id: 5,
-      user: 'sender',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:35pm',
-    },
-    {
-      id: 6,
-      user: 'recipient',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:35pm',
-    },
-    {
-      id: 7,
-      user: 'sender',
-      message:
-        'that tell a computer how an be done using a variety of computer programming languages, such as JavaScript, Python, and C++.,',
-      time: '2:35pm',
-    },
-  ];
   public CustomerTransactionStatus = CustomerTransactionStatus;
   private sub: Subscription = new Subscription();
   public documentDetail: DocumentDTO =  {
@@ -100,13 +54,17 @@ export class DocumentStatusComponent implements OnInit {
   public docId: string = '';
   public isSearching: boolean = false;
   public jumpToSelectedFileIndex: number = 0;
+  public fileSubmissionId: number = 0;
   public fileType = FileType;
+  public resLoading!: boolean;
+  public chats = [];
 
   constructor(
     private _docService: DocumentService,
     private activatedRoute: ActivatedRoute,
     private dashboardService: DashboardService,
-    private _popper: BaseComponent
+    private _popper: BaseComponent,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -121,12 +79,15 @@ export class DocumentStatusComponent implements OnInit {
 
   public getDocumentDetail(id: string): void {
     this.loading = true;
+    this.resLoading = true;
     this.sub.add(
       this._docService.getDocumentByIdRequest(id).subscribe({
         next: (res: ResponseModel<DocumentDTO>) => {
           // console.log(res);
           this.loading = false;
           this.documentDetail = res.response;
+          this.fileSubmissionId = this.documentDetail.fileSubmissionId;
+          this.getChatResponse(this.fileSubmissionId);
         },
         error: (error: ResponseModel<null>) => {
           this.loading = false;
@@ -154,6 +115,21 @@ export class DocumentStatusComponent implements OnInit {
     });
   }
 
+  public getChatResponse(fileSubmissionId: number): void {
+    this.resLoading = true;
+    this.sub.add(
+      this._docService.getFileSubmissionResponse(fileSubmissionId).subscribe({
+        next: (res: any) => {
+          this.resLoading = false;
+         this.chats = res.response;
+        },
+        error: (error: ResponseModel<null>) => {
+          this.resLoading = false;
+        },
+      })
+    );
+  }
+
   handleSelection(event: any) {
     this.message += event.char;
   }
@@ -161,6 +137,9 @@ export class DocumentStatusComponent implements OnInit {
   getFileIndex(file: any) {
     let index = this.documentDetail.files.indexOf(file);
     this.jumpToSelectedFileIndex = index;
+    this.viewFileDialog(
+      { isEditing: false, editObject: {files: this.documentDetail.files, index: index}}
+      )
   }
 
   public getFileType(fileType: string) {
@@ -180,6 +159,25 @@ export class DocumentStatusComponent implements OnInit {
       default:
         return 'assets/images/img.svg';
     }
+  }
+
+  public viewFileDialog(
+    payload: { isEditing?: boolean; editObject?: any } | any
+  ): void {
+    let object: DialogModel<any> = payload;
+    // object.source = 'memo';
+    const dialogRef = this.dialog.open(ViewDocumentDialogComponent, {
+      // panelClass: 'modal-width',
+      data: object,
+    });
+    dialogRef.componentInstance.event.subscribe((event: DialogModel<any>) => {
+      if (event?.isEditing) {
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

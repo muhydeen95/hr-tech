@@ -12,7 +12,7 @@
   .fas,
   .document_progress,
   .chat_wrapper {
-    background: $purple-100;
+    background: $white-100;
   }
   .document_progress {
     padding: 2.4rem 1.6rem;
@@ -31,7 +31,7 @@
       .accordion-item {
         box-shadow: none;
         border: none;
-        background: $purple-100;
+        background: $white-100;
         .accordion-button {
           padding-left: 0.5rem;
           padding-right: 0rem;
@@ -42,7 +42,7 @@
           cursor: pointer;
           width: fit-content;
           white-space: nowrap;
-          background: $purple-100;
+          background: $white-100 !important;
           &::after {
             display: none;
           }
@@ -71,7 +71,7 @@
           }
         }
         .accordion-collapse {
-          background: $purple-100;
+          background: $white-100;
           .accordion-body {
             border-left: solid 0.15rem rgba($blue-700, 0.2) !important;
             margin-left: 1.4rem;
@@ -99,96 +99,22 @@
   }
   .chat_wrapper {
     min-height: 70vh;
-    padding: 3rem 1rem 2rem 3rem;
+    border: 0.2rem solid rgba(76, 17, 171, 0.1);
+    // padding: 3rem 1rem 2rem 3rem;
     border-radius: 0.85rem;
     position: relative;
+    .head {
+      box-shadow: 0px 0px 4px rgba(13, 13, 64, 0.2);
+      border-bottom: 0.1rem solid rgba($color: $blue-800, $alpha: 0.1);
+      padding: 0.8rem 2.2rem;
+      display: flex;
+      align-items: center;
+    }
     #chatTemplate {
       max-height: 100vh;
       overflow-y: scroll;
-      padding-right: 2rem;
+      padding: 0.8rem 2.2rem;
       padding-bottom: 3rem;
-      .recipient-message,
-      .sender-message {
-        max-width: 65%;
-        padding: 1rem 2rem 0.5rem 2rem;
-        font-size: 1.25rem;
-        border-bottom-left-radius: 0.85rem;
-        border-bottom-right-radius: 0.85rem;
-        margin-top: 1.5rem;
-        margin-bottom: 4.5rem;
-        position: relative;
-        .time {
-          position: absolute;
-          bottom: -3rem;
-          right: 0;
-          color: $text-body;
-        }
-      }
-      .recipient-message {
-        background: $grey-300;
-        color: $text-body;
-        border-top-right-radius: 0.85rem;
-      }
-      .sender-message {
-        background: $purple-700;
-        color: $purple-100;
-        border-top-left-radius: 0.85rem;
-      }
-    }
-    .message_push {
-      width: 93%;
-      height: 40px;
-      bottom: 2rem;
-      padding-bottom: 1.5rem;
-      position: absolute;
-      z-index: 500;
-      background: $purple-100;
-      .search-wrapper {
-        display: flex;
-        &-input {
-          position: relative;
-          flex-grow: 3;
-          ._icon {
-            position: absolute;
-            right: 1.5rem;
-            top: 1.5rem;
-          }
-          .form-control {
-            padding-right: 4.5rem;
-            background: transparent;
-            border: none;
-            border-radius: 0%;
-            border-bottom: 0.25rem solid $grey-400;
-          }
-        }
-        .btn-attachment {
-          position: relative;
-          cursor: pointer;
-          input[type="file"] {
-            font-size: 10rem;
-            width: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            cursor: pointer;
-          }
-        }
-        .btn-wrapper {
-          .btn-blue {
-            background-color: $purple-700;
-            color: $white-100;
-            display: flex;
-            align-items: center;
-            line-height: 0;
-            transition: all ease 0.3s;
-            &:hover {
-              color: #fff;
-              background-color: $purple-900;
-            }
-          }
-        }
-      }
     }
   }
 }
