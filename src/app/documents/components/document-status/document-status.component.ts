@@ -142,7 +142,8 @@ export class DocumentStatusComponent implements OnInit {
       )
   }
 
-  public getFileType(fileType: string) {
+  public getFileType(fileName: string) {
+    const fileType = fileName.split('.')[1];
     switch (true) {
       case fileType?.toLocaleLowerCase()?.includes(FileType.PDF):
         return 'assets/images/pdf.svg';

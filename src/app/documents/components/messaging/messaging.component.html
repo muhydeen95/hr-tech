@@ -8,7 +8,7 @@
     </div>
 
     <div id="chatTemplate" #scrollMe>
-      <div *ngFor="let data of filteredMessages">
+      <div *ngFor="let data of filteredMessages; index as i">
         <div class="formLiner my-3">
           <hr />
           <span>
@@ -21,7 +21,7 @@
           </span>
           <hr />
         </div>
-        <div *ngFor="let message of data.messages; index as i">
+        <div *ngFor="let message of data.messages; index as j">
           <div class="d-flex" *ngIf="message.type == 1">
             <div class="img-wrapper me-3">
               <img
@@ -106,9 +106,24 @@
               </div>
               <p class="sender-message" *ngIf="message.message">
                 {{ message.message }}
-                <span class="time">{{
-                  message.dateSent | date : "shortTime"
-                }}</span>
+                <span 
+                    class="time"
+                >
+                    <span *ngIf="!failed && data.messages.length > 0">
+                        {{
+                            message.dateSent | date : "shortTime"
+                        }}
+                    </span>
+                    <span
+                    class="dot-status dot-status-error click"
+                    (click)="retryFailedSubmit()"
+                    *ngIf="
+                        failed && 
+                        j == data.messages.length - 1
+                    "
+                    >!</span
+                >
+                </span>
               </p>
             </div>
             <div class="img-wrapper ms-3">
@@ -132,9 +147,9 @@
     </div>
 
     <div class="footer_wrapper">
-      <div class="row" *ngIf="files.length > 0">
+      <div class="docs_wrapper" *ngIf="files.length > 0">
         <div
-          class="col-sm-12 col-md-6 col-lg-4 mb-4"
+          class="docs_wrapper-item"
           *ngFor="let file of files; index as i"
         >
           <app-uploaded-doc

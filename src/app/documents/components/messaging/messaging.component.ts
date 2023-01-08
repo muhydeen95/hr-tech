@@ -29,6 +29,8 @@ export class MessagingComponent implements OnInit {
   public isLoading: boolean = false;
   public failed: boolean = false;
   public user!: any;
+  public retryPayload: any;
+  public retryFiles: File[] = [];
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -192,6 +194,8 @@ export class MessagingComponent implements OnInit {
       this.isLoading = true;
       this.failed = false;
       const payload = this.chatForm.value;
+      this.retryPayload = payload;
+      this.retryFiles = this.files;
       const Files = this.files;
       let files: any = [];
       this.files.map((file: File) => {
@@ -212,10 +216,10 @@ export class MessagingComponent implements OnInit {
         message: payload.Message,
         sender: null,
       };
+      this.files = [];
       this.chatForm.patchValue({
         Message: '',
       });
-      this.files = [];
       this.isLoading = false;
       this.messages.push(message);
       this.groupMessages();
@@ -224,13 +228,32 @@ export class MessagingComponent implements OnInit {
         .subscribe({
           next: (res: ResponseModel<any>) => {
             this.isLoading = false;
+            this.failed = false;
             this.initChatForm();
           },
           error: (error: HttpErrorResponse) => {
             this.isLoading = false;
             this.failed = true;
           },
-        });
+      });
     }
   }
+
+  retryFailedSubmit() {
+    this.failed = false;
+    return this._documentService
+    .addFileSubmissionResponse(this.retryPayload, this.retryFiles)
+    .subscribe({
+      next: (res: ResponseModel<any>) => {
+        this.isLoading = false;
+        this.failed = false;
+        this.initChatForm();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.failed = true;
+      },
+  });
+  }
+
 }
