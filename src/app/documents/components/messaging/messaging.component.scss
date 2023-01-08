@@ -27,32 +27,45 @@
             &::-webkit-scrollbar {
                 display: none;
             }
+            .formLiner {
+                display: grid;
+                grid-template-columns: 1fr 0.3fr 1fr;
+                text-align: center;
+                span {
+                  font-weight: 500;
+                  font-size: 1.2rem;
+                  color: $grey;
+                }
+              }
             .recipient-message,
             .sender-message {
                 max-width: 65%;
-                padding: 1rem 2rem 0.5rem 2rem;
+                padding: 1.5rem 2rem;
                 font-size: 1.25rem;
                 border-bottom-left-radius: 0.85rem;
                 border-bottom-right-radius: 0.85rem;
                 margin-top: 1.5rem;
                 margin-bottom: 4.5rem;
                 position: relative;
-                img {
-                    width: 100%;
-                    margin-right: 1rem;
-                }
-                .time {
+                .time, .error {
                     position: absolute;
                     bottom: -2rem;
                     right: 0;
                     color: $text-body;
                 }
-                .file-name {
-                    font-size: 1.25rem;
-                    margin-bottom: 0;
-                }
-                .file-size {
-                    font-size: 1.35rem;
+                .doc_wrapper {
+                    display: flex;
+                    .file-icon {
+                        width: 10%;
+                        margin-right: 1rem;
+                    }
+                    .file-name {
+                        font-size: 1.25rem;
+                        margin-bottom: 0;
+                    }
+                    .file-size {
+                        font-size: 1.35rem;
+                    }
                 }
             }
             .img-wrapper {
@@ -67,11 +80,13 @@
                 background: $grey-300;
                 color: $text-body;
                 border-top-right-radius: 0.85rem;
+                margin-right: auto;
             }
             .sender-message {
                 background: $purple-700;
                 color: $purple-100;
                 border-top-left-radius: 0.85rem;
+                margin-left: auto;
             }
         }
         .footer_wrapper {

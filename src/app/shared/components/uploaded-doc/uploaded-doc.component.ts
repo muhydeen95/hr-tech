@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FileType } from 'app/application/components/application-form/components/final/models/filetype.model';
+import { fileTypeEnum } from '../file-viewer/file-viewer.component';
 
 @Component({
   selector: 'app-uploaded-doc',
@@ -21,12 +21,20 @@ export class UploadedDocComponent implements OnInit {
 
   public getFileType(): string {
     switch (true) {
-      case this.type.toLocaleLowerCase().includes(FileType.PDF):
+      case this.type.toLocaleLowerCase().includes(fileTypeEnum.PDF):
         return 'assets/images/pdf.svg';
-      case this.type.toLocaleLowerCase().includes(FileType.WORD):
+      case this.type.toLocaleLowerCase().includes(fileTypeEnum.DOC):
         return 'assets/images/word.svg';
-      case this.type.toLocaleLowerCase().includes(FileType.IMG):
+      case this.type.toLocaleLowerCase().includes(fileTypeEnum.DOCX):
+        return 'assets/images/word.svg';
+      case this.type.toLocaleLowerCase().includes(fileTypeEnum.IMG):
         return 'assets/images/img.svg';
+      case this.type.toLocaleLowerCase().includes(fileTypeEnum.EXCEL):
+        return 'assets/images/xls.png';
+      case this.type.toLocaleLowerCase()?.includes(fileTypeEnum.PPT):
+        return 'assets/images/ppt.svg';
+      case this.type?.toLocaleLowerCase()?.includes(fileTypeEnum.PPTX):
+        return 'assets/images/ppt.svg';
       default:
         return 'assets/images/img.svg';
     }
