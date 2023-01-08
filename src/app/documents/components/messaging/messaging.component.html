@@ -134,8 +134,8 @@
         </div>
 
         <div class="footer_wrapper">
-            <div class="row" *ngIf="files.length > 0">
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-4" *ngFor="let file of files; index as i">
+            <div class="docs_wrapper" *ngIf="files.length > 0">
+                <div class="docs_wrapper-item" *ngFor="let file of files; index as i">
                     <app-uploaded-doc
                         [file_name]="file.name"
                         [type]="file.type"

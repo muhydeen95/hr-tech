@@ -98,8 +98,17 @@
             box-shadow: 0px 0px 4px rgba(13, 13, 64, 0.1);
             border-top: 0.1rem solid rgba($color: $blue-800, $alpha: 0.1);
             padding: 4rem 3.2rem;
-            display: flex;
+            // display: flex;
             align-items: center;
+            .docs_wrapper {
+                display: grid;
+                grid-gap: 10px;
+                grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));
+                &-item {
+                    flex-basis: 100%;
+                    margin-bottom: 1rem;
+                }
+            }
             &-input {
                 display: flex;
                 align-items: center;
