@@ -5,6 +5,7 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { fileTypeEnum } from '@shared/components/file-viewer/file-viewer.component';
 import { DialogModel } from '@shared/components/models/dialog.model';
@@ -18,6 +19,7 @@ import { ResponseModel } from 'app/models/response.model';
   styleUrls: ['./messaging.component.scss'],
 })
 export class MessagingComponent implements OnInit {
+  private sub: Subscription = new Subscription();
   public open_smiley: boolean = false;
   public toggled: boolean = false;
   @Input() messages: any[] = [];
@@ -43,6 +45,20 @@ export class MessagingComponent implements OnInit {
     console.log(this.user);
     this.groupMessages();
     this.initChatForm();
+  }
+
+  public loadChatResponseSilently(): void {
+    this.sub.add(
+      this._documentService.getFileSubmissionResponse(this.fileSubmissionId).subscribe({
+        next: (res: any) => {
+         this.messages = res.response;
+         this.groupMessages();
+        },
+        error: (error: ResponseModel<null>) => {
+          
+        },
+      })
+    );
   }
 
   initChatForm() {
@@ -220,7 +236,6 @@ export class MessagingComponent implements OnInit {
       this.chatForm.patchValue({
         Message: '',
       });
-      this.isLoading = false;
       this.messages.push(message);
       this.groupMessages();
       this._documentService
@@ -229,6 +244,7 @@ export class MessagingComponent implements OnInit {
           next: (res: ResponseModel<any>) => {
             this.isLoading = false;
             this.failed = false;
+            this.loadChatResponseSilently();
             this.initChatForm();
           },
           error: (error: HttpErrorResponse) => {
@@ -247,13 +263,18 @@ export class MessagingComponent implements OnInit {
       next: (res: ResponseModel<any>) => {
         this.isLoading = false;
         this.failed = false;
+        this.loadChatResponseSilently();
         this.initChatForm();
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
         this.failed = true;
       },
-  });
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
