@@ -34,97 +34,97 @@
               />
             </div>
             <div class="w-100">
-              <div
-                class=""
-                *ngIf="message.fileSubmissionResponseAttachments.length > 0"
-              >
-                <div
-                  class="recipient-message click"
-                  (click)="
-                    getFileIndex(
-                      message.fileSubmissionResponseAttachments,
-                      file
-                    )
-                  "
-                  *ngFor="let file of message.fileSubmissionResponseAttachments"
-                >
-                  <div class="doc_wrapper">
-                    <img
-                      [src]="getFileType(file.fileName)"
-                      alt=""
-                      class="file-icon"
-                    />
-                    <h3>
-                      <span class="file-name"> {{ file.fileName }}</span>
-                      <p class="file-size"></p>
-                    </h3>
-                  </div>
-                  <span class="time">{{
-                    message.dateSent | date : "shortTime"
-                  }}</span>
+                <div class="recipient-message">
+                    <div 
+                        class="doc_wrapper row"
+                        *ngIf="message.fileSubmissionResponseAttachments?.length > 0">
+                        <div
+                          class="col-6 click"
+                          (click)="
+                            getFileIndex(message.fileSubmissionResponseAttachments, file)
+                          "
+                          *ngFor="let file of message.fileSubmissionResponseAttachments"
+                        >
+                          <div class="doc_wrapper-item">
+                            <img
+                              [src]="getFileType(file.fileName)"
+                              alt=""
+                              class="file-icon"
+                            />
+                            <h3>
+                              <span class="file-name">
+                                {{
+                                  file.fileName?.length > 25
+                                    ? (file.fileName | slice : 0 : 25) + "..."
+                                    : file.fileName
+                                }}
+                              </span>
+                              <p class="file-size"></p>
+                            </h3>
+                          </div>
+                        </div>
+                    </div>
+                    {{ message.message }}
+                    <span class="time">{{
+                        message.dateSent | date : "shortTime"
+                    }}</span>
                 </div>
-              </div>
-              <p class="recipient-message" *ngIf="message.message">
-                {{ message.message }}
-                <span class="time">{{
-                  message.dateSent | date : "shortTime"
-                }}</span>
-              </p>
             </div>
           </div>
           <div class="d-flex" *ngIf="message.type == 2">
             <div class="w-100">
-              <div
-                class=""
-                *ngIf="message.fileSubmissionResponseAttachments.length > 0"
-              >
-                <div
-                  class="sender-message click"
-                  (click)="
-                    getFileIndex(
-                      message.fileSubmissionResponseAttachments,
-                      file
-                    )
-                  "
-                  *ngFor="let file of message.fileSubmissionResponseAttachments"
-                >
-                  <div class="doc_wrapper">
-                    <img
-                      [src]="getFileType(file.fileName)"
-                      alt=""
-                      class="file-icon"
-                    />
-                    <h3>
-                      <span class="file-name"> {{ file.fileName }}</span>
-                      <p class="file-size"></p>
-                    </h3>
-                  </div>
-                  <span class="time">{{
-                    message.dateSent | date : "shortTime"
-                  }}</span>
-                </div>
-              </div>
-              <p class="sender-message" *ngIf="message.message">
-                {{ message.message }}
-                <span 
-                    class="time"
-                >
+                <div class="sender-message">
+                    <div
+                        class="doc_wrapper row"
+                        *ngIf="message.fileSubmissionResponseAttachments?.length > 0"
+                    >
+                        <div
+                            class="col-6 click"
+                            (click)="
+                            getFileIndex(message.fileSubmissionResponseAttachments, file)
+                            "
+                            *ngFor="let file of message.fileSubmissionResponseAttachments"
+                        >
+                            <div 
+                                class="doc_wrapper-item"
+                            >
+                            <img
+                                [src]="getFileType(file.fileName)"
+                                alt=""
+                                class="file-icon"
+                            />
+                                <h3>
+                                    <span class="file-name">
+                                    {{
+                                        file.fileName?.length > 15
+                                        ? (file.fileName | slice : 0 : 15) + "..."
+                                        : file.fileName
+                                    }}
+                                    </span>
+                                    <p class="file-size"></p>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    {{ message.message }}
+                    <span class="time"
+                    >
                     <span *ngIf="!failed && data.messages.length > 0">
                         {{
                             message.dateSent | date : "shortTime"
                         }}
                     </span>
                     <span
-                    class="dot-status dot-status-error click"
-                    (click)="retryFailedSubmit()"
-                    *ngIf="
-                        failed && 
-                        j == data.messages.length - 1
-                    "
-                    >!</span
-                >
-                </span>
-              </p>
+                        class="dot-status dot-status-error click"
+                        (click)="retryFailedSubmit()"
+                        *ngIf="
+                            failed &&
+                            j == data.messages.length - 1
+                        "
+                        >!</span
+                    >
+                    </span>
+                </div>
             </div>
             <div class="img-wrapper ms-3">
               <img
