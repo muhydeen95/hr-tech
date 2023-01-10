@@ -213,30 +213,10 @@ export class MessagingComponent implements OnInit {
       this.retryPayload = payload;
       this.retryFiles = this.files;
       const Files = this.files;
-      let files: any = [];
-      this.files.map((file: File) => {
-        files.push({
-          fileName: file.name,
-          filePath: '',
-          fileSubmissionResponseAttachmentId: 0,
-          fileSubmissionResponseId: this.fileSubmissionId,
-        });
-      });
-      payload.Files = files;
-      const message = {
-        dateSent: new Date().toISOString(),
-        fileSubmissionId: this.fileSubmissionId,
-        fileSubmissionResponseAttachments: files,
-        type: 2,
-        fileSubmissionResponseId: 0,
-        message: payload.Message,
-        sender: null,
-      };
       this.files = [];
       this.chatForm.patchValue({
         Message: '',
       });
-      this.messages.push(message);
       this.groupMessages();
       this._documentService
         .addFileSubmissionResponse(payload, Files)
@@ -248,6 +228,7 @@ export class MessagingComponent implements OnInit {
             this.initChatForm();
           },
           error: (error: HttpErrorResponse) => {
+            console.log(this.retryPayload)
             this.isLoading = false;
             this.failed = true;
           },
@@ -257,6 +238,7 @@ export class MessagingComponent implements OnInit {
 
   retryFailedSubmit() {
     this.failed = false;
+    this.isLoading = true;
     return this._documentService
     .addFileSubmissionResponse(this.retryPayload, this.retryFiles)
     .subscribe({

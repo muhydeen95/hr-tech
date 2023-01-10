@@ -109,20 +109,9 @@
                         {{ message.message }}
                         <span class="time"
                         >
-                        <span *ngIf="!failed && data.messages.length > 0">
                             {{
                                 message.dateSent | date : "shortTime"
                             }}
-                        </span>
-                        <span
-                            class="dot-status dot-status-error click"
-                            (click)="retryFailedSubmit()"
-                            *ngIf="
-                                failed &&
-                                j == data.messages.length - 1
-                            "
-                            >!</span
-                        >
                         </span>
                     </div>
                 </div>
@@ -139,16 +128,71 @@
             </div>
             </div>
         </div>
-        <div *ngIf="isLoading" class="d-flex justify-content-end mb-4">
-        <app-filetra-skeleton-loader
-            width="40rem"
-            height="5rem"
-        ></app-filetra-skeleton-loader>
-        <app-filetra-skeleton-loader
-            width="4rem"
-            height="4rem"
-            appearance="circle"
-        ></app-filetra-skeleton-loader>
+        <div *ngIf="isLoading || failed" class="mb-4">
+            <div class="d-flex justify-content-end" *ngIf="isLoading ">
+                <app-filetra-skeleton-loader
+                width="40rem"
+                height="5rem"
+                ></app-filetra-skeleton-loader>
+                <app-filetra-skeleton-loader
+                    width="4rem"
+                    height="4rem"
+                    appearance="circle"
+                ></app-filetra-skeleton-loader>
+            </div>
+            <div class="d-flex justify-content-end" *ngIf="!isLoading && failed ">
+                <div class="w-100">
+                  <div class="sender-message">
+                      <div
+                          class="doc_wrapper row"
+                          *ngIf="retryFiles.length > 0"
+                      >
+                          <div
+                              class="col-6 click"
+                              (click)="
+                              getFileIndex(retryPayload.Files, file)
+                              "
+                              *ngFor="let file of retryFiles"
+                          >
+                              <div 
+                                  class="doc_wrapper-item"
+                              >
+                              <img
+                                  [src]="getFileType(file.name)"
+                                  alt=""
+                                  class="file-icon"
+                              />
+                                  <h3>
+                                      <span class="file-name">
+                                      {{
+                                          file.name.length > 15
+                                          ? (file.name | slice : 0 : 15) + "..."
+                                          : file.name
+                                      }}
+                                      </span>
+                                      <p class="file-size"></p>
+                                  </h3>
+                              </div>
+                          </div>
+                      </div>
+                      {{ retryPayload.Message }}
+                      <span class="time"
+                      >
+                      <span
+                          class="dot-status dot-status-error click"
+                          (click)="retryFailedSubmit()"
+                        >!</span
+                      >
+                      </span>
+                  </div>
+                </div>
+                <div class="img-wrapper ms-3">
+                  <img
+                    src="assets/images/chat-profile.svg"
+                    alt=""
+                  />
+                </div>
+            </div>
         </div>
         <app-no-data
             name="Chat"
