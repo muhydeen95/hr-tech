@@ -5,6 +5,7 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { fileTypeEnum } from '@shared/components/file-viewer/file-viewer.component';
 import { DialogModel } from '@shared/components/models/dialog.model';
@@ -18,6 +19,7 @@ import { ResponseModel } from 'app/models/response.model';
   styleUrls: ['./messaging.component.scss'],
 })
 export class MessagingComponent implements OnInit {
+  private sub: Subscription = new Subscription();
   public open_smiley: boolean = false;
   public toggled: boolean = false;
   @Input() messages: any[] = [];
@@ -43,6 +45,20 @@ export class MessagingComponent implements OnInit {
     console.log(this.user);
     this.groupMessages();
     this.initChatForm();
+  }
+
+  public loadChatResponseSilently(): void {
+    this.sub.add(
+      this._documentService.getFileSubmissionResponse(this.fileSubmissionId).subscribe({
+        next: (res: any) => {
+         this.messages = res.response;
+         this.groupMessages();
+        },
+        error: (error: ResponseModel<null>) => {
+          
+        },
+      })
+    );
   }
 
   initChatForm() {
@@ -197,31 +213,10 @@ export class MessagingComponent implements OnInit {
       this.retryPayload = payload;
       this.retryFiles = this.files;
       const Files = this.files;
-      let files: any = [];
-      this.files.map((file: File) => {
-        files.push({
-          fileName: file.name,
-          filePath: '',
-          fileSubmissionResponseAttachmentId: 0,
-          fileSubmissionResponseId: this.fileSubmissionId,
-        });
-      });
-      payload.Files = files;
-      const message = {
-        dateSent: new Date().toISOString(),
-        fileSubmissionId: this.fileSubmissionId,
-        fileSubmissionResponseAttachments: files,
-        type: 2,
-        fileSubmissionResponseId: 0,
-        message: payload.Message,
-        sender: null,
-      };
       this.files = [];
       this.chatForm.patchValue({
         Message: '',
       });
-      this.isLoading = false;
-      this.messages.push(message);
       this.groupMessages();
       this._documentService
         .addFileSubmissionResponse(payload, Files)
@@ -229,9 +224,11 @@ export class MessagingComponent implements OnInit {
           next: (res: ResponseModel<any>) => {
             this.isLoading = false;
             this.failed = false;
+            this.loadChatResponseSilently();
             this.initChatForm();
           },
           error: (error: HttpErrorResponse) => {
+            console.log(this.retryPayload)
             this.isLoading = false;
             this.failed = true;
           },
@@ -241,19 +238,25 @@ export class MessagingComponent implements OnInit {
 
   retryFailedSubmit() {
     this.failed = false;
+    this.isLoading = true;
     return this._documentService
     .addFileSubmissionResponse(this.retryPayload, this.retryFiles)
     .subscribe({
       next: (res: ResponseModel<any>) => {
         this.isLoading = false;
         this.failed = false;
+        this.loadChatResponseSilently();
         this.initChatForm();
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
         this.failed = true;
       },
-  });
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

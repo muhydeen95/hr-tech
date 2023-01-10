@@ -8,142 +8,197 @@
     </div>
 
     <div id="chatTemplate" #scrollMe>
-      <div *ngFor="let data of filteredMessages; index as i">
-        <div class="formLiner my-3">
-          <hr />
-          <span>
-            {{
-              isYesterday(data.date) == "Today" ||
-              isYesterday(data.date) == "Yesterday"
-                ? isYesterday(data.date)
-                : (data.date | date : "EEE, dd MMM. YYYY")
-            }}
-          </span>
-          <hr />
-        </div>
-        <div *ngFor="let message of data.messages; index as j">
-          <div class="d-flex" *ngIf="message.type == 1">
-            <div class="img-wrapper me-3">
-              <img
-                [src]="
-                  message.sender?.photo
-                    ? message.sender?.photo
-                    : 'assets/images/chat-profile.svg'
-                "
-                alt=""
-              />
+        <div *ngFor="let data of filteredMessages; index as i">
+            <div class="formLiner my-3">
+            <hr />
+            <span>
+                {{
+                isYesterday(data.date) == "Today" ||
+                isYesterday(data.date) == "Yesterday"
+                    ? isYesterday(data.date)
+                    : (data.date | date : "EEE, dd MMM. YYYY")
+                }}
+            </span>
+            <hr />
             </div>
-            <div class="w-100">
-              <div
-                class=""
-                *ngIf="message.fileSubmissionResponseAttachments.length > 0"
-              >
-                <div
-                  class="recipient-message click"
-                  (click)="
-                    getFileIndex(
-                      message.fileSubmissionResponseAttachments,
-                      file
-                    )
-                  "
-                  *ngFor="let file of message.fileSubmissionResponseAttachments"
-                >
-                  <div class="doc_wrapper">
-                    <img
-                      [src]="getFileType(file.fileName)"
-                      alt=""
-                      class="file-icon"
-                    />
-                    <h3>
-                      <span class="file-name"> {{ file.fileName }}</span>
-                      <p class="file-size"></p>
-                    </h3>
-                  </div>
-                  <span class="time">{{
-                    message.dateSent | date : "shortTime"
-                  }}</span>
-                </div>
-              </div>
-              <p class="recipient-message" *ngIf="message.message">
-                {{ message.message }}
-                <span class="time">{{
-                  message.dateSent | date : "shortTime"
-                }}</span>
-              </p>
-            </div>
-          </div>
-          <div class="d-flex" *ngIf="message.type == 2">
-            <div class="w-100">
-              <div
-                class=""
-                *ngIf="message.fileSubmissionResponseAttachments.length > 0"
-              >
-                <div
-                  class="sender-message click"
-                  (click)="
-                    getFileIndex(
-                      message.fileSubmissionResponseAttachments,
-                      file
-                    )
-                  "
-                  *ngFor="let file of message.fileSubmissionResponseAttachments"
-                >
-                  <div class="doc_wrapper">
-                    <img
-                      [src]="getFileType(file.fileName)"
-                      alt=""
-                      class="file-icon"
-                    />
-                    <h3>
-                      <span class="file-name"> {{ file.fileName }}</span>
-                      <p class="file-size"></p>
-                    </h3>
-                  </div>
-                  <span class="time">{{
-                    message.dateSent | date : "shortTime"
-                  }}</span>
-                </div>
-              </div>
-              <p class="sender-message" *ngIf="message.message">
-                {{ message.message }}
-                <span 
-                    class="time"
-                >
-                    <span *ngIf="!failed && data.messages.length > 0">
-                        {{
-                            message.dateSent | date : "shortTime"
-                        }}
-                    </span>
-                    <span
-                    class="dot-status dot-status-error click"
-                    (click)="retryFailedSubmit()"
-                    *ngIf="
-                        failed && 
-                        j == data.messages.length - 1
+            <div *ngFor="let message of data.messages; index as j">
+            <div class="d-flex" *ngIf="message.type == 1">
+                <div class="img-wrapper me-3">
+                <img
+                    [src]="
+                    message.sender?.photo
+                        ? message.sender?.photo
+                        : 'assets/images/chat-profile.svg'
                     "
-                    >!</span
-                >
-                </span>
-              </p>
+                    alt=""
+                />
+                </div>
+                <div class="w-100">
+                    <div class="recipient-message">
+                        <div 
+                            class="doc_wrapper row"
+                            *ngIf="message.fileSubmissionResponseAttachments?.length > 0">
+                            <div
+                            class="col-6 click"
+                            (click)="
+                                getFileIndex(message.fileSubmissionResponseAttachments, file)
+                            "
+                            *ngFor="let file of message.fileSubmissionResponseAttachments"
+                            >
+                            <div class="doc_wrapper-item">
+                                <img
+                                [src]="getFileType(file.fileName)"
+                                alt=""
+                                class="file-icon"
+                                />
+                                <h3>
+                                <span class="file-name">
+                                    {{
+                                    file.fileName?.length > 15
+                                        ? (file.fileName | slice : 0 : 15) + "..."
+                                        : file.fileName
+                                    }}
+                                </span>
+                                <p class="file-size">5.8MB</p>
+                                </h3>
+                            </div>
+                            </div>
+                        </div>
+                        {{ message.message }}
+                        <span class="time">{{
+                            message.dateSent | date : "shortTime"
+                        }}</span>
+                    </div>
+                </div>
             </div>
-            <div class="img-wrapper ms-3">
-              <img
-                [src]="
-                  message.sender?.photo
-                    ? message.sender?.photo
-                    : 'assets/images/chat-profile.svg'
-                "
-                alt=""
-              />
+            <div class="d-flex" *ngIf="message.type == 2">
+                <div class="w-100">
+                    <div class="sender-message">
+                        <div
+                            class="doc_wrapper row"
+                            *ngIf="message.fileSubmissionResponseAttachments?.length > 0"
+                        >
+                            <div
+                                class="col-6 click"
+                                (click)="
+                                getFileIndex(message.fileSubmissionResponseAttachments, file)
+                                "
+                                *ngFor="let file of message.fileSubmissionResponseAttachments"
+                            >
+                                <div 
+                                    class="doc_wrapper-item"
+                                >
+                                <img
+                                    [src]="getFileType(file.fileName)"
+                                    alt=""
+                                    class="file-icon"
+                                />
+                                    <h3>
+                                        <span class="file-name">
+                                        {{
+                                            file.fileName?.length > 15
+                                            ? (file.fileName | slice : 0 : 15) + "..."
+                                            : file.fileName
+                                        }}
+                                        </span>
+                                        <p class="file-size">5.8MB</p>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        {{ message.message }}
+                        <span class="time"
+                        >
+                            {{
+                                message.dateSent | date : "shortTime"
+                            }}
+                        </span>
+                    </div>
+                </div>
+                <div class="img-wrapper ms-3">
+                <img
+                    [src]="
+                    message.sender?.photo
+                        ? message.sender?.photo
+                        : 'assets/images/chat-profile.svg'
+                    "
+                    alt=""
+                />
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
-      <app-no-data
-        name="Chat"
-        [showActionButton]="false"
-        *ngIf="filteredMessages.length == 0"
-      ></app-no-data>
+        <div *ngIf="isLoading || failed" class="mb-4">
+            <div class="d-flex justify-content-end" *ngIf="isLoading ">
+                <app-filetra-skeleton-loader
+                width="40rem"
+                height="5rem"
+                ></app-filetra-skeleton-loader>
+                <app-filetra-skeleton-loader
+                    width="4rem"
+                    height="4rem"
+                    appearance="circle"
+                ></app-filetra-skeleton-loader>
+            </div>
+            <div class="d-flex justify-content-end" *ngIf="!isLoading && failed ">
+                <div class="w-100">
+                  <div class="sender-message">
+                      <div
+                          class="doc_wrapper row"
+                          *ngIf="retryFiles.length > 0"
+                      >
+                          <div
+                              class="col-6 click"
+                              (click)="
+                              getFileIndex(retryPayload.Files, file)
+                              "
+                              *ngFor="let file of retryFiles"
+                          >
+                              <div 
+                                  class="doc_wrapper-item"
+                              >
+                              <img
+                                  [src]="getFileType(file.name)"
+                                  alt=""
+                                  class="file-icon"
+                              />
+                                  <h3>
+                                      <span class="file-name">
+                                      {{
+                                          file.name.length > 15
+                                          ? (file.name | slice : 0 : 15) + "..."
+                                          : file.name
+                                      }}
+                                      </span>
+                                      <p class="file-size"></p>
+                                  </h3>
+                              </div>
+                          </div>
+                      </div>
+                      {{ retryPayload.Message }}
+                      <span class="time"
+                      >
+                      <span
+                          class="dot-status dot-status-error click"
+                          (click)="retryFailedSubmit()"
+                        >!</span
+                      >
+                      </span>
+                  </div>
+                </div>
+                <div class="img-wrapper ms-3">
+                  <img
+                    src="assets/images/chat-profile.svg"
+                    alt=""
+                  />
+                </div>
+            </div>
+        </div>
+        <app-no-data
+            name="Chat"
+            [showActionButton]="false"
+            *ngIf="filteredMessages.length == 0"
+        ></app-no-data>
     </div>
 
     <div class="footer_wrapper">
