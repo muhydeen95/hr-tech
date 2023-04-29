@@ -2,63 +2,137 @@
 
 .btn {
   font-weight: 600;
-
-  border-radius: 0.8rem;
-  font-size: 1.4rem !important;
+  box-shadow: 0rem 0.8rem 1.6rem -0.5rem rgba(0, 29, 31, 0.1);
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
   text-align: center;
   justify-content: center;
+  // width: 100%;
+  &:hover,
+  &:focus {
+    box-shadow: none;
+  }
 }
-.btn-purple {
-  background-color: $purple-700 !important;
-  box-shadow: 0rem 0.8rem 1.6rem -0.5rem rgba(0, 29, 31, 0.1);
-  color: #fff !important;
+
+.btn-green {
+  background: $blue-300 !important;
+  box-shadow: 0rem 0.4rem 1.25rem -1px rgba(76, 17, 171, 0.1);
+  border-radius: 0.6rem;
   display: flex;
   align-items: center;
   line-height: 0;
   transition: all ease 0.3s;
+  color: $white-100;
   &:hover {
-    color: #fff;
-    background-color: $purple-700;
+    color: $white-100;
+    background-color: rgba($blue-300, 0.8) !important;
   }
-}
-.btn-outline-purple {
-  border: 0.15rem solid $purple-700;
-  background-color: transparent;
-  color: $purple-700;
-  transition: all ease 0.3s;
-  &:hover {
-    color: $purple-700;
-    background-color: transparent;
+
+  &:disabled{
+    color: $white-100;
+    background-color: rgba($blue-300, 0.8) !important;
   }
 }
 
-.btn-outline-grey {
-  border: 0.15rem solid $grey-500;
-  background-color: transparent;
-  color: $purple-700;
-  transition: all ease 0.3s;
+
+
+.btn-danger {
+  background: $error;
+  box-shadow: 0rem 0.4rem 1.25rem -1px rgba(76, 17, 171, 0.1);
+  border-radius: 0.6rem;
   display: flex;
   align-items: center;
+  line-height: 0;
+  transition: all ease 0.3s;
+  color: $white-100;
   &:hover {
-    color: $purple-700;
-    border: 0.15rem solid $grey-400;
-    background-color: transparent;
+    color: $white-100;
+    background-color: rgba($error, 0.8);
+  }
+  // &:disabled{
+  //   color: $white-100;
+  //   background-color: rgba($error, 0.8);
+  // }
+}
+
+.btn-amber {
+  background: $warning;
+  box-shadow: 0rem 0.4rem 1.25rem -1px rgba(76, 17, 171, 0.1);
+  border-radius: 0.6rem;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  transition: all ease 0.3s;
+  color: $white-100;
+  &:hover {
+    color: $white-100;
+    background-color: rgba($warning, 0.8);
+  }
+  // &:disabled{
+  //   color: $white-100;
+  //   background-color: rgba($warning, 0.8);
+  // }
+}
+
+.btn-yellow {
+  background: $warning;
+  box-shadow: 0rem 0.4rem 1.25rem -1px rgba(76, 17, 171, 0.1);
+  border-radius: 0.6rem;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  transition: all ease 0.3s;
+  color: $black-100;
+  &:hover {
+    color: $black-100;
+    background-color: rgba($warning, 0.8);
+  }
+  // &:disabled{
+  //   color: $black-100;
+  //   background-color: rgba($warning, 0.8);
+  // }
+}
+
+.btn-outline-green {
+  border: 0.15rem solid $blue-300;
+  background-color: transparent;
+  color: $blue-300;
+  transition: all ease 0.3s;
+  &:hover {
+    color: $white-100;
+    background-color: $blue-300;
   }
 }
 
 .btn-lg {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
   min-height: 4.8rem;
-  padding: 1rem 2rem;
+  padding: 1.4rem;
 }
 
 .btn-md {
   min-height: 3.8rem;
   min-width: 8rem;
+  padding: 0.3rem 1.5rem;
+}
+
+.btn-full {
+  width: 100% !important;
 }
 
 .btn-sm {
   min-height: 3rem;
   border-radius: 0.4rem;
+}
+
+.btn-search {
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  min-height: 4.8rem;
+  padding: 1.4rem 1.6rem;
 }
 
 .badge {
@@ -78,6 +152,26 @@
     color: $success;
     border: 0.1rem solid $success;
   }
+  &-warning {
+    background: rgba($warning, 0.1);
+    color: $warning;
+    border: 0.1rem solid $warning;
+  }
+  &-tip {
+    background: rgba($tip, 0.1);
+    color: $tip;
+    border: 0.1rem solid $tip;
+  }
+  &-info {
+    background: rgba($info, 0.1);
+    color: $info;
+    border: 0.1rem solid $info;
+  }
+  &-primary {
+    background: rgba($primary, 0.1);
+    color: $primary;
+    border: 0.1rem solid $primary;
+  }
 }
 // &-error {
 //   background: rgba($error, 0.1);
@@ -89,3 +183,8 @@
 //   color: $success;
 //   border: 0.1rem solid $success;
 // }
+.custom-border-input {
+  border: 0.1rem solid rgba(76, 17, 171, 0.2);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+}

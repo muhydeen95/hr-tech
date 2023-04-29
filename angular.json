@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Filetra-Customer": {
+    "Brook-Rools": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Filetra-Customer",
+            "outputPath": "dist/Brook-Rools",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -126,10 +126,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Filetra-Customer:build:production"
+              "browserTarget": "Brook-Rools:build:production"
             },
             "development": {
-              "browserTarget": "Filetra-Customer:build:development"
+              "browserTarget": "Brook-Rools:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -137,7 +137,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Filetra-Customer:build"
+            "browserTarget": "Brook-Rools:build"
           }
         },
         "test": {

@@ -1,0 +1,34 @@
+@import "partials/abstract/variables";
+
+footer {
+  background: $black-200;
+  padding: 5rem 1rem;
+  display: flex;
+  height: 40vh;
+  color: $white-100 !important;
+  h4 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.3rem;
+    padding: 2.5rem 0;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      line-height: 2.3rem;
+      padding: 2.5rem 0;
+      a {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 2rem;
+        text-decoration: none;
+        color: $white-100 !important;
+        .icon {
+          width: 70%;
+        }
+      }
+    }
+  }
+}

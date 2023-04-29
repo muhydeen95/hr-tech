@@ -1,56 +1,28 @@
-<nav>
-  <span>
-    <embed src="assets/images/Filetra_logo2.svg" alt="Filetra_logo2" />
-  </span>
-
-  <div class="right">
-    <img
-      custom-drawer-trigger="notifications"
-      src="assets/icons/notification.svg"
-      alt="Notifications"
-      class="right_notification"
-    />
-    <span class="line"></span>
-    <h4 routerLink="/user-profile">{{ user?.unique_name }}</h4>
-    <div class="right_avatar" routerLink="/user-profile">
-      <img src="assets/icons/person.svg" alt="Avatar" />
-    </div>
-  </div>
-</nav>
-
-<!-- View Sidebar Drawer -->
-<app-reusable-side-drawer headerTitle="" elementId="notifications">
-  <div class="drawer-header">
-    <div class="head">
-      <div class="d-flex align-items-center">
-        <img src="../../../../assets//icons/notification.svg" alt="" />
-        <h5 class="mb-0">Notifications</h5>
-      </div>
-      <svg
-        class="close-drawer pointer"
-        #closeDrawer
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        aria-hidden="true"
-        role="img"
-        width="1em"
-        height="1em"
-        preserveAspectRatio="xMidYMid meet"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M24 2.4L21.6 0L12 9.6L2.4 0L0 2.4L9.6 12L0 21.6L2.4 24l9.6-9.6l9.6 9.6l2.4-2.4l-9.6-9.6z"
-          fill="#353c42"
-        />
-      </svg>
-    </div>
-  </div>
-  <div class="drawer-body">
-    <div class="drawer-content">
-      <div class="overflow-x-scroll">
-        <app-notifications [notifications]="notifications"></app-notifications>
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary py-4">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="assets/images/logo.svg" alt="Brooks-Rolls Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item me-5">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item me-5">
+            <a class="nav-link" href="#">Support</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+        <button class="btn btn-green btn-md">
+          All Products
+        </button>
       </div>
     </div>
-  </div>
-</app-reusable-side-drawer>
-<!-- End of View Sidebar Drawer -->
+  </nav>
+</header>

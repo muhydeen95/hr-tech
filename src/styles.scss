@@ -14,20 +14,20 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$filetra-primary: mat.define-palette(mat.$indigo-palette);
-$filetra-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$brooks-primary: mat.define-palette(mat.$indigo-palette);
+$brooks-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$filetra-warn: mat.define-palette(mat.$red-palette);
+$brooks-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$filetra-theme: mat.define-light-theme(
+$brooks-theme: mat.define-light-theme(
   (
     color: (
-      primary: $filetra-primary,
-      accent: $filetra-accent,
-      warn: $filetra-warn,
+      primary: $brooks-primary,
+      accent: $brooks-accent,
+      warn: $brooks-warn,
     ),
   )
 );
@@ -36,7 +36,7 @@ $filetra-theme: mat.define-light-theme(
 
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($filetra-theme);
+@include mat.all-component-themes($brooks-theme);
 
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
@@ -63,18 +63,18 @@ $filetra-theme: mat.define-light-theme(
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $purple-700;
+  background: $blue-300;
   border-radius: 1rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: $purple-700;
+  background: $blue-300;
 }
 
-.filetra_snackbar_success {
+.brooks_snackbar_success {
   background: $white-100;
-  box-shadow: 0rem 0.4rem 0.8rem rgba($purple-700, 0.15);
+  box-shadow: 0rem 0.4rem 0.8rem rgba($blue-300, 0.15);
   border-radius: 0.8rem;
   font-size: 1.4rem;
   line-height: 2.1rem;
@@ -94,7 +94,7 @@ $filetra-theme: mat.define-light-theme(
 }
 
 .mat-dialog-title {
-  color: $purple-700;
+  color: $blue-300;
   font-size: 1.8rem;
   line-height: 2.7rem;
   font-family: $walsheim_font_bold;
@@ -121,7 +121,7 @@ button {
 }
 .form-control {
   height: 4.8rem;
-  background: $grey-300;
+  background: $blue-300;
   border-radius: 0.8rem;
   font-size: 1.5rem;
   color: $text-body;
@@ -133,7 +133,7 @@ button {
     font-size: 1.4rem;
   }
   &:focus {
-    background: rgba($purple-700, 0.071);
+    background: rgba($blue-300, 0.071);
   }
 }
 textarea.form-control {
@@ -173,8 +173,8 @@ textarea.form-control {
     left: 0;
     height: 1.8rem;
     width: 1.8rem;
-    background-color: $grey-400;
-    box-shadow: inset 0rem 0rem 0.2rem $grey-400;
+    background-color: $blue-300;
+    box-shadow: inset 0rem 0rem 0.2rem $blue-300;
     border-radius: 0.4rem;
   }
   tr td .checkmark {
@@ -182,14 +182,14 @@ textarea.form-control {
     left: 1.6rem;
   }
 
-  /* On mouse-over, add a grey background color */
+  /* On mouse-over, add a blue background color */
   &:hover input ~ .checkmark {
     background-color: #ccc;
   }
 
   /* When the checkbox is checked, add a colored background */
   input:checked ~ .checkmark {
-    border: solid 0.6rem $purple-700;
+    border: solid 0.6rem $blue-300;
   }
 
   /* Create the checkmark/indicator (hidden when not checked) */
@@ -223,7 +223,7 @@ textarea.form-control {
 
 table.table {
   caption {
-    color: $purple-700;
+    color: $blue-300;
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -256,7 +256,7 @@ table.table {
     }
   }
   thead {
-    background-color: $white-300;
+    background-color: $white-200;
     border-top: none !important;
     border-bottom: solid 0.1rem $white-200 !important;
     th {

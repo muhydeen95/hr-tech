@@ -16,10 +16,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Filetra-Customer'`, () => {
+  it(`should have as title 'Brooks-Rolls'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Filetra-Customer');
+    expect(app.title).toEqual('Brooks Rolls');
   });
 
   it('should render title', () => {
@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'Filetra-Customer app is running!'
+      'Brooks Rolls app is running!'
     );
   });
 });

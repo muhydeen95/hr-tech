@@ -1,0 +1,152 @@
+@import "partials/abstract/variables";
+
+/* SVG Icon systems */
+
+.cust_icon {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  background-size: contain;
+  fill: inherit;
+  .icon_holder & {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &.tag_ico {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+.type {
+  height: 2.4rem;
+}
+
+// svg {
+//   display: inline-block;
+//   width: 100%;
+// }
+
+.icon_xs {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.icon_md {
+  width: 4.8rem;
+  height: 48px;
+}
+
+.icon_lg {
+  width: 6.4rem;
+  height: 6.4rem;
+}
+
+.icon_password {
+  background-image: url(/assets/img/icons/password.svg);
+}
+
+.icon_off {
+  background-image: url(/assets/img/icons/switch_off.svg);
+}
+
+.icon_info {
+  background-image: url(/assets/img/icons/info.svg);
+}
+
+.icon_edit {
+  background-image: url(/assets/img/icons/edit-pencil.svg);
+}
+
+.icon_sample {
+  background-image: url(/assets/img/icons/file-text.svg);
+}
+
+.icon_performance {
+  background-image: url(/assets/img/icons/performance.svg);
+}
+
+.icon_close {
+  background-image: url(/assets/img/icons/close_icon.svg);
+}
+
+.icon_email {
+  background-image: url(/assets/img/icons/envelope.svg);
+}
+
+.icon_phone {
+  background-image: url(/assets/img/icons/phone.svg);
+}
+
+.icon_address {
+  background-image: url(/assets/img/icons/map.svg);
+}
+
+.icon_tasks {
+  background-image: url(/assets/img/icons/list-add.svg);
+}
+
+.icon_download {
+  background-image: url(/assets/img/icons/download.svg);
+}
+
+.icon_url {
+  background-image: url(/assets/img/icons/link.svg);
+}
+
+.icon_new_file {
+  background-image: url(/assets/img/icons/new_file.svg);
+}
+
+.icon_new_doc {
+  background-image: url(/assets/img/icons/new_doc.svg);
+}
+
+.icon_new_folder {
+  background-image: url(/assets/img/icons/new_folder.svg);
+}
+
+.icon_attachment {
+  background-image: url(/assets/img/icons/attachment.svg);
+}
+
+.icon_folder {
+  background-image: url(/assets/img/icons/folder.svg);
+}
+
+.icon_members {
+  background-image: url(/assets/img/icons/members.svg);
+}
+
+.currency {
+  font-style: normal;
+  &::before {
+    font-size: 0.7em;
+    color: inherit;
+    font-family: $walsheim_font;
+    vertical-align: text-top;
+    margin-right: -5px;
+  }
+}
+
+.naira::before {
+  content: "\20A6";
+}
+.alert_icon {
+  flex-shrink: 0;
+  margin-right: 10px;
+  + .alert_text {
+    flex: 1;
+  }
+}
+
+.alert_info {
+  flex: 1;
+}
+.alert-dismissible .close {
+  top: 15px;
+}

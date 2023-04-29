@@ -1,14 +1,11 @@
-@import "partials/abstract/variables";
+@import "../abstract/variables";
 
 .form_group {
   font-family: $walsheim_font !important;
-  margin-bottom: 1.6rem !important;
   label {
-    font-weight: 400;
-    color: $text-body;
+    color: $blue-300;
     font-size: 1.2rem;
     line-height: 1.8rem;
-    margin-bottom: 0.4rem;
     span {
       color: $error;
       margin-left: 0.4rem;
@@ -18,36 +15,50 @@
   input,
   select {
     width: 100%;
+    margin-top: 0.4rem;
     height: 4.8rem;
-    border-radius: 0.6rem;
-    font-size: 1.4rem;
-    color: $purple-700;
+    border-radius: 0.4rem;
+    font-size: 1.4rem !important;
+    color: $blue-300;
     padding: 1.35rem 1.6rem;
-    background: rgba($purple-700, 0.07);
+    background: rgba($blue-300, 0.07);
 
     &.is-invalid {
       border: 0.1rem solid $error !important;
-      background: $white-100;
+      background-color: $white-100;
     }
     &:focus {
-      background: $white-100;
-      color: $purple-700;
-      border: 0.1rem solid rgba($purple-700, 0.4);
+      background-color: $white-100;
+      color: $blue-300;
+      border: 0.1rem solid rgba($blue-300, 0.4);
       box-shadow: none;
-    }
-    &::placeholder {
-      color: $text-body;
     }
   }
 
-  select {
-    background: rgba($purple-700, 0.07) url("../../assets/icons/arrow-down.svg")
-      no-repeat 97% 50%;
-    &:focus {
-      background: $white-100 url("../../assets/icons/arrow-down.svg") no-repeat
-        97% 50%;
-    }
+  // select {
+  //   background: rgba($blue-300, 0.07) url("../../assets/icons/arrow-down.svg")
+  //     no-repeat 97% 50%;
+  //   &:focus {
+  //     background: $white-100 url("../../assets/icons/arrow-down.svg") no-repeat
+  //       97% 50%;
+  //   }
+  // }
+
+  // input[type="date"] {
+  //   background: rgba($blue-300, 0.07)
+  //     url("../../assets/icons/calendar-icon.svg") no-repeat 98% 50%;
+  //   &:focus {
+  //     background: $white-100 url("../../assets/icons/calendar-icon.svg")
+  //       no-repeat 97% 50%;
+  //   }
+  // }
+
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    -webkit-appearance: none;
   }
+
   .ng-select {
     width: 100%;
     input {
@@ -64,20 +75,20 @@
     height: 4.8rem;
     border-radius: 0.8rem;
     font-size: 1.4rem;
-    color: $purple-700;
+    color: $blue-300;
     padding: 1.35rem 1.6rem;
-    background: rgba($purple-700, 0.07);
+    background: rgba($blue-300, 0.07);
     display: flex;
     align-items: center;
   }
   .ng-select.ng-select-focused.ng-select-opened > .ng-select-container {
     background: $white-100 !important;
-    color: $purple-700;
-    border: 0.1rem solid rgba($purple-700, 0.4);
+    color: $blue-300;
+    border: 0.1rem solid rgba($blue-300, 0.4);
     box-shadow: none;
   }
   .ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
-    border-color: rgba($purple-700, 0.4);
+    border-color: rgba($blue-300, 0.4);
     box-shadow: none;
   }
   /* Border Color */
@@ -94,4 +105,123 @@
   .ng-select.ng-invalid.ng-touched .ng-select-container {
     color: $error;
   }
+}
+
+.custom-control-label {
+  &::after,
+  &::before {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: $blue-300 !important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff !important;
+  background-color: $blue-300 !important;
+}
+.custom-border-input {
+  border: 0.1rem solid rgba(76, 17, 171, 0.2);
+  border-radius: 0.8rem;
+  padding: 1.2rem;
+  label {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    color: rgba($text-body, 0.7);
+    margin-left: 0.8rem;
+  }
+}
+
+.line_item {
+  position: relative;
+  border-left: 0.1rem solid rgba($blue-300, 0.2);
+  padding-left: 1.2rem;
+  .dot {
+    background: $white-100;
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 0.2rem solid $blue-300;
+    outline: 0.5rem solid $white-100;
+    border-radius: 0.5rem;
+    top: 0.4rem;
+    left: -0.7rem;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    h2 {
+      font-family: $walsheim_font_bold;
+      font-size: 1.4rem;
+      line-height: 2.1rem;
+      color: $text-body;
+      margin-right: 0.8rem;
+      white-space: nowrap;
+    }
+  }
+  .content {
+    padding-left: 1.2rem;
+    p {
+      margin-bottom: 2.4rem;
+    }
+
+    .custom_btn2 {
+      margin: 0 0.8rem;
+    }
+    .btn_margin {
+      margin-bottom: 4rem;
+    }
+  }
+}
+
+.dialog-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding-bottom: 1.4rem;
+  border-bottom: 0.1rem solid rgba($blue-300, 0.1);
+}
+
+.form-check {
+  border-radius: 0.8rem;
+  display: block;
+  min-height: 1.5rem;
+  font-size: 1.4rem !important;
+  color: $blue-300;
+  height: 4.8rem !important;
+  padding: 1.35rem 1.6rem;
+  padding-left: 1.5em;
+  border: 0.1rem solid rgba($blue-300, 0.2);
+  width: 100%;
+  margin-top: 2.4rem;
+  label {
+    font-family: $walsheim_font !important;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    color: rgba($color: #3a2e4d, $alpha: 0.7);
+  }
+}
+.form-check-input {
+  margin-left: -0.5em !important;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.8rem;
+  margin-top: 0;
+  transition: 0.3s all ease-in-out;
+  background: rgba(76, 17, 171, 0.1);
+  box-shadow: inset 0px 0px 2px rgb(24 34 82 / 15%);
+  border-radius: 0.4rem;
+  border: none;
+  &:checked {
+    transform: scale(0.9);
+    background-color: #4c11ab;
+    border-color: #4c11ab;
+  }
+}
+.form-check-input[type="checkbox"] {
+  border-radius: 0.4rem;
 }

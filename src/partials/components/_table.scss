@@ -1,0 +1,33 @@
+@import "../abstract/variables";
+
+table.table {
+  caption {
+    color: $blue-300;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  tbody {
+    border-top: none !important;
+    tr {
+      border: 0.05rem solid $white-200 !important;
+      td {
+        color: $text-body;
+        font-size: 1.4rem;
+        padding: 1.6rem;
+        border: transparent;
+      }
+    }
+  }
+  thead {
+    background-color: $white-200;
+    border-top: none !important;
+    border-bottom: solid 0.1rem $white-200 !important;
+    th {
+      border-bottom: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: $text-body;
+      padding: 1.4rem;
+    }
+  }
+}

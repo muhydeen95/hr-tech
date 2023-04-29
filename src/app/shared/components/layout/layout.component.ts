@@ -10,10 +10,5 @@ export class LayoutComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  public showMinimizedMenu(value: any): void {
-    this.showMinimized = value;
-  }
-  public minimizeMenu(): void {
-    this.showMinimized = !this.showMinimized;
-  }
+
 }

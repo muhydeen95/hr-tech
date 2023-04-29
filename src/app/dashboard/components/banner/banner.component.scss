@@ -1,0 +1,92 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+
+section {
+ .banner {
+    background: url('../../../../assets/images/banner.svg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+ }
+
+ .about {
+    background: url('../../../../assets/images/plant.svg') no-repeat center center;
+    background-size: cover;
+    box-shadow: inset 0 0 0 2000px rgba($color: $white-100, $alpha: 0.8);
+    height: 57vh;
+    display: flex;
+    justify-content: center;
+    color: rgba($color: $blue-300, $alpha: 0.7) !important;
+    padding: 1.8rem 1rem 2.5rem 1rem;
+    text-align: center;
+    overflow: hidden;
+    h2, h4 {
+      font-style: normal;
+      line-height: 6rem;
+    }
+    h2 {
+      font-weight: 700 !important;
+      font-size: 9.6rem !important;
+      color: rgba($color: $blue-300, $alpha: 0.7) !important;
+    }
+    h4 {
+      font-weight: 500;
+      font-size: 3.2rem;
+      margin-bottom: 3rem;
+    }
+    p {
+      font-weight: 400;
+      font-size: 3.2rem;
+      line-height: 6rem;
+      padding: 1.2rem 1rem;
+    }
+ }
+ .detail {
+  .col-lg-4, .col-md-4 {
+    padding: 0 !important;
+  }
+  .card {
+    border: none;
+    .team {
+      box-shadow: inset 0 0 0 2000px rgba($color: #3FBCEA, $alpha: 0.3);
+    }
+    h4 {
+      color: $blue-300 !important;
+      font-weight: 400 !important;
+      font-size: 2.4rem;
+      line-height: 6rem;
+      padding: 1.25rem 1rem;
+    }
+    p {
+      font-style: normal;
+      font-weight: 200;
+      font-size: 1.8rem;
+      line-height: 2.1rem;
+      color: $text-body !important;
+    }
+  }
+ }
+}
+
+@include screenSize($canvas: M) {
+  .about {
+    padding: 1.8rem 1rem 2.5rem 1rem;
+    text-align: center;
+    overflow: hidden;
+    h2 {
+      font-weight: 700 !important;
+      font-size: 4.6rem !important;
+      color: rgba($color: $blue-300, $alpha: 0.7) !important;
+    }
+    h4 {
+      font-weight: 500;
+      font-size: 1.8rem;
+      margin-bottom: 3rem;
+    }
+    p {
+      font-weight: 400;
+      font-size: 1.45rem;
+      line-height: 6rem;
+      padding: 1.2rem 1rem;
+    }
+ }
+}
