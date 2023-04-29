@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BannerComponent } from './components/banner/banner.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ServicesComponent } from './components/services/services.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ServicesComponent } from './components/services/services.component';
     BannerComponent,
     GalleryComponent,
     ServicesComponent,
+    FeedbackComponent,
   ],
   imports: [
     CommonModule,

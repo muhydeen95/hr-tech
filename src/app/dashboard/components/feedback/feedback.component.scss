@@ -1,0 +1,62 @@
+@import "partials/abstract/variables";
+
+section {
+  padding: 2rem 0;
+  .review {
+    // background: linear-gradient(180deg, rgba(63, 188, 234, 0.1) 45.16%, rgba(63, 188, 234, 0) 100%);
+    display: flex;
+    h4 {
+      text-align: center;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 3.2rem;
+      line-height: 6rem;
+      margin-bottom: 1.5rem;
+      color: $blue-300;
+    }
+    .card {
+      box-shadow: .4rem .4rem 1.4rem rgba(0, 0, 0, 0.25);
+      border-radius: 2rem;
+      min-height: 35rem;
+      padding: 1.5rem 1.35rem;
+      &-title {
+        display: flex;
+        justify-content: space-between;
+        .avatar {
+          display: flex;
+          img {
+            height: 7rem;
+            width: 7rem;
+            padding: 1.5rem;
+            border-radius: 50%;
+            border: 0.05rem solid #1B398F;
+          }
+          h5 {
+            font-weight: 400;
+            font-size: 2.4rem;
+            line-height: 2.8rem;
+          }
+          p {
+            font-weight: 400;
+            font-size: 1.8rem;
+            line-height: 2.1rem;
+          }
+        }
+        p {
+          font-weight: 500;
+          font-size: 1.4rem;
+          line-height: 1.6rem;
+          color: $text-body !important;
+        }
+      }
+      p {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+        display: flex;
+        color: $text-body !important;
+      }
+    }
+  }
+}
