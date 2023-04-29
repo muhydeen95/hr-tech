@@ -18,6 +18,18 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
         data: { breadcrumb: 'Dashboard' },
       },
+      {
+        path: 'support',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+        data: { breadcrumb: 'Dashboard' },
+      },
+      {
+        path: 'contact',
+        loadChildren: () =>
+          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+        data: { breadcrumb: 'Dashboard' },
+      },
     ],
   },
 ];

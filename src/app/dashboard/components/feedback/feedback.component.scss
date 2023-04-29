@@ -1,4 +1,5 @@
 @import "partials/abstract/variables";
+@import "partials/abstract/mixins";
 
 section {
   padding: 2rem 0;
@@ -59,4 +60,61 @@ section {
       }
     }
   }
+}
+
+@include maxSize($canvas: M) {
+  section {
+    h4 {
+      font-size: 2.2rem;
+    }
+    .review {
+      h4 {
+        font-size: 2.2rem;
+      }
+      .card {
+        box-shadow: .4rem .4rem 1.4rem rgba(0, 0, 0, 0.25);
+        border-radius: 2rem;
+        min-height: 35rem;
+        padding: 1.5rem 1.35rem;
+        &-title {
+          display: flex;
+          justify-content: space-between;
+          .avatar {
+            display: flex;
+            img {
+              height: 5rem;
+              width: 5rem;
+              padding: 1.5rem;
+              border-radius: 50%;
+              border: 0.05rem solid #1B398F;
+            }
+            h5 {
+              font-weight: 400;
+              font-size: 1.65rem;
+              line-height: 1.8rem;
+            }
+            p {
+              font-weight: 400;
+              font-size: 1.2rem;
+              line-height: 1.1rem;
+            }
+          }
+          p {
+            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 1.6rem;
+            color: $text-body !important;
+          }
+        }
+        p {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 1.4rem;
+          line-height: 2.2rem;
+          display: flex;
+          color: $text-body !important;
+        }
+      }
+    }
+   }
 }

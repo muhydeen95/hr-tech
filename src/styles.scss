@@ -44,7 +44,7 @@ $brooks-theme: mat.define-light-theme(
 @import "./partials/base/typography";
 @import "./partials/base/base";
 @import "./partials/base/buttons";
-@import "partials/abstract/mixins";
+@import "./partials/abstract/mixins";
 @import "components/forms";
 
 // scrollbar styles
