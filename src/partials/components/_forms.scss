@@ -17,10 +17,10 @@
   select {
     width: 100%;
     margin-top: 0.4rem;
-    height: 4.8rem;
+    height: 5rem;
     border-radius: 0.4rem;
     font-size: 1.4rem !important;
-    color: $blue-300;
+    color: $black-100;
     padding: 1.35rem 1.6rem;
     background: #fff;
     border: .1rem solid rgba(58, 58, 58, 0.3);
@@ -31,7 +31,7 @@
     }
     &:focus {
       background-color: $white-100;
-      color: $blue-300;
+      color: $black-100;
       border: .1rem solid rgba(58, 58, 58, 0.3);
       box-shadow: none;
     }

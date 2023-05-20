@@ -37,7 +37,7 @@ section {
 
 @include maxSize($canvas: M) {
   section {
-    padding: 3rem 0;
+    padding: 3rem 2rem;
     h2 {
       font-weight: 700;
       font-size: 2rem;
@@ -62,7 +62,7 @@ section {
       margin-right: 1.5rem;
       img {
         width: 70%;
-        margin: 0 auto;
+        margin: 0 auto 0 .5rem;
       }
     }
     h3 {

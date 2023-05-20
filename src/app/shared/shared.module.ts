@@ -5,7 +5,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
@@ -18,13 +17,11 @@ import { FooterComponent } from './components/footer/footer.component';
     CommonModule,
     MatProgressSpinnerModule,
     RouterModule,
-    NgxSkeletonLoaderModule,
     MatDialogModule,
   ],
   exports: [
     NavbarComponent,
     LayoutComponent,
-    NgxSkeletonLoaderModule,
     FooterComponent
   ],
 })
