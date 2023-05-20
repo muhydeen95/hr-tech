@@ -30,6 +30,12 @@ const routes: Routes = [
           import('./contact/contact.module').then((m) => m.ContactModule),
         data: { breadcrumb: 'Contact' },
       },
+      {
+        path: 'terms',
+        loadChildren: () =>
+          import('./terms/terms.module').then((m) => m.TermsModule),
+        data: { breadcrumb: 'Terms' },
+      },
     ],
   },
 ];
