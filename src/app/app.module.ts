@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
       config: {},
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

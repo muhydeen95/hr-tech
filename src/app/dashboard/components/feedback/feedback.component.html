@@ -3,14 +3,14 @@
     <div class="container">
       <h4 class="center">Why <span>Handyhub?</span> </h4>
       <div class="row">
-       <div class="col-lg-4 col-md-4 col-12 animate__animated animate__fadeInRight animate__delay-3s" *ngFor="let item of [1,2,3]">
+       <div class="col-lg-4 col-md-4 col-12 animate__animated animate__fadeInRight animate__delay-3s" *ngFor="let item of reasons">
         <div class="card special mb-3">
           <div class="card-body">
             <div class="card-title mb-5">
-              <h5>Get connected to verified service providers.</h5>
+              <h5>{{ item?.title }}</h5>
             </div>
             <p class="card-text">
-              Handyhub connects you to verified service providers who are immediately available to render the services you need whenever and wherever you need them.
+              {{ item?.paragraph }}
             </p>
           </div>
         </div>
