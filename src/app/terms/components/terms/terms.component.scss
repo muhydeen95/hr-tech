@@ -45,6 +45,23 @@ section {
         font-size: 2rem;
         line-height: 150%;
       }
+      ol span {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+
+      ol p {
+        font-size: 1.4rem;
+        line-height: 1.8;
+      }
+      ol div {
+        padding: 0 3rem;
+      }
+
+      ol div ul {
+        padding: 1rem 3rem;
+        font-size: 1.4rem;
+      }
     }
  }
 
