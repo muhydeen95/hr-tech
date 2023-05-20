@@ -19,16 +19,16 @@ const routes: Routes = [
         data: { breadcrumb: 'Dashboard' },
       },
       {
-        path: 'support',
+        path: 'about',
         loadChildren: () =>
-          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-        data: { breadcrumb: 'Dashboard' },
+          import('./about/about.module').then((m) => m.AboutModule),
+        data: { breadcrumb: 'About' },
       },
       {
         path: 'contact',
         loadChildren: () =>
-          import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-        data: { breadcrumb: 'Dashboard' },
+          import('./contact/contact.module').then((m) => m.ContactModule),
+        data: { breadcrumb: 'Contact' },
       },
     ],
   },

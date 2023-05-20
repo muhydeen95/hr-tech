@@ -2,23 +2,26 @@
 @import "partials/abstract/mixins";
 
 section {
-  padding: 2rem 0;
+  background: url('../../../../assets/images/testimonial-bg.svg') no-repeat center center;
+  background-size: 80%;
+  background-position: right;
+  min-height: 100vh;
+  width: 100%;
   .review {
-    // background: linear-gradient(180deg, rgba(63, 188, 234, 0.1) 45.16%, rgba(63, 188, 234, 0) 100%);
     display: flex;
     h4 {
-      text-align: center;
       font-style: normal;
       font-weight: 400;
-      font-size: 3.2rem;
+      font-size: 4.8rem;
       line-height: 6rem;
       margin-bottom: 1.5rem;
-      color: $blue-300;
+      color: #3A3A3A;
+      span {
+        color: #187226;
+      }
     }
     .card {
-      box-shadow: .4rem .4rem 1.4rem rgba(0, 0, 0, 0.25);
       border-radius: 2rem;
-      min-height: 35rem;
       padding: 1.5rem 1.35rem;
       &-title {
         display: flex;
@@ -59,6 +62,14 @@ section {
         color: $text-body !important;
       }
     }
+    .special {
+      min-height: 20rem;
+      box-shadow: 0px -2px 16px 2px rgba(0, 0, 0, 0.08);
+    }
+    .long {
+      min-height: 35rem;
+      box-shadow: .4rem .4rem 1.4rem rgba(0, 0, 0, 0.25);
+    }
   }
 }
 
@@ -69,12 +80,14 @@ section {
     }
     .review {
       h4 {
-        font-size: 2.2rem;
+        font-size: 2rem;
+      }
+      .center {
+        text-align: center;
       }
       .card {
         box-shadow: .4rem .4rem 1.4rem rgba(0, 0, 0, 0.25);
         border-radius: 2rem;
-        min-height: 35rem;
         padding: 1.5rem 1.35rem;
         &-title {
           display: flex;

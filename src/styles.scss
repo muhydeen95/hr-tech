@@ -126,19 +126,21 @@ button {
   font-size: 1.5rem;
   color: $text-body;
   width: 100%;
-  border: none;
+  border: .1rem solid rgba(58, 58, 58, 0.3);
   padding: 1rem 1.5rem;
   &::placeholder {
     color: $text-body;
     font-size: 1.4rem;
   }
   &:focus {
-    background: rgba($blue-300, 0.071);
+    background: #fff;
   }
 }
 textarea.form-control {
   min-height: 4.8rem;
   height: auto;
+  background-color: #fff;
+  border: .1rem solid rgba(58, 58, 58, 0.3);
 }
 
 .form-group {

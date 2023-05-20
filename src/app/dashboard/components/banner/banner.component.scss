@@ -2,115 +2,170 @@
 @import "partials/abstract/mixins";
 
 section {
- .banner {
-    background: url('../../../../assets/images/banner.svg') no-repeat center center;
+  .banner {
+    margin-top: 10rem;
+    background: url('../../../../assets/images/banner.png') no-repeat center center;
     background-size: cover;
     height: 100vh;
     width: 100%;
- }
-
- .about {
-    background: url('../../../../assets/images/plant.svg') no-repeat center center;
-    background-size: cover;
-    box-shadow: inset 0 0 0 2000px rgba($color: $white-100, $alpha: 0.8);
-    height: 57vh;
-    display: flex;
-    justify-content: center;
-    color: rgba($color: $blue-300, $alpha: 0.7) !important;
-    padding: 1.8rem 1rem 2.5rem 1rem;
-    text-align: center;
-    overflow: hidden;
-    h2, h4 {
-      font-style: normal;
-      line-height: 6rem;
-    }
     h2 {
-      font-weight: 700 !important;
-      font-size: 9.6rem !important;
-      color: rgba($color: $blue-300, $alpha: 0.7) !important;
+      font-weight: 700;
+      font-size: 5rem;
+      line-height: 6.2rem;
     }
-    h4 {
-      font-weight: 500;
-      font-size: 3.2rem;
-      margin-bottom: 3rem;
+    p {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 150%;
+    }
+  }
+
+  .service {
+    text-align: center;
+    min-height: 50vh;
+    position: relative;
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 4rem;
+      line-height: 130%;
+      span {
+        color: #187226;
+      }
+    }
+    .content {
+      background-color: rgba($color:  #187226, $alpha: 0.1);
+      padding: 3rem 0;
+      p {
+        text-align: center;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 150%;
+      }
+      button {
+        margin: 1.5rem auto 0 auto;
+      }
+    }
+    .frame {
+      position: absolute;
+      margin-top: -15rem;
+      left: 2rem;
+    }
+    .left {
+      position: absolute;
+      left: 5rem;
+      top: 0;
+    }
+    .right {
+      position: absolute;
+      right: 5rem;
+      top: 0;
+    }
+  }
+
+  .question {
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.4rem;
+      line-height: 150%;
+      margin: 0 auto;
+      span {
+        color: #187226;
+      }
     }
     p {
       font-weight: 400;
-      font-size: 3.2rem;
-      line-height: 6rem;
-      padding: 1.2rem 1rem;
+      font-size: 1.6rem;
+      line-height: 150%;
     }
- }
- .detail {
-  .col-lg-4, .col-md-4 {
-    padding: 0 !important;
-  }
-  .card {
-    border: none;
-    .team {
-      box-shadow: inset 0 0 0 2000px rgba($color: #3FBCEA, $alpha: 0.3);
-    }
-    h4 {
-      color: $blue-300 !important;
-      font-weight: 400 !important;
-      font-size: 2.4rem;
-      line-height: 6rem;
-      padding: 1.25rem 1rem;
-    }
-    p {
-      font-style: normal;
-      font-weight: 200;
-      font-size: 1.8rem;
-      line-height: 2.1rem;
-      color: $text-body !important;
+    h2, p, button {
+      margin: 0 auto;
     }
   }
- }
 }
+
+
 
 @include maxSize($canvas: M) {
   section {
     .banner {
-      background: url('../../../../assets/images/banner.svg') no-repeat center center;
-      background-size: center;
-      height: 100vh;
-      width: 100%;
+       margin-top: 10rem;
+       background: none;
+       background-size: cover;
+       height: 90vh;
+       width: 100%;
+       h2 {
+         font-weight: 700;
+         font-size: 3.2rem;
+         line-height: 3.2rem;
+         background: url('../../../../assets/images/bg.png') no-repeat center center;
+         background-size: cover;
+         min-height: 45vh;
+         padding: 5rem 1.5rem;
+       }
+       p {
+         font-style: normal;
+         font-weight: 400;
+         font-size: 1.6rem;
+         line-height: 160%;
+         padding: 2rem 1.5rem;
+       }
+       button {
+        margin-left: 1.5rem;
+       }
     }
-    .about {
-      background: url('../../../../assets/images/plant.svg') no-repeat center center;
-      background-size: cover;
-      box-shadow: inset 0 0 0 2000px rgba($color: $white-100, $alpha: 0.8);
-      height: 40vh;
-      display: flex;
-      justify-content: center;
-      color: rgba($color: $blue-300, $alpha: 0.7) !important;
-      padding: 1.8rem 1rem 2.5rem 1rem;
-      text-align: center;
-      overflow: hidden;
-      h2, h4 {
-        font-style: normal;
-        line-height: 3.8rem;
-      }
+
+    .service {
+      min-height: 80vh;
       h2 {
-        font-weight: 700 !important;
-        font-size: 4.6rem !important;
-        color: rgba($color: $blue-300, $alpha: 0.7) !important;
+        text-align: center;
+        font-weight: 700;
+        font-size: 2.4rem;
+        line-height: 150%;
+        span {
+          color: #187226;
+        }
       }
-      h4 {
-        font-weight: 500;
-        font-size: 2.2rem;
-        margin-bottom: 1.5rem;
+      .content {
+        background: rgba(24, 114, 38, 0.1);
+        height: 45vh;
+        position: relative;
+        padding: 0;
+        p {
+          font-weight: 400;
+          font-size: 1.6rem;
+          line-height: 150%;
+        }
+      }
+      .frame {
+        position: absolute;
+        margin-top: -15rem;
+        left: 2rem;
+      }
+    }
+
+    .question {
+      min-height: 60vh;
+      text-align: center;
+      h2 {
+        text-align: center;
+        font-weight: 700;
+        font-size: 2.4rem;
+        line-height: 150%;
+        margin: 0 auto;
+        span {
+          color: #187226;
+        }
       }
       p {
         font-weight: 400;
-        font-size: 2.2rem;
-        line-height: 3rem;
-        padding: 1.2rem 1rem;
+        font-size: 1.6rem;
+        line-height: 150%;
       }
-   }
-  }
-}
-@include screenSize($canvas: L) {
+    }
 
+  }
 }
 
