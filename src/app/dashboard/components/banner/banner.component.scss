@@ -145,6 +145,26 @@ section {
         width: 200%;
       }
     }
+    .download-wrapper {
+      width: 16.75rem;
+      height: 5.5rem;
+      background: $black-100;
+      border-radius: .8rem;
+      margin-bottom: 1rem;
+      color: $white-100;
+      h3 {
+        font-weight: 700;
+        font-size: 2rem;
+        color: $white-100;
+        // line-height: 4.2rem;
+      }
+      p {
+        font-weight: 200;
+        font-size: 1.6rem;
+        color: $white-100;
+        line-height: 10%;
+      }
+    }
   }
 }
 
