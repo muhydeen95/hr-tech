@@ -36,6 +36,12 @@ const routes: Routes = [
           import('./terms/terms.module').then((m) => m.TermsModule),
         data: { breadcrumb: 'Terms' },
       },
+      {
+        path: 'faq',
+        loadChildren: () =>
+          import('./faq/faq.module').then((m) => m.FaqModule),
+        data: { breadcrumb: 'Faqs' },
+      },
     ],
   },
 ];

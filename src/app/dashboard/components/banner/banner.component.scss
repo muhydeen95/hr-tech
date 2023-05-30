@@ -6,18 +6,22 @@ section {
     margin-top: 10rem;
     background: url('../../../../assets/images/banner.png') no-repeat center center;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
-    h2 {
-      font-weight: 700;
-      font-size: 5rem;
-      line-height: 6.2rem;
+    .header {
+      h2 {
+        font-weight: 700;
+        font-size: 5rem;
+        line-height: 6.2rem;
+      }
     }
-    p {
-      font-style: normal;
-      font-weight: 400;
-      font-size: 2rem;
-      line-height: 150%;
+    .paragraph {
+      p {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 150%;
+      }
     }
   }
 
@@ -161,23 +165,31 @@ section {
        margin-top: 10rem;
        background: none;
        background-size: cover;
-       height: 90vh;
+       min-height: 70vh;
        width: 100%;
-       h2 {
-         font-weight: 700;
-         font-size: 3.2rem;
-         line-height: 3.2rem;
+       .header {
          background: url('../../../../assets/images/bg.png') no-repeat center center;
-         background-size: cover;
-         min-height: 45vh;
+         background-size: 70%;
+         background-position: left;
+         min-height: 25vh;
          padding: 5rem 1.5rem;
+         h2 {
+          font-weight: 700;
+          font-size: 3.2rem;
+          line-height: 4.2rem;
+         }
        }
-       p {
-         font-style: normal;
-         font-weight: 400;
-         font-size: 1.6rem;
-         line-height: 160%;
+       .paragraph {
          padding: 2rem 1.5rem;
+         background: url('../../../../assets/images/phone-bg.svg') no-repeat center center;
+         background-size: 56%;
+         background-position: right;
+         p {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1.6rem;
+          line-height: 160%;
+         }
        }
        button {
         margin-left: 1.5rem;

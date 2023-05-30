@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://gethandyhub.com/',
+  api_url: 'http://api.gethandyhub.com/',
 };
 
 /*
