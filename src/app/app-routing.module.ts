@@ -42,6 +42,12 @@ const routes: Routes = [
           import('./faq/faq.module').then((m) => m.FaqModule),
         data: { breadcrumb: 'Faqs' },
       },
+      {
+        path: 'unsubscribe',
+        loadChildren: () =>
+          import('./unsubscribe/unsubscribe.module').then((m) => m.UnsubscribeModule),
+        data: { breadcrumb: 'unsubscribe' },
+      },
     ],
   },
 ];

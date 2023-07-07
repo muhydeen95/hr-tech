@@ -61,6 +61,8 @@ section {
   }
  }
 
+
+
 }
 
 @include maxSize($canvas: M) {
@@ -154,6 +156,66 @@ input:checked ~ .tab-content {
   .faq {
     .tabs {
       padding: 3.6rem 20rem;
+    }
+  }
+}
+
+.accordion-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x);
+  font-size: 1rem;
+  color: var(--bs-accordion-btn-color);
+  text-align: left;
+  background-color: var(--bs-accordion-btn-bg);
+  border: 0;
+  border-radius: 0;
+  overflow-anchor: none;
+  transition: var(--bs-accordion-transition);
+  font-size: 1.8rem !important;
+}
+
+.accordion-body {
+font-size: 1.2rem !important;
+}
+
+::ng-deep .collapse {
+  transition: max-height .55s, opacity .35s ease-in-out;
+  max-height: 0;
+  opacity: 0;
+  display: block !important;
+
+  &.show {
+    max-height: 100rem;
+    opacity: 1;
+  }
+}
+
+
+::ng-deep .accordion {
+  .card {
+    margin-bottom: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .04) !important;
+
+    .card-header {
+      // padding-top: 0;
+      padding: 0;
+
+      button {
+        padding: 1.2rem;
+        width: 100%;
+
+        span {
+          float: left;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 1rem;
     }
   }
 }
