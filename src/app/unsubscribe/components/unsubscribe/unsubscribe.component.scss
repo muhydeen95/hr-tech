@@ -65,8 +65,9 @@ section {
 
 @include maxSize($canvas: M) {
   section {
+    padding: 1rem 1.5rem;
     .banner {
-      height: 100vh;
+      height: 45vh;
       width: 100%;
       .title {
         margin-top: 9.5rem;
@@ -75,13 +76,13 @@ section {
           font-style: normal;
           font-weight: 700;
           font-size: 3.2rem;
-          line-height: 5rem !important;
+          line-height: 4rem !important;
         }
         p {
           font-style: normal;
           font-weight: 400;
-          font-size: 2rem;
-          line-height: 1.2rem;
+          font-size: 1.8rem;
+          line-height: 2.5rem;
         }
       }
     }
