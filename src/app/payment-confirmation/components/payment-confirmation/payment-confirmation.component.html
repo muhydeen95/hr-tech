@@ -1,0 +1,103 @@
+<section class="d-flex justify-content-center">
+  <div class="payment-card" >
+    <div class="img-wrapper">
+        <img *ngIf="status == 'successful'" src="assets/images/success.svg" alt="">
+        <img *ngIf="status != 'successful'" src="assets/images/fail.svg" alt="">
+    </div>
+    <div class="content">
+        <h2 *ngIf="status == 'successful'">Thank You!</h2>
+        <h2 *ngIf="status != 'successful'">Sorry ...</h2>
+        <p *ngIf="status == 'successful'">Your payment was successful</p>
+        <p *ngIf="status != 'successful'">Your payment failed</p>
+        <div class="d-flex justify-content-center my-3">
+          <button
+              class="btn btn-green btn-lg"
+              *ngIf="status == 'successful'"
+              (click)="goHome()"
+            >
+            Go Back Home
+        </button>
+
+
+        <button
+            *ngIf="status != 'successful'"
+            class="btn btn-green btn-lg"
+            (click)="tryAgain()"
+        >Try again</button>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div #pdfTable id="pdfTable" class="exam-card-wrapper" *ngIf="attendant">
+        <div class="card-wrapper">
+          <div class="card">
+            <div class="bg-grey card-top">
+              <div
+                class="p-3 card-content d-flex justify-content-between"
+              >
+                <div class="profile-name text-left">
+                  <h4 class="profile-name">
+                    {{ attendant.fullName ? attendant.fullName : "--" }}
+                  </h4>
+                  <p class="exam-no">
+                    Email: {{ attendant.email ? attendant.email : "--" }}
+                  </p>
+                  <p class="exam-no">
+                    No. of Attendants: {{ attendant.noOfRegistrants ? attendant.noOfRegistrants : "--" }}
+                  </p>
+                </div>
+                <div>
+                  <img
+                    class="pb-1"
+                    src="assets/images/logo.png"
+                    alt="logo"
+                    class="nerc-logo"
+                  />
+                  <div class="exam-no">HR-Tech {{ currentYear }}</div>
+                </div>
+              </div>
+              <div class="pt-2 pb-4">
+                <img
+                  src="{{ attendant.fileUrl }}"
+                  class="profile-img rounded-circle"
+                  alt=""
+                  width="40%"
+                />
+              </div>
+            </div>
+
+            <div class="py-3 qrcode-wrapper">
+              <img src="{{ attendant.qrCodeURL }}" alt="" class="w-100" />
+              <qrcode
+                cssClass="qrcode"
+                [qrdata]="qrData"
+                [elementType]="'img'"
+                [errorCorrectionLevel]="'M'"
+              ></qrcode>
+            </div>
+            <div class="regNo text-center">
+              <p class="font-bold mb-0">HR-TECH/2023/{{ padWithLeadingZeros(attendant.registrationNo) }}</p>
+            </div>
+            <div class="footer pt-3 pb-1 text-center">
+              <p class="mb-0">Only Valid For this event</p>
+              <span class="pt-0"
+                >&copy; {{ currentYear }} HR-Tech</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button
+              class="btn btn-green btn-lg"
+              *ngIf="attendant"
+              (click)="printCard()"
+            >
+            Print Card
+        </button>
+    </div>
+  </div>
+</section>
+
+

@@ -5,13 +5,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
-import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoadingButtonComponent } from './components/loading-button/loading-button.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
 @NgModule({
   declarations: [
     NavbarComponent,
-    LayoutComponent,
     FooterComponent,
+    LoaderComponent,
+    LoadingButtonComponent,
+    NoDataComponent
   ],
   imports: [
     CommonModule,
@@ -21,8 +25,10 @@ import { FooterComponent } from './components/footer/footer.component';
   ],
   exports: [
     NavbarComponent,
-    LayoutComponent,
-    FooterComponent
+    FooterComponent,
+    LoaderComponent,
+    LoadingButtonComponent,
+    NoDataComponent
   ],
 })
 export class SharedModule {}

@@ -270,3 +270,100 @@ table.table {
     }
   }
 }
+
+
+table.table {
+  caption {
+    color: $black-100;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .table-checkbox {
+    width: 3rem;
+  }
+  tbody {
+    border-top: none !important;
+    tr {
+      border-bottom: 0.2rem solid #C4C4C4;
+      td {
+        color: $text-body;
+        font-size: 1.4rem;
+        padding: 1.6rem;
+        border: transparent;
+      }
+    }
+  }
+  thead {
+    background-color: $white-100;
+    border-top: none !important;
+    border-bottom: solid 0.2rem #C4C4C4 !important;
+    th {
+      border-bottom: 0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: $text-body;
+      padding: 1.4rem;
+    }
+  }
+}
+
+tr.thead {
+  background-color: $white-100;
+  border-top: none !important;
+  border-bottom: solid 0.2rem #C4C4C4 !important;
+  th {
+    border-bottom: 0;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: $text-body;
+    padding: 1.4rem;
+  }
+}
+tr.tbody {
+  border-top: none !important;
+  border-bottom: 0.2rem solid #C4C4C4;
+    td {
+      color: $text-body;
+      font-size: 1.4rem;
+      padding: 1.4rem;
+      border: transparent;
+    }
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: $blue-300;
+    border-color: $blue-300;
+    color: $white-100;
+    font-size: 1.6rem;
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight,
+.p-datatable .p-sortable-column.p-highlight {
+  opacity: 1;
+  background: rgba($blue-300, 0.2);
+  color: $blue-300;
+}
+
+.p-datatable .p-sortable-column.p-highlight:hover {
+  background: rgba($blue-300, 0.2);
+  color: $blue-300;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: $blue-300;
+  background: $blue-300;
+}
+
+.pi:before {
+  --webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: $blue-300;
+  border: .1rem solid $blue-300;
+}
+
+.p-datatable .p-datatable-tbody > tr > td,
+.p-datatable .p-datatable-thead > tr > th {
+  border: none;
+  background: $white-100;
+}

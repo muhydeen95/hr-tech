@@ -1,0 +1,133 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+
+.page_wrapper {
+  min-height: 80vh;
+  margin-top: 15rem;
+}
+
+.container {
+  position: relative;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+.my-pagination .ngx-pagination .current {
+  background: $white-100;
+}
+ul.ngx-pagination.ngx-start-inserted {
+  background: red !important;
+  margin-left: 0;
+  margin-bottom: 0rem !important;
+}
+.save {
+  border-radius: 0px;
+  font-size: 14px;
+  font-weight: 500;
+  color: $white-100;
+  white-space: nowrap;
+  text-decoration: none;
+  height: 37px;
+  width: 57px;
+  transition: all 300ms ease 0s;
+}
+.timeInput {
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid $white-100;
+  width: 48px;
+}
+.btn-shortlist {
+  border: 1px solid $white-100;
+  background: $white-100;
+  color: $white-100;
+  border-radius: 20px;
+  padding: 6px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  &:hover {
+    background: #2dad65;
+    border: 1px solid #2dad65;
+  }
+}
+.filter_row {
+  padding: 16px;
+  border-top: 1px solid #e4e7f0;
+}
+.filter_card {
+  border-radius: 4px;
+  padding: 16px;
+  border: 1px solid #e4e7f0;
+  margin-bottom: 10px;
+}
+.p-slider-range {
+}
+
+.selected_filter {
+  border-radius: 4px;
+  align-items: center;
+  border: 1px solid $white-100;
+  background-color: #e1faf3;
+  margin-right: 8px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  color: #625c5c;
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: "Museo-bd";
+  padding: 8px 4px 8px 8px;
+  line-height: 1;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  max-height: 100% !important;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+.shortlist {
+  position: fixed;
+  _position: absolute;
+  bottom: 58px;
+  right: 30px;
+  z-index: 99;
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 576.5px) and (max-width: 768px) {
+    bottom: 58px;
+    right: 30px;
+  }
+
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 768.5px) and (max-width: 992px) {
+    right: 175px;
+  }
+
+  /* X-Large devices (large desktops, 1200px and up) */
+  @media (min-width: 992.5px) and (max-width: 1200px) {
+    bottom: 500px;
+    right: 50px;
+  }
+
+  /* XX-Large devices (larger desktops, 1400px and up) */
+  @media (min-width: 1200.5px) {
+    right: 170px;
+  }
+}
+
+button .bg-green {
+  &:disabled {
+    background: rgba($white-100, 0.5) !important;
+   cursor: default;
+  }
+}

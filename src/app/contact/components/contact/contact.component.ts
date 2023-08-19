@@ -1,9 +1,15 @@
+import { Currencies } from './../../../shared/jsons/currencies';
 import { Toastr } from '@GlobalService/toastr.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from 'app/contact/services/contact.service';
+import { Attendant, ResponseModel } from 'app/models/response.model';
 import { Subscription } from 'rxjs';
+import { Country } from '@shared/jsons/country-code';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-contact',
@@ -11,47 +17,272 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  @ViewChild('registration') public registration!: ElementRef;
   public sub: Subscription = new Subscription();
-  public form!: FormGroup;
+  public registrationForm!: FormGroup;
   public isLoading!: boolean;
+  public regFormSubmitted!: boolean;
+  public responsiveOptions: any[] | undefined;
+  public images: {path: string }[] = [
+    {path: 'assets/images/conference-hall.webp'},
+    {path: 'assets/images/conference-hall.webp'},
+    {path: 'assets/images/banner.svg'},
+    {path: 'assets/images/banner.svg'},
+    {path: 'assets/images/banner.svg'},
+  ];
+  public countries = Country;
+  public currencies = Currencies;
+  public currency: string = '₦';
+  public currencyCode: string = 'NGN';
+  public amountToPay: number = 0;
+  public attendant!: Attendant;
+  public documentUrl: any;
+  public file!: File;
+  public payments = [
+    {
+      countryname: 'Nigeria',
+      fee: [
+        {id: 1, type: 'Member', amount: 68187.86},
+        {id: 2, type: 'Student', amount: 54550.29},
+        {id: 3, type: 'Others', amount: 81825.43},
+      ]
+    },
+    {
+      countryname: 'Ghana',
+      fee: [
+        {id: 1, type: 'Member', amount: 1000},
+        {id: 2, type: 'Student', amount: 800},
+        {id: 3, type: 'Others', amount: 1200},
+      ]
+    },
+    {
+      countryname: 'Others',
+      Fee: [
+        {id: 1, type: 'Member', amount: 88.61},
+        {id: 2, type: 'Student', amount: 70.89},
+        {id: 3, type: 'Others', amount: 106.34},
+      ]
+    },
+  ]
 
   constructor(
     private fb: FormBuilder,
-    private _contact: ContactService,
-    private _toastr: Toastr
+    private _attendant: ContactService,
+    private _toastr: Toastr,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.responsiveOptions = [
+      {
+          breakpoint: '1199px',
+          numVisible: 1,
+          numScroll: 1
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      customerId: [0, Validators.required],
+  public moveToStructure():void {
+    this.registration.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'start' });
+  }
+
+  public initForm() {
+    this.registrationForm = this.fb.group({
+      fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      subject: [''],
-      message: ['', Validators.required]
+      phoneNumber: ['', Validators.required],
+      organization: ['', Validators.required],
+      position: [''],
+      registrationNo: [''],
+      country: ['', Validators.required],
+      registrationType: ['Single', Validators.required],
+      applicantType: ['', Validators.required],
+      noOfRegistrants: [1, Validators.required],
+      modeOfAttendance: ['Physical', Validators.required],
+      profMembership: ['', Validators.required],
+      requireAccomodation: [false, Validators.required],
+      noOfAccomodants: [0, Validators.required],
+      comment: ['', Validators.required],
+      hasPaid: [false],
+      amountToPay: [0],
+      currency: [''],
     })
   }
 
+  public getCurrencyCode() {
+    let country = this.registrationForm.get('country')!.value;
+    let applicantype = this.registrationForm.get('applicantType')!.value;
+    switch (country) {
+      case 'Nigeria':
+        this.currency = '₦';
+        this.currencyCode = 'NGN';
+        break;
+      case 'Ghana':
+        this.currency = 'GH₵';
+        this.currencyCode = 'GHS';
+        break;
+      default:
+        this.currency = '$';
+        this.currencyCode = 'USD';
+        break;
+    }
+    if(applicantype) {
+      this.validateApplicanttype();
+    }
+    return this.currency;
+  }
+
+
+
+  public validateRegType() {
+    if(this.registrationForm.get('registrationType')!.value === 'Single') {
+      this.registrationForm.patchValue({
+        noOfRegistrants: 1
+      })
+    };
+    this.updatePaymentAmount();
+  }
+
+  public validateAccomodation() {
+    if (!this.registrationForm.get('requireAccomodation')!.value ) {
+      this.registrationForm.patchValue({
+        noOfAccomodants: 0
+      })
+    }
+  }
+
+  public validateApplicanttype() {
+    const applicantType = this.registrationForm.get('applicantType')!.value;
+    const noOfRegistrants = this.registrationForm.get('noOfRegistrants')!.value;
+    const country = this.registrationForm.get('country')!.value;
+    if(country) {
+      if ( country === 'Nigeria' && applicantType === "Member") {
+        this.registrationForm.patchValue({
+          currency: 'NGN',
+          amountToPay: 68187.86 * noOfRegistrants
+        })
+      } else if ( country === 'Nigeria' && applicantType === "Student") {
+        this.registrationForm.patchValue({
+          currency: 'NGN',
+          amountToPay: 54550.29 * noOfRegistrants
+        })
+      } else if ( country === 'Nigeria' && applicantType === "Others") {
+        this.registrationForm.patchValue({
+          currency: 'NGN',
+          amountToPay: 81825.43 * noOfRegistrants
+        })
+      } else if ( country === 'Ghana' && applicantType === "Member") {
+        this.registrationForm.patchValue({
+          currency: 'GHS',
+          amountToPay: 1000 * noOfRegistrants
+        })
+      } else if ( country === 'Ghana' && applicantType === "Student") {
+        this.registrationForm.patchValue({
+          currency: 'GHS',
+          amountToPay: 800 * noOfRegistrants
+        })
+      } else if ( country === 'Ghana' && applicantType === "Others") {
+        this.registrationForm.patchValue({
+          currency: 'GHS',
+          amountToPay: 1200 * noOfRegistrants
+        })
+      } else if ( (country !== 'Nigeria' || country !== 'Ghana') && applicantType === "Member") {
+        this.registrationForm.patchValue({
+          currency: 'USD',
+          amountToPay: 88.61 * noOfRegistrants
+        })
+      } else if ( (country !== 'Nigeria' || country !== 'Ghana') && applicantType === "Student") {
+        this.registrationForm.patchValue({
+          currency: 'USD',
+          amountToPay: 70.89 * noOfRegistrants
+        })
+      } else {
+        this.registrationForm.patchValue({
+          currency: 'USD',
+          amountToPay: 106.34 * noOfRegistrants
+        })
+      }
+    };
+    this.amountToPay = this.registrationForm.get('amountToPay')!.value;
+  }
+
+  public updatePaymentAmount() {
+    const noOfRegistrants = this.registrationForm.get('noOfRegistrants')!.value;
+    const newAmountToPay = this.amountToPay * noOfRegistrants;
+    this.registrationForm.patchValue({
+      amountToPay: newAmountToPay
+    })
+  }
+
+  public onFileDropped(event: any) {
+    // console.log(event)
+    let me = this;
+    this.file = event.target.files[0];
+    const maxAllowedSize = 2 * 1024 * 1024;
+    if(this.file.size > maxAllowedSize) {
+      this._toastr.showError(
+        'kindly upload a file not more than 2mb',
+        'info'
+      );
+    } else {
+      let reader = new FileReader();
+      reader.readAsDataURL(this.file);
+      reader.onload = () =>{
+        me.documentUrl = reader.result;
+      };
+      reader.onerror = (error) => {
+        console.log('Error: ', error);
+      };
+    }
+
+  }
+
   public submit() {
-    const payload = this.form.value;
-    if(this.form.valid) {
+    this.regFormSubmitted = true;
+    const payload: Attendant = this.registrationForm.value;
+    if(this.file) {
+      const fileUrl = this.documentUrl.split(",");
+      payload.fileUrl = fileUrl[1];
+    }
+    if(this.registrationForm.valid) {
       this.isLoading = true;
       this.sub.add(
-        this._contact.contactUs(payload).subscribe({
-          next: (res: any) => {
+        this._attendant.createAttendant(payload).subscribe({
+          next: (res: ResponseModel<Attendant>) => {
+            // console.log(res);
+            this.attendant = res.response;
             this.isLoading = false;
+            this.regFormSubmitted = false;
             this._toastr.showSuccess(
-              'You have successfully sent an email',
+              res.message,
               'Success'
             );
-            this.form.reset();
+            this.registrationForm.reset();
+            this.router.navigate(['/payment'], {
+              queryParams: {
+                id: res.response._id,
+                amount: payload.amountToPay,
+                currency: payload.currency
+              }
+            });
           },
           error: (error: HttpErrorResponse) => {
+            // console.log(error);
             this.isLoading = false;
+            this.regFormSubmitted = false;
             this._toastr.showError(
-              error.error,
+              error.error?.message,
               'Failed'
             );
           },

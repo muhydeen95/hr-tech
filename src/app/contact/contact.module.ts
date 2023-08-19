@@ -4,18 +4,19 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ContactRoutingModule } from './contact-routing.module';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 @NgModule({
   declarations: [
-    ContactComponent
+    ContactComponent,
   ],
   imports: [
     CommonModule,
     ContactRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    IvyCarouselModule
   ]
 })
 export class ContactModule { }

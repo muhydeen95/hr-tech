@@ -1,0 +1,51 @@
+section {
+    background-color: #FBF5EE;
+    min-height: 89vh;
+    padding: 2rem;
+}
+.card {
+    margin:auto;
+    padding-top: 0;
+    width: 294px;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    border-radius: 10px;
+}
+img {
+    height: 134px;
+    width: 111px;
+}
+p {
+    font-size: 14px;
+    /* border: 3px solid red; */
+    padding: 0;
+    margin: 0;
+}
+.card-title {
+    margin-top: 0;
+}
+.card-text {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+.btn {
+    background-color: #F8940F;
+    border: #F8940F;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Montserrat;
+   
+}
+.btn:focus {
+    box-shadow: none;
+}
+.instructions {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+.details {
+    align-items: center;
+    margin-bottom: 8px;
+}

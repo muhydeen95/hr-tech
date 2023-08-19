@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<section class="d-flex justify-content-center">
+    <div class="card" >
+        <img src="assets/gif/high-five.gif" class="gif-top" alt="Thank you">
+        <div class="card-body">
+          <h6 class="card-title">Thank you for registering</h6>
+          <p class="card-text">Kindly click the button below<br> to make payment</p>
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-green btn-lg"
+              (click)="submit()"
+              [disabled]="isLoading"
+            >
+              <app-loading-button
+                [text]="'Payment'"
+                [condition]="isLoading"
+              ></app-loading-button>
+            </button>
+          </div>
+          <p class="instructions">You can also pay sum of
+            <strong>
+              {{
+                currency == "NGN"
+                  ? "₦"
+                  : currency == "GHS"
+                  ? "GH₵"
+                  : currency == "USD"
+                  ? "$"
+                  : "$"
+              }}
+              {{ fee | number:'1.2-2' }}
+            </strong> <br>directly to the bank details below
+          </p>
+          <!-- <p class="details"> Account Name: <strong>GODP Consulting</strong><br>
+            Account Number: <strong>0050728687</strong><br>
+            Bank: <strong>Sterling Bank</strong> </p> -->
+        </div>
+    </div>
+</section>

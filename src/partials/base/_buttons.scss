@@ -106,10 +106,10 @@
 
 .btn-lg {
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 2.1rem;
   min-height: 4.8rem;
-  padding: 1.4rem;
+  padding: 1.4rem 3.2rem;
 }
 
 .btn-md {
@@ -151,26 +151,6 @@
     background: rgba($success, 0.1);
     color: $success;
     border: 0.1rem solid $success;
-  }
-  &-warning {
-    background: rgba($warning, 0.1);
-    color: $warning;
-    border: 0.1rem solid $warning;
-  }
-  &-tip {
-    background: rgba($tip, 0.1);
-    color: $tip;
-    border: 0.1rem solid $tip;
-  }
-  &-info {
-    background: rgba($info, 0.1);
-    color: $info;
-    border: 0.1rem solid $info;
-  }
-  &-primary {
-    background: rgba($primary, 0.1);
-    color: $primary;
-    border: 0.1rem solid $primary;
   }
 }
 // &-error {

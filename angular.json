@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Handyhub": {
+    "HRTech": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Handyhub",
+            "outputPath": "dist/HRTech",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -37,6 +37,9 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/primeng/resources/themes/nova/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
@@ -127,10 +130,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Handyhub:build:production"
+              "browserTarget": "HRTech:build:production"
             },
             "development": {
-              "browserTarget": "Handyhub:build:development"
+              "browserTarget": "HRTech:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -138,7 +141,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Handyhub:build"
+            "browserTarget": "HRTech:build"
           }
         },
         "test": {

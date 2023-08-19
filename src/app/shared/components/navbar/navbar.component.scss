@@ -2,17 +2,17 @@
 @import "partials/abstract/mixins.scss";
 
 header {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 5;
+  z-index: 50000 !important;
   border-left: 0.1rem solid rgba($blue-300, 0.1);
   background-color: rgba($white-100, 1);
+  // background-color: transparent;
   -webkit-transition: all 0.25s ease-in-out;
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
-  overflow-x: hidden;
   // height: 6.5rem;
   // max-height: 6.5rem;
   nav {
@@ -33,8 +33,6 @@ header {
     .nav-link {
       color: $black-300;
       font-size: 2rem;
-      font-weight: 400;
-      line-height: 150%;
       &:active {
         color: $blue-300;
         font-weight: 500;

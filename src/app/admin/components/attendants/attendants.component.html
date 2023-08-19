@@ -1,0 +1,111 @@
+<div class="d-body">
+  <div class="mb-4">
+    <app-navbar></app-navbar>
+  </div>
+  <div class="page_wrapper">
+    <section class="mt-5 mb-3 container">
+      <div class="d-flex justify-content-between mt-5 mb-3">
+        <h3 class="font20">Registered Students</h3>
+        <a class="click" (click)="exportAttendants()">
+          <i class="fa fa-download"></i> Export as Excel
+          <i class="fa fa-spinner fa-spin" *ngIf="isExporting"></i
+        ></a>
+      </div>
+
+    </section>
+    <section class="container">
+      <div class="table-responsive mb-5">
+        <ng-container *ngIf="candidates.length > 0">
+          <p-table
+              class="table table-striped custom-table datatable table-hover"
+              #dt
+              [value]="candidates"
+              dataKey="_id"
+              [paginator]="true"
+              [rows]="10"
+              [responsive]="true"
+              [scrollable]="true"
+              [columns]="cols"
+              [scrollHeight]="'450px'"
+          >
+              <ng-template pTemplate="caption">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="form_group">
+                              <input
+                                  type="text"
+                                  pInputText
+                                  size="50"
+                                  class="form-control"
+                                  placeholder="Search..."
+                                  (keyup)="dt.filterGlobal($any($event).target.value, 'contains')"
+                              />
+                          </div>
+                      </div>
+                  </div>
+              </ng-template>
+              <ng-template pTemplate="header">
+                  <tr class="thead">
+                      <th class="table-checkbox">
+                          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                      </th>
+                      <th pSortableColumn="fullName">Name</th>
+                      <th pSortableColumn="email">Email</th>
+                      <th pSortableColumn="phoneNumber">Phone Number</th>
+                      <th [pSortableColumn]="'organization'">Organization</th>
+                      <th [pSortableColumn]="'position'">Position</th>
+                      <th [pSortableColumn]="'noOfRegistrants'">No. of Applicants</th>
+                      <th [pSortableColumn]="'hasPaid'">Payment Status</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-row let-i="rowIndex">
+              <tr data-toggle="modal" class="tbody text-capitalize">
+                  <td (click)="stopParentEvent($event)" class="table-checkbox">
+                      <p-tableCheckbox [value]="row"></p-tableCheckbox>
+                  </td>
+                  <td>{{ row.fullName | titlecase }}</td>
+                  <td>
+                    {{
+                      (row?.email.length>10)
+                        ? (row?.email | slice:0:10)+'...'
+                        : (row?.email) || "--" | lowercase
+                    }}
+                  </td>
+                  <td>{{ row?.phoneNumber || '--'  }}</td>
+                  <td>{{ row?.organization  }}</td>
+                  <td>{{ row?.position }}</td>
+                  <td>{{ row?.noOfRegistrants }}</td>
+                  <td>
+                    <div class="d-flex align-items-center me-2">
+                      <span
+                        class="badge"
+                        [ngClass]="{
+                          'badge-success': row?.hasPaid == true,
+                          'badge-error': row?.hasPaid == false
+                        }"
+                      >
+                        {{
+                          row?.hasPaid == true
+                            ? "Paid"
+                            : row?.hasPaid == false
+                            ? "Not Paid"
+                            : "--"
+                        }}
+                      </span>
+                    </div>
+                  </td>
+              </tr>
+              </ng-template>
+          </p-table>
+      </ng-container>
+        <app-no-data
+          name="Attendant"
+          *ngIf="candidates?.length == 0"
+          [showActionBtn]="false"
+        >
+        </app-no-data>
+      </div>
+    </section>
+  </div>
+  <app-footer class="mt-auto"></app-footer>
+</div>
