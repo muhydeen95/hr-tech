@@ -85,11 +85,11 @@
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-row let-i="rowIndex">
-              <tr data-toggle="modal" class="tbody text-capitalize">
+              <tr (click)="showStudentDetails(row)" class="tbody click">
                   <!-- <td (click)="stopParentEvent($event)" class="table-checkbox">
                       <p-tableCheckbox [value]="row"></p-tableCheckbox>
                   </td> -->
-                  <td (click)="showStudentDetails(row)">{{ row.fullName | titlecase }}</td>
+                  <td>{{ row.fullName | titlecase }}</td>
                   <td> {{ row.registrationNo }}</td>
                   <td>
                     {{
