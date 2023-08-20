@@ -1,22 +1,22 @@
 <section class="d-flex justify-content-center">
   <div class="payment-card" >
-    <div class="img-wrapper">
+    <div class="img-wrapper" *ngIf="!card">
         <img *ngIf="status == 'successful'" src="assets/images/success.svg" alt="">
         <img *ngIf="status != 'successful'" src="assets/images/fail.svg" alt="">
     </div>
-    <div class="content">
+    <div class="content"*ngIf="!card">
         <h2 *ngIf="status == 'successful'">Thank You!</h2>
         <h2 *ngIf="status != 'successful'">Sorry ...</h2>
         <p *ngIf="status == 'successful'">Your payment was successful</p>
         <p *ngIf="status != 'successful'">Your payment failed</p>
         <div class="d-flex justify-content-center my-3">
-          <button
+          <!-- <button
               class="btn btn-green btn-lg"
               *ngIf="status == 'successful'"
               (click)="goHome()"
             >
             Go Back Home
-        </button>
+          </button> -->
 
 
         <button
@@ -58,7 +58,11 @@
               </div>
               <div class="pt-2 pb-4">
                 <img
-                  src="{{ attendant.fileUrl }}"
+                  src="{{
+                          attendant.fileUrl ?
+                          attendant.fileUrl
+                          : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'
+                        }}"
                   class="profile-img rounded-circle"
                   alt=""
                   width="40%"
@@ -67,16 +71,16 @@
             </div>
 
             <div class="py-3 qrcode-wrapper">
-              <img src="{{ attendant.qrCodeURL }}" alt="" class="w-100" />
               <qrcode
                 cssClass="qrcode"
                 [qrdata]="qrData"
                 [elementType]="'img'"
                 [errorCorrectionLevel]="'M'"
+                [allowEmptyString]="true"
               ></qrcode>
             </div>
             <div class="regNo text-center">
-              <p class="font-bold mb-0">HR-TECH/2023/{{ padWithLeadingZeros(attendant.registrationNo) }}</p>
+              <p class="font-bold mb-0">{{ attendant.registrationNo }}</p>
             </div>
             <div class="footer pt-3 pb-1 text-center">
               <p class="mb-0">Only Valid For this event</p>

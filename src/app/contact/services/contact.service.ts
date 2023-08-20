@@ -17,23 +17,21 @@ export class ContactService {
   public createAttendant(
     addCompanyDetailDTO: Attendant
   ): Observable<ResponseModel<Attendant>> {
-    const endpoint = 'create';
+    const endpoint = 'attendant/register';
     return this.http.makeRequestWithData('post', endpoint, {}, addCompanyDetailDTO);
   }
 
   public getOneAttendant(
-    id : string
+    id : string | null
   ): Observable<ResponseModel<any>> {
-    const endpoint = 'getOneAttendant';
-    const param = new HttpParams()
-    .append('id', id )
-    return this.http.getRequestWithParams(endpoint, param);
+    const endpoint = `attendant/getOneAttendant/${id}`;
+    return this.http.getRequest(endpoint);
   }
 
   public makepayment(
     addCompanyDetailDTO: any
   ): Observable<ResponseModel<any>> {
-    const endpoint = 'payment';
+    const endpoint = 'payment/makePayment';
     return this.http.makeRequestWithData('post', endpoint, {}, addCompanyDetailDTO);
   }
 
@@ -41,7 +39,7 @@ export class ContactService {
   public confirmPayment(
     payload : any
   ): Observable<ResponseModel<any>> {
-    const endpoint = 'payment-status';
+    const endpoint = 'payment/payment-status';
     const param = new HttpParams()
     .append('id', payload.id )
     return this.http.makeRequestWithData('put', endpoint, param, payload);

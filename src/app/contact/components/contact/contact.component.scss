@@ -63,6 +63,25 @@ section {
       }
   }
 
+  .sponsors {
+    height: 10rem;
+    padding: 2rem 0;
+    .carousel-cell {
+      border-right: .1rem solid $black-100;
+      padding: .5rem 1.5rem;
+      height: 10rem;
+      min-width: 5rem;
+      margin: auto 0;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        margin: auto 0;
+      }
+    }
+
+  }
+
   .about {
       background: url("https://runningremote.com/wp-content/uploads/2022/09/lightgrey.svg");
       box-shadow: inset 0 0 0 2000px rgba($color: #FAF9F6, $alpha: 0.75);
@@ -76,6 +95,7 @@ section {
       justify-content: center;
       color: $black-100;
       padding: 5rem 3rem;
+      margin-top: 5rem;
       h2 {
         font-size: 4.8rem;
         font-weight: 900;
@@ -503,6 +523,25 @@ section {
       }
    }
 
+   .sponsors {
+    height: 8rem;
+    padding: 2rem 0;
+    .carousel-cell {
+      border-right: .1rem solid $black-100;
+      padding: .5rem;
+      height: 8rem;
+      min-width: 5rem;
+      margin: auto 0;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+        margin: auto 0;
+      }
+    }
+
+  }
+
     .about {
       background: url('../../../../assets/images/banner.svg') no-repeat center center;
       background-size: cover;
@@ -510,18 +549,18 @@ section {
       min-height: 40vh;
       display: flex;
       justify-content: center;
-      color: rgba($color: $blue-300, $alpha: 0.7) !important;
+      // color: rgba($color: $blue-300, $alpha: 0.7) !important;
       padding: 1.8rem 1rem 2.5rem 1rem;
       text-align: center;
       overflow: hidden;
       h2, h4 {
         font-style: normal;
-        line-height: 3.8rem;
+        line-height: 3.9rem;
       }
       h2 {
         font-weight: 700 !important;
-        font-size: 4.6rem !important;
-        color: rgba($color: $blue-300, $alpha: 0.7) !important;
+        font-size: 2.8rem !important;
+        // color: rgba($color: $blue-300, $alpha: 0.7) !important;
       }
       h4 {
         font-weight: 500;
@@ -535,6 +574,88 @@ section {
         padding: 1.2rem 1rem;
       }
    }
+
+   .speakers_container {
+      .card {
+        background-color: rgba(86, 86, 155, 0.82);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: auto;
+        text-align: left;
+        font-family: arial;
+        border-radius: 2rem;
+        min-height: 450px;
+        margin-bottom: 3rem;
+        color: $white-100;
+        padding: 2.5rem;
+        &-title {
+          font-size: 2.5rem;
+          font-weight: 900;
+          line-height: 3.5rem;
+          margin-bottom: 3rem;
+        }
+        &-text {
+          font-size: 1.8rem;
+          font-weight: 400;
+          line-height: 3.2rem;
+        }
+      }
+    }
+
+    .venue {
+      background: url("https://runningremote.com/wp-content/uploads/2022/09/lightgrey.svg");
+      box-shadow: inset 0 0 0 2000px rgba($color: #FAF9F6, $alpha: 0.75);
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-size: auto;
+      min-height: 60vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      color: $black-100;
+      padding: 2rem;
+      .card {
+        background-color: #B5B5EF;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: auto;
+        text-align: left;
+        font-family: arial;
+        border-radius: 2rem;
+        min-height: 450px;
+        width: 100%;
+        margin-bottom: 3rem;
+        color: $black-100;
+        padding: 2rem;
+        display: flex;
+        &-title {
+          font-size: 3.5rem;
+          font-weight: 900;
+          line-height: 4.2rem;
+          margin-bottom: 4rem;
+        }
+      }
+    }
+
+    .registration {
+      background: url("https://runningremote.com/wp-content/uploads/2022/09/lightgrey.svg");
+      box-shadow: inset 0 0 0 2000px rgba($color: #FAF9F6, $alpha: 0.75);
+      background-position: top center;
+      background-repeat: no-repeat;
+      background-size: auto;
+      min-height: 60vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      color: $black-100;
+      padding: 2rem;
+      h2 {
+        font-size: 3rem;
+        font-weight: 900;
+      }
+
+    }
+
   }
 }
 

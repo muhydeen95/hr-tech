@@ -9,7 +9,7 @@ import { ContactService } from 'app/contact/services/contact.service';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  public clientId!: string;
+  public clientId!: string | null;
   public fee!: number;
   public currency!: string;
   public isLoading: boolean = false;
@@ -21,8 +21,8 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.clientId = this.route.snapshot.paramMap.get('id');
     this.route.queryParams.subscribe(params => {
-      this.clientId = params['id'];
       this.fee = +params['amount'];
       this.currency = params['currency'];
     });

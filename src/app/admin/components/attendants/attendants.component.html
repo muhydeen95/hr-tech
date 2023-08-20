@@ -4,17 +4,42 @@
   </div>
   <div class="page_wrapper">
     <section class="mt-5 mb-3 container">
-      <div class="d-flex justify-content-between mt-5 mb-3">
-        <h3 class="font20">Registered Students</h3>
-        <a class="click" (click)="exportAttendants()">
-          <i class="fa fa-download"></i> Export as Excel
-          <i class="fa fa-spinner fa-spin" *ngIf="isExporting"></i
-        ></a>
+      <div class="row d-flex justify-content-between mt-5 mb-3">
+        <h3 class="col-md-3 font20">Registered Attendants</h3>
+        <div class="col-md-4 row d-flex">
+          <div class="col-8">
+            <div class="form_group">
+              <label for="">Sort By Payment</label>
+              <ng-select
+                [items]="statusOption"
+                bindValue="value"
+                bindLabel="name"
+                placeholder="Select Status"
+                (change)="filterByStatus($event.value)"
+              >
+              </ng-select>
+            </div>
+          </div>
+          <div class="col-4 my-auto">
+            <span
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Export as Excel"
+              [matTooltipPosition]="'below'"
+              matTooltipHideDelay="100"
+              aria-label="Export as Excel"
+              class="click" (click)="exportAttendants()"
+            >
+              <svg width="45" height="45" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12ZM12 6.25C12.4142 6.25 12.75 6.58579 12.75 7V12.1893L14.4697 10.4697C14.7626 10.1768 15.2374 10.1768 15.5303 10.4697C15.8232 10.7626 15.8232 11.2374 15.5303 11.5303L12.5303 14.5303C12.3897 14.671 12.1989 14.75 12 14.75C11.8011 14.75 11.6103 14.671 11.4697 14.5303L8.46967 11.5303C8.17678 11.2374 8.17678 10.7626 8.46967 10.4697C8.76256 10.1768 9.23744 10.1768 9.53033 10.4697L11.25 12.1893V7C11.25 6.58579 11.5858 6.25 12 6.25ZM8 16.25C7.58579 16.25 7.25 16.5858 7.25 17C7.25 17.4142 7.58579 17.75 8 17.75H16C16.4142 17.75 16.75 17.4142 16.75 17C16.75 16.5858 16.4142 16.25 16 16.25H8Z" fill="#EA185B"></path> </g></svg>
+            </span>
+          </div>
+        </div>
+
       </div>
 
     </section>
     <section class="container">
-      <div class="table-responsive mb-5">
+      <div class="table-responsive bg-table p-3 mb-5">
         <ng-container *ngIf="candidates.length > 0">
           <p-table
               class="table table-striped custom-table datatable table-hover"
@@ -29,7 +54,7 @@
               [scrollHeight]="'450px'"
           >
               <ng-template pTemplate="caption">
-                  <div class="row">
+                  <div class="row d-flex justify-content-between">
                       <div class="col-md-4">
                           <div class="form_group">
                               <input
@@ -46,29 +71,31 @@
               </ng-template>
               <ng-template pTemplate="header">
                   <tr class="thead">
-                      <th class="table-checkbox">
+                      <!-- <th class="table-checkbox">
                           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                      </th>
+                      </th> -->
                       <th pSortableColumn="fullName">Name</th>
+                      <th pSortableColumn="registrationNo">Reg. No</th>
                       <th pSortableColumn="email">Email</th>
-                      <th pSortableColumn="phoneNumber">Phone Number</th>
+                      <th pSortableColumn="phoneNumber">Phone No.</th>
                       <th [pSortableColumn]="'organization'">Organization</th>
                       <th [pSortableColumn]="'position'">Position</th>
-                      <th [pSortableColumn]="'noOfRegistrants'">No. of Applicants</th>
+                      <th [pSortableColumn]="'noOfRegistrants'">Applicants</th>
                       <th [pSortableColumn]="'hasPaid'">Payment Status</th>
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-row let-i="rowIndex">
               <tr data-toggle="modal" class="tbody text-capitalize">
-                  <td (click)="stopParentEvent($event)" class="table-checkbox">
+                  <!-- <td (click)="stopParentEvent($event)" class="table-checkbox">
                       <p-tableCheckbox [value]="row"></p-tableCheckbox>
-                  </td>
-                  <td>{{ row.fullName | titlecase }}</td>
+                  </td> -->
+                  <td (click)="showStudentDetails(row)">{{ row.fullName | titlecase }}</td>
+                  <td> {{ row.registrationNo }}</td>
                   <td>
                     {{
-                      (row?.email.length>10)
+                     ( (row?.email.length>10)
                         ? (row?.email | slice:0:10)+'...'
-                        : (row?.email) || "--" | lowercase
+                        : (row?.email) || "--") | lowercase
                     }}
                   </td>
                   <td>{{ row?.phoneNumber || '--'  }}</td>
@@ -101,11 +128,143 @@
         <app-no-data
           name="Attendant"
           *ngIf="candidates?.length == 0"
+          [is_initial]="isInitial"
           [showActionBtn]="false"
         >
         </app-no-data>
       </div>
     </section>
   </div>
-  <app-footer class="mt-auto"></app-footer>
+</div>
+
+
+<div #profileCard id="profileCard" class="right-nav__content">
+  <div class="right-nav__overlay" (click)="removeStudentDetails()"></div>
+  <div class="bg-white py-5">
+    <div
+      class="text-right font20 font-light click"
+      (click)="removeStudentDetails()"
+    >
+      <i class="fa fa-close"></i>
+    </div>
+    <div class="text-center font20 mb-5">Attendant Information</div>
+    <div class="text-center">
+      <div class="detail-avater mb-3">
+        <img
+          src="assets/img/profile-bg.png"
+          [src]="
+            candidateDetail.fileUrl
+              ? candidateDetail.fileUrl
+              : 'assets/img/Oval2.svg'
+          "
+        />
+      </div>
+      <h3 class="font24 font-bold mb-3">
+        {{ candidateDetail.fullName ? candidateDetail.fullName : "" }}
+      </h3>
+      <div
+        class="profile-block d-flex align-item-center justify-content-between mb-3"
+      >
+        <button
+          class="btn btn-green btn-md me-2"
+          *ngIf="candidateDetail.hasPaid"
+          [disabled]="sendReminder"
+          (click)="paymentReminder(candidateDetail._id)"
+        >
+          Payment Reminder
+          <i
+            class="fa fa-spinner fa-spin"
+            *ngIf="sendReminder"
+          ></i>
+        </button>
+        <button
+          class="btn btn-green btn-md me-2"
+          *ngIf="candidateDetail.hasPaid"
+          (click)="sendprofileCard(candidateDetail._id)"
+          [disabled]="sendProfileCard"
+        >
+          Send Profile Card
+          <i
+            class="fa fa-spinner fa-spin"
+            *ngIf="sendProfileCard"
+          ></i>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">REG. NO</label>
+          <h5 class="font16 text-break">
+            {{ candidateDetail.registrationNo }}
+          </h5>
+        </div>
+
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">EMAIL</label>
+          <h5 class="font16 text-break">
+            {{ candidateDetail.email }}
+          </h5>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 sm-mt my-auto">
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">PHONE NO.</label>
+          <h5 class="font16 text-break">
+            {{
+              candidateDetail.phoneNumber ? candidateDetail.phoneNumber : "--"
+            }}
+          </h5>
+        </div>
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">COUNTRY</label>
+          <h5 class="font16 text-break">
+            {{ candidateDetail.country }}
+          </h5>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 sm-mt my-auto">
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">ORGANIZATION</label>
+          <h5 class="font16 text-break">
+            {{
+              candidateDetail.organization ? candidateDetail.organization : "--"
+            }}
+          </h5>
+        </div>
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">APPLICANT TYPE</label>
+          <h5 class="font16 text-break">
+            {{ candidateDetail.profMembership ? candidateDetail.profMembership : '--' }}
+          </h5>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 sm-mt my-auto">
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">POSITION</label>
+          <h5 class="font16 text-break">
+            {{ candidateDetail.position ? candidateDetail.position : '--' }}
+          </h5>
+        </div>
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">MEMBERSHIP</label>
+          <h5 class="font16 text-break">
+            {{ candidateDetail.profMembership ? candidateDetail.profMembership : '--' }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="row my-4 py-4 line-under sm-mt-none sm-pt-none">
+      <div class="col-6 sm-mt mb-3">
+        <label class="font12 font-bold text-grey">MODE OF ATTENDANCE</label>
+        <h5 class="font16">{{ candidateDetail.modeOfAttendance }}</h5>
+      </div>
+      <div class="col-6 sm-mt mb-3">
+        <label class="font12 font-bold text-grey">DATE REGISTERED</label>
+        <h5 class="font16">
+          {{ candidateDetail.createdAt | date : "short" }}
+        </h5>
+      </div>
+    </div>
+  </div>
 </div>

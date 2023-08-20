@@ -367,3 +367,49 @@ tr.tbody {
   border: none;
   background: $white-100;
 }
+
+.right-nav__content {
+  position: fixed;
+  background: $white-100;
+  top: 3vh;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  min-height: 100vh;
+  width: 0;
+  transition: 0.4s ease-in-out;
+  overflow: scroll;
+  .right-nav__overlay {
+    transition: 0.4s ease-in-out;
+    background: #00000080;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+  &.active {
+    width: 35%;
+    padding: 30px 35px;
+    .right-nav__overlay {
+      width: 65%;
+    }
+  }
+  @media (max-width: 1200px) {
+    &.active {
+      width: 50%;
+      .right-nav__overlay {
+        width: 50%;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    &.active {
+      width: 100%;
+      .right-nav__overlay {
+        width: 0;
+      }
+    }
+  }
+}

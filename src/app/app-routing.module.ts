@@ -15,13 +15,13 @@ const routes: Routes = [
     data: { breadcrumb: 'Admin' },
   },
   {
-    path: 'payment',
+    path: 'payment/:id',
     loadChildren: () =>
       import('./payment/payment.module').then((m) => m.PaymentModule),
     data: { breadcrumb: 'Admin' },
   },
   {
-    path: 'payment-confirmation',
+    path: 'payment-confirmation/:id',
     loadChildren: () =>
       import('./payment-confirmation/payment-confirmation.module').then((m) => m.PaymentConfirmationModule),
     data: { breadcrumb: 'Admin' },

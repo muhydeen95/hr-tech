@@ -3,7 +3,11 @@
 
 .page_wrapper {
   min-height: 80vh;
-  margin-top: 15rem;
+  margin-top: 12rem;
+}
+
+.bg-table {
+  background-color: $purple-100;
 }
 
 .container {
@@ -129,5 +133,20 @@ button .bg-green {
   &:disabled {
     background: rgba($white-100, 0.5) !important;
    cursor: default;
+  }
+}
+
+label {
+  font-size: 1.4rem !important;
+}
+
+.detail-avater {
+  height: 20rem;
+  width: 20rem;
+  margin: 0 auto;
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
   }
 }

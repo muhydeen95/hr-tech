@@ -46,23 +46,40 @@
   </ng-container>
 
   <ng-container>
-    <carousel [cellsToShow]="5" [cellsToScroll]="5" [loop]="true" [autoplay]="true" [autoplayInterval]="5000">
-      <div class="carousel-cell">
-        <img src="assets/images/GODP-logo.svg">
-      </div>
-      <div class="carousel-cell">
-          <img src="assets/images/gos-software.jpeg">
-      </div>
-      <div class="carousel-cell">
-        <img src="https://www.cipmghglobal.com/wp-content/uploads/2020/05/index.jpg">
-      </div>
-      <div class="carousel-cell">
-          <img src="assets/images/banner.svg">
-      </div>
-      <div class="carousel-cell">
-        <img src="https://alhrp.org/wp-content/uploads/2022/10/logo.png">
-      </div>
-    </carousel>
+    <div class="sponsors">
+      <carousel [cellsToShow]="5" [cellsToScroll]="5" [loop]="true" [autoplay]="true" [arrows]="false" [autoplayInterval]="5000">
+        <div class="carousel-cell">
+          <img src="assets/images/GODP-logo.svg">
+        </div>
+        <div class="carousel-cell">
+            <img src="assets/images/gos-software.jpeg">
+        </div>
+        <div class="carousel-cell">
+          <img src="https://www.cipmghglobal.com/wp-content/uploads/2020/05/index.jpg">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/GODP-logo.svg">
+        </div>
+        <div class="carousel-cell">
+          <img src="https://alhrp.org/wp-content/uploads/2022/10/logo.png">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/GODP-logo.svg">
+        </div>
+        <div class="carousel-cell">
+            <img src="assets/images/gos-software.jpeg">
+        </div>
+        <div class="carousel-cell">
+          <img src="https://www.cipmghglobal.com/wp-content/uploads/2020/05/index.jpg">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/GODP-logo.svg">
+        </div>
+        <div class="carousel-cell">
+          <img src="https://alhrp.org/wp-content/uploads/2022/10/logo.png">
+        </div>
+      </carousel>
+    </div>
   </ng-container>
 
   <ng-container>
@@ -819,11 +836,12 @@
                   </div>
                   <div class="col-md-4">
                     <input
+                      #inputFile
                       type="file" id="file"
                       name="file" placeholder=" "
                       class="inputfile"
                       accept=".jpg, .jpeg, .png"
-                      max-size="3000"
+                      max-size="70000"
                       (change)="onFileDropped($event)"
                     />
                     <!-- <label for="file">Choose a file</label> -->

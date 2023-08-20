@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 })
 export class ContactComponent implements OnInit {
   @ViewChild('registration') public registration!: ElementRef;
+  @ViewChild('inputFile') public inputFile!: ElementRef;
   public sub: Subscription = new Subscription();
   public registrationForm!: FormGroup;
   public isLoading!: boolean;
@@ -229,10 +230,11 @@ export class ContactComponent implements OnInit {
     // console.log(event)
     let me = this;
     this.file = event.target.files[0];
-    const maxAllowedSize = 2 * 1024 * 1024;
+    const maxAllowedSize = 70000;
     if(this.file.size > maxAllowedSize) {
+      this.inputFile.nativeElement.value = null;
       this._toastr.showError(
-        'kindly upload a file not more than 2mb',
+        'kindly upload a file not more than 70kb',
         'info'
       );
     } else {
@@ -251,6 +253,12 @@ export class ContactComponent implements OnInit {
   public submit() {
     this.regFormSubmitted = true;
     const payload: Attendant = this.registrationForm.value;
+    if(!this.file) {
+      return this._toastr.showInfo(
+        'You are required to upload a passport photograph not more than 2mb',
+        'Passport image'
+      );
+    }
     if(this.file) {
       const fileUrl = this.documentUrl.split(",");
       payload.fileUrl = fileUrl[1];
@@ -261,6 +269,7 @@ export class ContactComponent implements OnInit {
         this._attendant.createAttendant(payload).subscribe({
           next: (res: ResponseModel<Attendant>) => {
             // console.log(res);
+            this.inputFile.nativeElement.value = null;
             this.attendant = res.response;
             this.isLoading = false;
             this.regFormSubmitted = false;
@@ -269,9 +278,8 @@ export class ContactComponent implements OnInit {
               'Success'
             );
             this.registrationForm.reset();
-            this.router.navigate(['/payment'], {
+            this.router.navigate(['/payment', res.response._id], {
               queryParams: {
-                id: res.response._id,
                 amount: payload.amountToPay,
                 currency: payload.currency
               }

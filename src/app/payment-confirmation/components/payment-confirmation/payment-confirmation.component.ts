@@ -2,6 +2,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toastr } from '@GlobalService/toastr.service';
+import { HelperService } from '@shared/services/helper.service';
 import { ContactService } from 'app/contact/services/contact.service';
 import { Attendant } from 'app/models/response.model';
 
@@ -97,29 +98,56 @@ export class PaymentConfirmationComponent implements OnInit {
   @ViewChild('pdfTable') pdfTable!: ElementRef;
   public paymentStatus: boolean = false;
   public status!: string;
-  public clientId!: string;
+  public clientId!: string | null;
   public isLoading!: boolean;
   public currentYear = new Date().getFullYear();
-  public attendant!: Attendant;
+  public attendant: Attendant = {
+    _id: '',
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    organization: '',
+    position: '',
+    country: '',
+    registrationType: '',
+    noOfRegistrants: '',
+    modeOfAttendance: '',
+    profMembership: '',
+    requireAccomodation: false,
+    noOfAccomodants: 0,
+    comment: '',
+    fileUrl: '',
+    hasPaid: false,
+    amountToPay: 0,
+    currency: '',
+    registrationNo: '',
+    createdAt: '',
+  };
   public qrData!: string;
+  public card!: boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private _attendant: ContactService,
-    private _toastr: Toastr
+    private _toastr: Toastr,
+    private _helper: HelperService
   ) { }
 
   ngOnInit(): void {
+    this.clientId = this.route.snapshot.paramMap.get('id');
     this.route.queryParams.subscribe(params => {
       this.status = params['status'];
-      this.clientId = params['id'];
+      this.card = params['card'] === 'true' ? true : false;
     });
-    this.confirmPayment();
+    (this.card) ?
+      this.getOneAttendant()
+      : this.confirmPayment();
   }
 
   public confirmPayment() {
     this.isLoading = true;
+    this._helper.startSpinner();
     const payload = {
       id: this.clientId,
       hasPaid: true,
@@ -128,6 +156,7 @@ export class PaymentConfirmationComponent implements OnInit {
         next: (res: any) => {
             // console.log(res);
             this.isLoading = false;
+            this._helper.stopSpinner();
             this._toastr.showSuccess(
               res?.message,
               'Success'
@@ -135,6 +164,7 @@ export class PaymentConfirmationComponent implements OnInit {
             this.getOneAttendant();
           }, error: (e: any) => {
             this.isLoading = false;
+            this._helper.stopSpinner();
               console.log(e);
               this._toastr.showError(
                 e.error?.message,
@@ -145,14 +175,18 @@ export class PaymentConfirmationComponent implements OnInit {
   }
 
   public getOneAttendant() {
+    this._helper.startSpinner();
     this._attendant.getOneAttendant(this.clientId).subscribe({
       next: (res: any) => {
           // console.log(res);
-         this.attendant = res.response;
-         this.qrData = `Name: ${this.attendant.fullName} Email:${this.attendant.email} RegistrationNo: HR-TECH/2023/${this.padWithLeadingZeros(this.attendant.registrationNo)}`;
+          this._helper.stopSpinner();
+          if(res.response) {
+            this.attendant = res.response;
+            this.qrData = `Name: ${this.attendant.fullName} Email:${this.attendant.email} RegistrationNo: ${this.attendant.registrationNo}`;
+          }
         }, error: (e: any) => {
-          this.isLoading = false;
-            console.log(e);
+          this._helper.stopSpinner();
+          console.log(e);
         }
     });
   }

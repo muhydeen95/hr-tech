@@ -4,6 +4,9 @@ import { AttendantsComponent } from './components/attendants/attendants.componen
 import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from '@shared/shared.module';
 import { TableModule } from 'primeng/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -14,7 +17,11 @@ import { TableModule } from 'primeng/table';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    TableModule
+    TableModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    MatTooltipModule
   ]
 })
 export class AdminModule { }
