@@ -1,15 +1,18 @@
 
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Toastr } from '@GlobalService/toastr.service';
 import { HelperService } from '@shared/services/helper.service';
+import { AttendantsService } from 'app/admin/services/attendants.service';
 import { ContactService } from 'app/contact/services/contact.service';
-import { Attendant } from 'app/models/response.model';
+import { Attendant, ResponseModel } from 'app/models/response.model';
 
 declare var require: any;
 
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import { Subscription } from 'rxjs';
 const htmlToPdfmake = require("html-to-pdfmake");
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
@@ -96,6 +99,7 @@ width: 50px;
 export class PaymentConfirmationComponent implements OnInit {
   @ViewChild('registration') public registration!: ElementRef;
   @ViewChild('pdfTable') pdfTable!: ElementRef;
+  public sub: Subscription = new Subscription();
   public paymentStatus: boolean = false;
   public status!: string;
   public clientId!: string | null;
@@ -131,7 +135,8 @@ export class PaymentConfirmationComponent implements OnInit {
     private route: ActivatedRoute,
     private _attendant: ContactService,
     private _toastr: Toastr,
-    private _helper: HelperService
+    private _helper: HelperService,
+    private _admin: AttendantsService
   ) { }
 
   ngOnInit(): void {
@@ -183,12 +188,34 @@ export class PaymentConfirmationComponent implements OnInit {
           if(res.response) {
             this.attendant = res.response;
             this.qrData = `Name: ${this.attendant.fullName} Email:${this.attendant.email} RegistrationNo: ${this.attendant.registrationNo}`;
-          }
+          };
+          this.sendprofileCard(this.clientId);
         }, error: (e: any) => {
           this._helper.stopSpinner();
           console.log(e);
         }
     });
+  }
+
+  public sendprofileCard(id: any) {
+    this.sub.add(
+      this._admin.sendprofileCard(id).subscribe({
+        next: (res: ResponseModel<any>) => {
+          // console.log(res);
+          // this._toastr.showSuccess(
+          //   res.message,
+          //   'Success'
+          // );
+        },
+        error: (error: HttpErrorResponse) => {
+          // console.log(error);
+          this._toastr.showError(
+            error.error?.message,
+            'Failed'
+          );
+        },
+      })
+    );
   }
 
   public padWithLeadingZeros(num: any) {

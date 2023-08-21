@@ -167,7 +167,7 @@
       >
         <button
           class="btn btn-green btn-md me-2"
-          *ngIf="candidateDetail.hasPaid"
+          *ngIf="!candidateDetail.hasPaid"
           [disabled]="sendReminder"
           (click)="paymentReminder(candidateDetail._id)"
         >
