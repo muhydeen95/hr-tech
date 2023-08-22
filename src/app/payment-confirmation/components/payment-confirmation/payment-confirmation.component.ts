@@ -113,6 +113,7 @@ export class PaymentConfirmationComponent implements OnInit {
     organization: '',
     position: '',
     country: '',
+    applicantType: '',
     registrationType: '',
     noOfRegistrants: '',
     modeOfAttendance: '',

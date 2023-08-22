@@ -286,7 +286,9 @@ export class ContactComponent implements OnInit {
             this.router.navigate(['/payment', res.response._id], {
               queryParams: {
                 amount: payload.amountToPay,
-                currency: payload.currency
+                currency: payload.currency,
+                bulk: payload.noOfRegistrants,
+                type: payload.applicantType
               }
             });
           },

@@ -33,6 +33,7 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     organization: '',
     position: '',
     country: '',
+    applicantType: '',
     registrationType: '',
     noOfRegistrants: '',
     modeOfAttendance: '',

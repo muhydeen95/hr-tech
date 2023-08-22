@@ -13,6 +13,7 @@ export interface Attendant {
   organization: string,
   position: string,
   country: string,
+  applicantType: string,
   registrationType: string,
   noOfRegistrants: string,
   modeOfAttendance: string,
@@ -26,4 +27,5 @@ export interface Attendant {
   currency: string,
   registrationNo: string,
   createdAt: string,
+
 }
