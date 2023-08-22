@@ -1,4 +1,4 @@
-import { HttpParams } from '@angular/common/http';
+// import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpService } from '@shared/services/http.service';
 import {
@@ -39,10 +39,8 @@ export class ContactService {
   public confirmPayment(
     payload : any
   ): Observable<ResponseModel<any>> {
-    const endpoint = 'payment/payment-status';
-    const param = new HttpParams()
-    .append('id', payload.id )
-    return this.http.makeRequestWithData('put', endpoint, param, payload);
+    const endpoint = `payment/payment-status/${payload.id}`;
+    return this.http.makeRequestWithData('put', endpoint, {}, payload);
   }
 
 }

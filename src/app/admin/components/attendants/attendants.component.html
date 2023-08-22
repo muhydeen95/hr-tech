@@ -20,7 +20,7 @@
               </ng-select>
             </div>
           </div>
-          <div class="col-4 my-auto">
+          <div class="col-4 my-auto pt-4">
             <span
               mat-raised-button
               #tooltip="matTooltip"
@@ -46,6 +46,7 @@
               #dt
               [value]="candidates"
               dataKey="_id"
+              [selection]="selectedCandidates"
               [paginator]="true"
               [rows]="10"
               [responsive]="true"
@@ -71,9 +72,9 @@
               </ng-template>
               <ng-template pTemplate="header">
                   <tr class="thead">
-                      <!-- <th class="table-checkbox">
+                      <th class="table-checkbox">
                           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                      </th> -->
+                      </th>
                       <th pSortableColumn="fullName">Name</th>
                       <th pSortableColumn="registrationNo">Reg. No</th>
                       <th pSortableColumn="email">Email</th>
@@ -86,9 +87,9 @@
               </ng-template>
               <ng-template pTemplate="body" let-row let-i="rowIndex">
               <tr (click)="showStudentDetails(row)" class="tbody click">
-                  <!-- <td (click)="stopParentEvent($event)" class="table-checkbox">
+                  <td (click)="stopParentEvent($event)" class="table-checkbox">
                       <p-tableCheckbox [value]="row"></p-tableCheckbox>
-                  </td> -->
+                  </td>
                   <td>{{ row.fullName | titlecase }}</td>
                   <td> {{ row.registrationNo }}</td>
                   <td>
@@ -179,8 +180,20 @@
         </button>
         <button
           class="btn btn-green btn-md me-2"
+          *ngIf="!candidateDetail.hasPaid"
+          [disabled]="sendProfileCard"
+          (click)="confirmPayment(candidateDetail._id)"
+        >
+          Confirm Payment
+          <i
+            class="fa fa-spinner fa-spin"
+            *ngIf="sendProfileCard"
+          ></i>
+        </button>
+        <button
+          class="btn btn-green btn-md me-2"
           *ngIf="candidateDetail.hasPaid"
-          (click)="sendprofileCard(candidateDetail._id)"
+          (click)="sendProfileCardToAttendant(candidateDetail._id)"
           [disabled]="sendProfileCard"
         >
           Send Profile Card

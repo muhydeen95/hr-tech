@@ -46,11 +46,25 @@ export class AttendantsService {
     return this.http.makeRequestWithData('post', endpoint, {});
   }
 
+  public multiSendpaymentReminder(
+    payload: any
+  ): Observable<ResponseModel<any>> {
+    const endpoint = `payment/send-multi-payment-reminder`;
+    return this.http.makeRequestWithData('post', endpoint, {}, payload);
+  }
+
   public sendprofileCard(
     id: string
   ): Observable<ResponseModel<any>> {
     const endpoint = `payment/send-profile-card/${id}`;
     return this.http.makeRequestWithData('post', endpoint, {});
+  }
+
+  public confirmPayment(
+    payload: any
+  ): Observable<ResponseModel<any>> {
+    const endpoint = `payment/payment-status/${payload.id}`;
+    return this.http.makeRequestWithData('put', endpoint, {}, payload);
   }
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {

@@ -25,11 +25,13 @@ export class ContactComponent implements OnInit {
   public regFormSubmitted!: boolean;
   public responsiveOptions: any[] | undefined;
   public images: {path: string }[] = [
-    {path: 'assets/images/conference-hall.webp'},
-    {path: 'assets/images/conference-hall.webp'},
-    {path: 'assets/images/banner.svg'},
-    {path: 'assets/images/banner.svg'},
-    {path: 'assets/images/banner.svg'},
+    {path: 'assets/images/gallery1.jpeg'},
+    {path: 'assets/images/gallery2.jpeg'},
+    {path: 'assets/images/gallery3.jpeg'},
+    {path: 'assets/images/gallery4.jpeg'},
+    {path: 'assets/images/gallery5.jpeg'},
+    {path: 'assets/images/gallery6.jpeg'},
+    {path: 'assets/images/gallery7.jpeg'},
   ];
   public countries = Country;
   public currencies = Currencies;
@@ -43,9 +45,9 @@ export class ContactComponent implements OnInit {
     {
       countryname: 'Nigeria',
       fee: [
-        {id: 1, type: 'Member', amount: 68187.86},
-        {id: 2, type: 'Student', amount: 54550.29},
-        {id: 3, type: 'Others', amount: 81825.43},
+        {id: 1, type: 'Member', amount: 130000},
+        {id: 2, type: 'Student', amount: 120000},
+        {id: 3, type: 'Others', amount: 150000},
       ]
     },
     {
@@ -53,17 +55,20 @@ export class ContactComponent implements OnInit {
       fee: [
         {id: 1, type: 'Member', amount: 1000},
         {id: 2, type: 'Student', amount: 800},
-        {id: 3, type: 'Others', amount: 1200},
+        {id: 3, type: 'Others', amount: 1100},
       ]
     },
     {
       countryname: 'Others',
       Fee: [
-        {id: 1, type: 'Member', amount: 88.61},
-        {id: 2, type: 'Student', amount: 70.89},
-        {id: 3, type: 'Others', amount: 106.34},
+        {id: 1, type: 'Member', amount: 175},
+        {id: 2, type: 'Student', amount: 150},
+        {id: 3, type: 'Others', amount: 200},
       ]
     },
+  ];
+  public profMemberships: string[] = [
+    'ALHRP', 'ANPGRH', 'CIHRM', 'CIPM', 'HRMAU', 'IPM', 'IPMZ', 'MAHRM', 'PNGHRI', 'SHRM',
   ]
 
   constructor(
@@ -111,10 +116,10 @@ export class ContactComponent implements OnInit {
       applicantType: ['', Validators.required],
       noOfRegistrants: [1, Validators.required],
       modeOfAttendance: ['Physical', Validators.required],
-      profMembership: ['', Validators.required],
+      profMembership: [''],
       requireAccomodation: [false, Validators.required],
       noOfAccomodants: [0, Validators.required],
-      comment: ['', Validators.required],
+      comment: [''],
       hasPaid: [false],
       amountToPay: [0],
       currency: [''],
@@ -171,17 +176,17 @@ export class ContactComponent implements OnInit {
       if ( country === 'Nigeria' && applicantType === "Member") {
         this.registrationForm.patchValue({
           currency: 'NGN',
-          amountToPay: 68187.86 * noOfRegistrants
+          amountToPay: 130000 * noOfRegistrants
         })
       } else if ( country === 'Nigeria' && applicantType === "Student") {
         this.registrationForm.patchValue({
           currency: 'NGN',
-          amountToPay: 54550.29 * noOfRegistrants
+          amountToPay: 120000 * noOfRegistrants
         })
       } else if ( country === 'Nigeria' && applicantType === "Others") {
         this.registrationForm.patchValue({
           currency: 'NGN',
-          amountToPay: 81825.43 * noOfRegistrants
+          amountToPay: 150000 * noOfRegistrants
         })
       } else if ( country === 'Ghana' && applicantType === "Member") {
         this.registrationForm.patchValue({
@@ -196,22 +201,22 @@ export class ContactComponent implements OnInit {
       } else if ( country === 'Ghana' && applicantType === "Others") {
         this.registrationForm.patchValue({
           currency: 'GHS',
-          amountToPay: 1200 * noOfRegistrants
+          amountToPay: 1100 * noOfRegistrants
         })
       } else if ( (country !== 'Nigeria' || country !== 'Ghana') && applicantType === "Member") {
         this.registrationForm.patchValue({
           currency: 'USD',
-          amountToPay: 88.61 * noOfRegistrants
+          amountToPay: 175 * noOfRegistrants
         })
       } else if ( (country !== 'Nigeria' || country !== 'Ghana') && applicantType === "Student") {
         this.registrationForm.patchValue({
           currency: 'USD',
-          amountToPay: 70.89 * noOfRegistrants
+          amountToPay: 150 * noOfRegistrants
         })
       } else {
         this.registrationForm.patchValue({
           currency: 'USD',
-          amountToPay: 106.34 * noOfRegistrants
+          amountToPay: 200 * noOfRegistrants
         })
       }
     };

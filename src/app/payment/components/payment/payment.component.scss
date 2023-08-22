@@ -1,8 +1,21 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+
 section {
     background-color: #FBF5EE;
-    min-height: 89vh;
+    height: 109vh;
     padding: 2rem;
+    // background: rgba($color: $blue-300, $alpha: 0.3) !important;
 }
+
+.card_wrapper {
+  width: 50%;
+  margin: auto;
+  background: $white-100;
+  border-radius: .8rem;
+  padding: 3rem;
+}
+
 .card {
     margin:auto;
     padding-top: 0;
@@ -11,6 +24,7 @@ section {
     text-align: center;
     border: 0;
     border-radius: 10px;
+    text-align: left;
 }
 img {
     height: 134px;
@@ -36,16 +50,60 @@ p {
     font-size: 14px;
     font-weight: 500;
     font-family: Montserrat;
-   
+
 }
 .btn:focus {
     box-shadow: none;
 }
 .instructions {
-    margin-top: 20px;
+    // margin-top: 20px;
     margin-bottom: 8px;
 }
 .details {
     align-items: center;
     margin-bottom: 8px;
+}
+.align-text {
+  align-items: center;
+}
+.bank-info {
+  span {
+    font-size: 1.6rem;
+  }
+  .text-bold {
+    font-weight: 700;
+  }
+}
+
+.sign-in-alt {
+  width: -webkit-fill-available;
+  height: 0.2rem;
+  position: relative;
+  text-align: center;
+  margin: 3.5rem auto 5rem auto;
+  span {
+    padding: .4rem 1.2rem;
+    width: 10.4rem;
+    height: 2.6rem;
+    color: $text-body;
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: rgba(15, 23, 51, 0.05);
+    border-radius: 2.4rem;
+  }
+  &::after {
+    content: '';
+    border-bottom: .1rem solid rgba($text-body, 0.1);
+    position: absolute;
+    right: 0;
+    top: .7rem;
+    width: 100%;
+  }
+}
+
+@include maxSize($canvas: M) {
+  .card_wrapper {
+    width: 100%;
+    margin: auto;
+  }
 }

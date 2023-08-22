@@ -13,6 +13,10 @@ export class PaymentComponent implements OnInit {
   public fee!: number;
   public currency!: string;
   public isLoading: boolean = false;
+  public amountToPay: number = 0;
+  public currenttab: number = 1;
+  public applicantType!: string;
+  public noOfRegistrants!: number;
 
   constructor(
     private _attendant: ContactService,
@@ -25,7 +29,30 @@ export class PaymentComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.fee = +params['amount'];
       this.currency = params['currency'];
+      this.noOfRegistrants = +params['bulk'];
+      this.applicantType = params['type'];
+      this.getAmount(this.applicantType);
     });
+  }
+
+  public getCurrentTab(tab: number) {
+    this.currenttab = tab;
+  }
+
+  public getAmount(type: string) {
+    switch (type) {
+      case 'Member':
+        this.amountToPay = 175 * this.noOfRegistrants;
+        break;
+      case 'Student':
+        this.amountToPay = 150 * this.noOfRegistrants;
+        break;
+      default:
+        this.amountToPay = 200 * this.noOfRegistrants;
+        break;
+    }
+    console.log(this.amountToPay);
+    return this.amountToPay;
   }
 
 
@@ -33,10 +60,11 @@ export class PaymentComponent implements OnInit {
     this.isLoading = true;
     const payload = {
       tx_ref: this.clientId,
+      amountToPay: this.amountToPay
     }
     this._attendant.makepayment(payload).subscribe({
         next: (res: any) => {
-            console.log(res);
+            // console.log(res);
             this.isLoading = false;
             const url = res.response.link;
             localStorage.setItem('paymentUrl', url);

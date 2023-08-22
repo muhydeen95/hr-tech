@@ -227,3 +227,47 @@
 .form-check-input[type="checkbox"] {
   border-radius: 0.4rem;
 }
+
+.dot-status {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+  &::before {
+      position: absolute;
+      color: $white-100;
+      top: -0.1rem;
+      left: .4rem;
+      font-weight: 500;
+      font-size: 1.2rem;
+  }
+  &-success {
+    background-color: $success;
+    &::before {
+      content: '✓';
+    }
+  }
+  &-error {
+    background-color: $error;
+  }
+  &-info {
+    background-color: $primary;
+    &::before {
+      content: '!';
+      align-items: center;
+      top: .05rem;
+      left: .85rem;
+    }
+  }
+  &-warning {
+    background-color: $warning;
+    &::before {
+      content: '!';
+      left: .6rem;
+    }
+  }
+  &-tip {
+    background-color: $tip;
+  }
+}

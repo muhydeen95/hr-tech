@@ -39,6 +39,12 @@
               </div>
               <div class="title">COLLABORATION</div>
             </div>
+            <div class="circle_wrapper">
+              <div class="circle_wrapper-counter circle_wrapper-counter-lilac">
+                <span>+1000</span>
+              </div>
+              <div class="title">PARTICIPANTS</div>
+            </div>
           </div>
         </div>
       </div>
@@ -47,7 +53,7 @@
 
   <ng-container>
     <div class="sponsors">
-      <carousel [cellsToShow]="5" [cellsToScroll]="5" [loop]="true" [autoplay]="true" [arrows]="false" [autoplayInterval]="5000">
+      <carousel [cellsToShow]="5" [cellsToScroll]="5" [loop]="true" [autoplay]="true" [arrows]="false" [autoplayInterval]="3000">
         <div class="carousel-cell">
           <img src="assets/images/GODP-logo.svg">
         </div>
@@ -55,28 +61,28 @@
             <img src="assets/images/gos-software.jpeg">
         </div>
         <div class="carousel-cell">
-          <img src="https://www.cipmghglobal.com/wp-content/uploads/2020/05/index.jpg">
+          <img src="assets/images/cipm.jpeg">
         </div>
         <div class="carousel-cell">
-          <img src="assets/images/GODP-logo.svg">
-        </div>
-        <div class="carousel-cell">
-          <img src="https://alhrp.org/wp-content/uploads/2022/10/logo.png">
-        </div>
-        <div class="carousel-cell">
-          <img src="assets/images/GODP-logo.svg">
-        </div>
-        <div class="carousel-cell">
-            <img src="assets/images/gos-software.jpeg">
-        </div>
-        <div class="carousel-cell">
-          <img src="https://www.cipmghglobal.com/wp-content/uploads/2020/05/index.jpg">
-        </div>
-        <div class="carousel-cell">
-          <img src="assets/images/GODP-logo.svg">
+          <img src="assets/images/cihrm.jpeg">
         </div>
         <div class="carousel-cell">
           <img src="https://alhrp.org/wp-content/uploads/2022/10/logo.png">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/hrmau.jpeg">
+        </div>
+        <div class="carousel-cell">
+            <img src="assets/images/ipm.jpeg">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/mahram.jpeg">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/anup.jpeg">
+        </div>
+        <div class="carousel-cell">
+          <img src="assets/images/pgri.jpeg">
         </div>
       </carousel>
     </div>
@@ -87,7 +93,7 @@
       <div class="container">
         <div class="row my-auto d-flex justify-content-center">
           <div class="col-10 col-md-8 col-lg-8">
-            <h2>The Largest Gathering of People Managers, HR Professionals and Technology Experts</h2>
+            <h2>The Largest Gathering of People Managers, HR Professionals and Technology Experts in West Africa</h2>
           </div>
           <div class="col-10 col-md-6 col-lg-6">
             <p>Charting the course for reducing the Brain Drain in the West African Sub Region through Discourse, Collaboration and Knowledge Sharing</p>
@@ -225,8 +231,8 @@
     <div class="sessions">
      <div class="container">
       <div class="title">
-        <h2>Why Attend HRTECH West Africa</h2>
-        <p>Leveraging on Business Intelligence for Better Performance</p>
+        <h2>Sessions</h2>
+        <p>Plenary, Technical Sessions and Gala Night</p>
       </div>
       <div class="row">
         <div class="col-md-3">
@@ -583,8 +589,8 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           <div class="col-12 col-md-12 col-lg-10">
-            <div class="row d-flex card">
-              <div class="col-md-4">
+            <div class="row card">
+              <div class="col-md-5 col-lg-4">
                 <div class="card-body">
                   <h5 class="card-title">
                     Venue
@@ -602,13 +608,16 @@
                   </div>
                 </div>
               </div>
-              <div class="d-none d-md-block col-md-8 carousel" >
+              <div class="d-none d-md-block col-md-7 col-lg-8" >
                 <carousel
                   [cellsToShow]="1"
                   [cellsToScroll]="1"
                   [loop]="true"
                   [images]="images"
                   [height]="450"
+                  [autoplay]="true"
+                  [arrows]="true"
+                  [autoplayInterval]="3000"
                 >
                 </carousel>
               </div>
@@ -797,8 +806,7 @@
                         }"
                       >
                         <option value="" disabled>--Select Professional Membership-</option>
-                        <option value="Physical">Physical</option>
-                        <option value="Online">Online</option>
+                        <option [value]="item" *ngFor="let item of profMemberships">{{ item }}</option>
                       </select>
                         <label for="profMembership">Professional Membership</label>
                   </div>
@@ -844,7 +852,7 @@
                       max-size="70000"
                       (change)="onFileDropped($event)"
                     />
-                    <!-- <label for="file">Choose a file</label> -->
+                    <label for="file">Upload Passport Photograph</label>
                   </div>
                   <div class="col-md-12">
                     <textarea

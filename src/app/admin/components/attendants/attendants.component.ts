@@ -23,6 +23,8 @@ export class AttendantsComponent implements OnInit, OnDestroy {
   @ViewChild('profileCard') profileCard!: ElementRef;
   public sub: Subscription = new Subscription();
   candidates: Attendant[] = [];
+  selectedCandidates: Attendant[] = [];
+  selectedIds: string[] = [];
   candidateDetail: Attendant = {
     _id: '',
     fullName: '',
@@ -47,7 +49,6 @@ export class AttendantsComponent implements OnInit, OnDestroy {
   };;
   candidatesToDisplay: any;
   tempresult: any;
-  selectedCandidates: any[] = [];
   isInitial: boolean = false;
   isShortlistingCandidates: boolean = false;
   isUnShortlistingCandidates: boolean = false;
@@ -228,6 +229,8 @@ export class AttendantsComponent implements OnInit, OnDestroy {
             res.message,
             'Success'
           );
+          this.loadCandidates();
+          this.removeStudentDetails();
         },
         error: (error: HttpErrorResponse) => {
           // console.log(error);
@@ -241,7 +244,39 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     );
   }
 
-  public sendprofileCard(id: any) {
+  public multiSendPaymentReminder() {
+    this.selectedCandidates.map((item) => {
+      this.selectedIds.push(item._id);
+    });
+    const payload = {
+      id: this.selectedIds,
+    };
+    this.sendReminder = true;
+    this.sub.add(
+      this._attendant.multiSendpaymentReminder(payload).subscribe({
+        next: (res: ResponseModel<any>) => {
+          // console.log(res);
+          this.sendReminder = false;
+          this._toastr.showSuccess(
+            res.message,
+            'Success'
+          );
+          this.loadCandidates();
+          this.removeStudentDetails();
+        },
+        error: (error: HttpErrorResponse) => {
+          // console.log(error);
+          this.sendReminder = false;
+          this._toastr.showError(
+            error.error?.message,
+            'Failed'
+          );
+        },
+      })
+    );
+  }
+
+  public sendProfileCardToAttendant(id: any) {
     this.sendProfileCard = true;
     this.sub.add(
       this._attendant.sendprofileCard(id).subscribe({
@@ -252,6 +287,38 @@ export class AttendantsComponent implements OnInit, OnDestroy {
             res.message,
             'Success'
           );
+          this.loadCandidates();
+          this.removeStudentDetails();
+        },
+        error: (error: HttpErrorResponse) => {
+          // console.log(error);
+          this.sendProfileCard = false;
+          this._toastr.showError(
+            error.error?.message,
+            'Failed'
+          );
+        },
+      })
+    );
+  }
+
+  public confirmPayment(id: any) {
+    this.sendProfileCard = true;
+    const payload = {
+      id: id,
+      hasPaid: true
+    }
+    this.sub.add(
+      this._attendant.confirmPayment(payload).subscribe({
+        next: (res: ResponseModel<any>) => {
+          // console.log(res);
+          this.sendProfileCard = false;
+          this._toastr.showSuccess(
+            res.message,
+            'Success'
+          );
+          this.loadCandidates();
+          this.removeStudentDetails();
         },
         error: (error: HttpErrorResponse) => {
           // console.log(error);
