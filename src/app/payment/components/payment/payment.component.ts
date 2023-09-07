@@ -32,11 +32,27 @@ export class PaymentComponent implements OnInit {
       this.noOfRegistrants = +params['bulk'];
       this.applicantType = params['type'];
       this.getAmount(this.applicantType);
+      this.getDefaultTab(this.currency);
     });
   }
 
   public getCurrentTab(tab: number) {
     this.currenttab = tab;
+  }
+
+  public getDefaultTab(currency: string) {
+    switch (currency) {
+      case 'GHS':
+        this.currenttab = 1;
+        break;
+      case 'NGN':
+        this.currenttab = 2;
+        break;
+      default:
+        this.currenttab = 3;
+        break;
+    }
+    return this.currenttab;
   }
 
   public getAmount(type: string) {
@@ -51,7 +67,6 @@ export class PaymentComponent implements OnInit {
         this.amountToPay = 200 * this.noOfRegistrants;
         break;
     }
-    console.log(this.amountToPay);
     return this.amountToPay;
   }
 

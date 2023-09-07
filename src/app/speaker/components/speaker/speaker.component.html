@@ -1,0 +1,37 @@
+
+<section>
+  <app-navbar
+    [display]="false"
+  ></app-navbar>
+
+  <ng-container >
+    <div class="banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <h2>{{ speaker.name }}</h2>
+              <h4>{{ speaker.title }}</h4>
+              <h3>{{ speaker.institute }}</h3>
+            </div>
+          </div>
+          <div
+            class="col-md-6 d-none d-md-block"
+            [style.background-image]="'url(' + speaker.imgUrl+ ')'"
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container >
+    <div class="content">
+      <div class="container">
+        <div class="detail" [innerHTML]="speaker.detail"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <app-footer></app-footer>
+</section>
+

@@ -15,6 +15,12 @@ const routes: Routes = [
     data: { breadcrumb: 'Admin' },
   },
   {
+    path: 'speaker/:id',
+    loadChildren: () =>
+      import('./speaker/speaker.module').then((m) => m.SpeakerModule),
+    data: { breadcrumb: 'Speaker' },
+  },
+  {
     path: 'payment/:id',
     loadChildren: () =>
       import('./payment/payment.module').then((m) => m.PaymentModule),

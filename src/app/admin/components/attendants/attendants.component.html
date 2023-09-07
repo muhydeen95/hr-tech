@@ -1,6 +1,6 @@
 <div class="d-body">
   <div class="mb-4">
-    <app-navbar></app-navbar>
+    <app-navbar [display]="false"></app-navbar>
   </div>
   <div class="page_wrapper">
     <section class="mt-5 mb-3 container">
@@ -156,7 +156,7 @@
           [src]="
             candidateDetail.fileUrl
               ? candidateDetail.fileUrl
-              : 'assets/img/Oval2.svg'
+              : 'assets/images/avatar.png'
           "
         />
       </div>

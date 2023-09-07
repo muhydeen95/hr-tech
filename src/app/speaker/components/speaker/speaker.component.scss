@@ -1,0 +1,140 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+
+section {
+
+  .banner {
+      background-size: cover;
+      background: #f7f7f7;
+      min-height: 60vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      color: $black-100;
+      margin-top: 7rem;
+      .row {
+        height: 100%;
+        .col-md-6 {
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: left;
+        }
+      }
+      h2 {
+        font-size: 7rem;
+        font-weight: 700;
+        // text-align: center;
+        line-height: 8rem;
+        margin-bottom: 2rem;
+      }
+      h4 {
+        font-size: 2.4rem;
+        font-weight: 400;
+        // text-align: center;
+        line-height: 2.8rem;
+        margin-bottom: 3rem;
+      }
+      h3 {
+        line-height: 2.5rem;
+      }
+  }
+
+  .content {
+    min-height: 80vh;
+    .detail {
+      padding: 3rem;
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 150%;
+      text-align: justify;
+      color: $text-body;
+    }
+  }
+
+}
+
+@include maxSize($canvas: M) {
+  section {
+    .banner {
+      background-size: cover;
+      background: #f7f7f7;
+      min-height: 60vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      color: $black-100;
+      text-align: center;
+      h2 {
+        font-size: 3.2rem;
+        font-weight: 700;
+        text-align: center;
+        line-height: 3.9rem;
+        margin-bottom: 2rem;
+      }
+      h4 {
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-align: center;
+        line-height: 2.8rem;
+        margin-bottom: 3rem;
+      }
+      h3 {
+        text-align: center;
+      }
+      button {
+        margin-bottom: 3.5rem;
+      }
+      .circle_wrapper {
+        text-align: center;
+        &-counter {
+          height: 4rem;
+          width: 4rem;
+          border-radius: 50%;
+          margin: 1.5rem 1.3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          span {
+            font-size: 1.2rem;
+            font-weight: 400;
+          }
+          &-yellow {
+            border: .1rem solid #F4BB2A;
+          }
+          &-green {
+            border: .1rem solid #66FFF9;
+          }
+          &-purple {
+            border: .1rem solid #B200FC;
+          }
+          &-blue {
+            border: .1rem solid #0080FF;
+          }
+        }
+        .title {
+          font-size: .8rem;
+          font-weight: 400;
+        }
+      }
+   }
+
+   .content {
+    min-height: 80vh;
+    .detail {
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 150%;
+      text-align: justify;
+    }
+  }
+
+  }
+}
+
+

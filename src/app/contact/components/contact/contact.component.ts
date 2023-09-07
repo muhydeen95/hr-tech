@@ -8,6 +8,7 @@ import { Attendant, ResponseModel } from 'app/models/response.model';
 import { Subscription } from 'rxjs';
 import { Country } from '@shared/jsons/country-code';
 import { Router } from '@angular/router';
+import { speakers } from '@shared/jsons/speakers';
 
 
 
@@ -41,6 +42,7 @@ export class ContactComponent implements OnInit {
   public attendant!: Attendant;
   public documentUrl: any;
   public file!: File;
+  public speakers = speakers;
   public payments = [
     {
       countryname: 'Nigeria',
