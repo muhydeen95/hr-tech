@@ -1,12 +1,12 @@
 export const speakers = [
   {
     id: 1,
-    name: 'Dr. Kwapong',
+    name: 'Dr. Edward Kwapong',
     title: 'President, CIHRM',
     institute: '',
     detail:'',
     imgSrc: 'https://imgs.search.brave.com/2K296eI2McIONtLKrj-y0-NY0Ypi946vcOhl133am8Q/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93d3cu/Z3JhcGhpYy5jb20u/Z2gvaW1hZ2VzLzIw/MTcvbm92LzA5L2Vk/d2FyZF9rd2Fwb25n/LnBuZw',
-    imgUrl: 'assets/images/kwapong.png'
+    imgUrl: 'assets/images/kwapong.jpeg'
   },
   {
     id: 2,
@@ -51,8 +51,8 @@ export const speakers = [
   {
     id: 4,
     name: 'Olatomiwa Williams',
-    title: 'Microsoft, Country Manager, Nigeria & Ghana',
-    institute: '',
+    title: 'Country Manager, Nigeria & Ghana',
+    institute: 'Microsoft',
     detail:'',
     imgSrc: 'https://imgs.search.brave.com/p-pJPpA9R8Fnye4vslckKyaPS7dVUcVaz1uZPvb855w/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vbGl2ZS5t/cmYuaW8vc3RhdGlj/cy9pL3BzL3RyaWJ1/bmVvbmxpbmVuZy5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjEvMDgvT2xhLXdp/bGxpYW1zLmpwZz93/PTEyMDAmc3NsPTE',
     imgUrl: 'assets/images/tomiwa.png',
@@ -60,8 +60,8 @@ export const speakers = [
   {
     id: 5,
     name: 'Mr. Seun Akinyelu',
-    title: 'Group MD, GODP Consulting',
-    institute: '',
+    title: 'Group MD',
+    institute: 'GODP Consulting',
     detail:'',
     imgSrc: 'https://guardian.ng/wp-content/uploads/2017/11/Seun-Akinyelu.jpg',
     imgUrl: 'assets/images/seun.png',

@@ -119,7 +119,7 @@
           </div>
           <div class="col-md-3" *ngFor="let speaker of speakers">
             <div class="profile-card" [routerLink]="['speaker', speaker.id]">
-              <img [src]="speaker.imgSrc" [alt]="speaker.name" style="width:100%">
+              <img [src]="speaker.imgUrl" [alt]="speaker.name" style="width:100%">
               <h1>{{ speaker.name }}</h1>
               <p class="title">{{ speaker.title }}</p>
               <p>{{ speaker.institute }}</p>
