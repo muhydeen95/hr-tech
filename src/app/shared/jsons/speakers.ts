@@ -51,8 +51,8 @@ export const speakers = [
   {
     id: 4,
     name: 'Olatomiwa Williams',
-    title: 'Country Manager, Nigeria & Ghana',
-    institute: 'Microsoft',
+    title: 'Microsoft, Country Manager, Nigeria & Ghana',
+    institute: '',
     detail:'',
     imgSrc: 'https://imgs.search.brave.com/p-pJPpA9R8Fnye4vslckKyaPS7dVUcVaz1uZPvb855w/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vbGl2ZS5t/cmYuaW8vc3RhdGlj/cy9pL3BzL3RyaWJ1/bmVvbmxpbmVuZy5j/b20vd3AtY29udGVu/dC91cGxvYWRzLzIw/MjEvMDgvT2xhLXdp/bGxpYW1zLmpwZz93/PTEyMDAmc3NsPTE',
     imgUrl: 'assets/images/tomiwa.png',
@@ -60,8 +60,8 @@ export const speakers = [
   {
     id: 5,
     name: 'Mr. Seun Akinyelu',
-    title: 'Group MD',
-    institute: 'GODP Consulting',
+    title: 'Group MD, GODP Consulting',
+    institute: '',
     detail:'',
     imgSrc: 'https://guardian.ng/wp-content/uploads/2017/11/Seun-Akinyelu.jpg',
     imgUrl: 'assets/images/seun.png',
