@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +10,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { AuthInterceptor } from '@core/interceptors/auth.interceptor';
+import { LocalStorageService } from '@shared/services/local-storage.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,6 +33,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     }),
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    LocalStorageService,
+    { provide: 'WINDOW', useValue: window },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],

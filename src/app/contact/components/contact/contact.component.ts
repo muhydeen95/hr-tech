@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { speakers } from '@shared/jsons/speakers';
 
 
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -71,7 +70,9 @@ export class ContactComponent implements OnInit {
   ];
   public profMemberships: string[] = [
     'ALHRP', 'ANPGRH', 'CIHRM', 'CIPM', 'HRMAU', 'IPM', 'IPMZ', 'MAHRM', 'PNGHRI', 'SHRM',
-  ]
+  ];
+  public telOptions = {initialCountry: 'ng', preferredCountries: ['ng', 'gh']};
+  public hasError!: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -168,6 +169,27 @@ export class ContactComponent implements OnInit {
         noOfAccomodants: 0
       })
     }
+  }
+
+  numericOnly(event: any) {
+    let patt = /^([0-9])$/;
+    let result = patt.test(event.key);
+    return result;
+  }
+
+  onError(obj: any) {
+    this.hasError = obj;
+    // console.log('hasError: ', obj);
+}
+
+  public telInputObject(obj: any) {
+
+  }
+
+  public onCountryChange(country: any) {
+    this.registrationForm.patchValue({
+      phoneNumber: '+' + country.dialCode
+    })
   }
 
   public validateApplicanttype() {

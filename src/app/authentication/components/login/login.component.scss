@@ -1,0 +1,76 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+@import "partials/components/forms";
+
+$side_padding: 6.4rem 20rem 2.4rem 12.2rem;
+$mobile_side_padding: 12rem 3rem;
+section {
+  background: url('../../../../assets/images/login-bg.webp') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 0 2000px rgba($color: #000000, $alpha: 0.7);
+  .login_wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    &-card {
+      background: $white-100;
+      width: 45rem;
+      min-height: 50vh;
+      padding: 3rem;
+      box-shadow: 0rem 0.4rem 1.6rem rgba(0, 0, 0, 0.05);
+      margin-top: 3rem;
+      margin-bottom: 2rem;
+    }
+    &-logo {
+      margin-bottom: 5.6rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    &-header {
+      h1 {
+        // font-family: $docstream_font_bold !important;
+        font-size: 3.2rem;
+        line-height: 4.8rem;
+      }
+      p {
+        font-size: 1.4rem;
+        line-height: 2.1rem;
+        color: $black-100;
+        margin-bottom: 5.6rem;
+      }
+    }
+    .position-relative {
+      .fa {
+        position: absolute;
+        font-size: 1.5rem;
+        top: 1.8rem;
+        right: 1.5rem;
+      }
+    }
+    label {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+
+
+
+@include maxSize($canvas: M) {
+  section {
+    .login_wrapper {
+      &-card {
+        background: $white-100;
+        width: 35rem;
+        min-height: 50vh;
+        padding: 2.5rem;
+      }
+    }
+  }
+}

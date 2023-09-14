@@ -1,0 +1,94 @@
+<section>
+  <div class="login_wrapper">
+    <div class="login_wrapper-card">
+      <div class="login_wrapper-logo">
+        <embed
+          src="assets/images/hr-tech-logo.jpeg"
+          alt="GOS HRM Logo"
+        />
+      </div>
+      <div class="login_wrapper-form">
+        <form [formGroup]="loginForm">
+          <div class="my-3" *ngIf="isError">
+            <p class="alert alert-danger">
+              {{ err_message }}
+            </p>
+          </div>
+          <div class="form_group mb-4">
+            <label for="email_Address" class="form-label"
+              >Email Address
+              <span>● </span>
+            </label>
+            <input
+              type="email"
+              id="email_Address"
+              class="form-control"
+              placeholder="i.sample@example.com"
+              formControlName="email"
+              [ngClass]="{
+                'is-invalid':
+                  (loginForm.get('email')?.errors &&
+                  loginForm.get('email')?.touched) ||
+                  (loginForm.get('email')?.hasError('required') &&
+                  loginFormSubmitted)
+              }"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="loginForm.get('email')?.hasError('required') &&
+              loginFormSubmitted"
+            >
+              Enter a valid email address
+            </div>
+          </div>
+          <div class="form_group mb-3">
+            <label for="password" class="form-label"
+              >Password
+              <span>● </span>
+            </label>
+            <div class="position-relative">
+              <input
+                class="form-control pr-2"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Enter password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid':
+                    (loginForm.get('password')?.errors &&
+                    loginForm.get('password')?.touched) ||
+                    (loginForm.get('password')?.hasError('required') &&
+                    loginFormSubmitted)
+                }"
+              />
+              <i
+                class="fa fa-eye-slash click"
+                *ngIf="showPassword; else hidePassword"
+                (click)="showPassword = !showPassword"
+              ></i>
+              <ng-template #hidePassword>
+                <i
+                  class="fa fa-eye click"
+                  (click)="showPassword = !showPassword"
+                ></i>
+              </ng-template>
+            </div>
+            <div
+              class="invalid-feedback"
+              *ngIf="loginForm.get('password')?.hasError('required') &&
+              loginFormSubmitted"
+            >
+              Enter a valid email address
+            </div>
+          </div>
+          <button class="btn btn-green btn-lg w-100 mt-5" (click)="login()">
+            <app-loading-button
+              [text]="'Login'"
+              [condition]="isLoggingIn"
+            ></app-loading-button>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</section>

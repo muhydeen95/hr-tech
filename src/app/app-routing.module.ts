@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RouteGuard } from '@core/guards/route.guard';
 
 const routes: Routes = [
   {
@@ -9,10 +10,17 @@ const routes: Routes = [
     data: { breadcrumb: 'Attendant' },
   },
   {
+    path: 'authentication',
+    loadChildren: () =>
+      import('./authentication/authentication.module').then((m) => m.AuthenticationModule),
+    data: { breadcrumb: 'Attendant' },
+  },
+  {
     path: 'admin',
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
-    data: { breadcrumb: 'Admin' },
+      data: { breadcrumb: 'Admin' },
+      canActivate: [RouteGuard],
   },
   {
     path: 'speaker/:id',

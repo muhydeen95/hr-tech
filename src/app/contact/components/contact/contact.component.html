@@ -543,6 +543,7 @@
                   <div class="col-md-4">
                     <input
                       type="text" id="fullName"
+                      class=""
                       name="fullName" placeholder=" " formControlName="fullName"
                       [ngClass]="{
                         'is-invalid':
@@ -568,8 +569,9 @@
                   </div>
                   <div class="col-md-4">
                     <input
-                      type="text" id="phoneNumber"
-                      name="phoneNumber" placeholder=" "
+                      type="tel"
+                      id="phoneNumber"
+                      class="form-control"
                       formControlName="phoneNumber"
                       [ngClass]="{
                         'is-invalid':
@@ -578,6 +580,24 @@
                           (registrationForm.get('phoneNumber')!.errors && regFormSubmitted)
                       }"
                     />
+                    <!-- <input
+                      type="tel"
+                      id="phoneNumber"
+                      ng2TelInput
+                      class="form-control text-right"
+                      formControlName="phoneNumber"
+                      [ng2TelInputOptions]="telOptions"
+                      (keypress)="numericOnly($event)"
+                      (hasError)="onError($event)"
+                      (intlTelInputObject)="telInputObject($event)"
+                      (countryChange)="onCountryChange($event)"
+                      [ngClass]="{
+                        'is-invalid':
+                          (registrationForm.get('phoneNumber')!.errors &&
+                            registrationForm.get('phoneNumber')!.touched) ||
+                          (registrationForm.get('phoneNumber')!.errors && regFormSubmitted)
+                      }"
+                    /> -->
                       <label for="phoneNumber">Phone Number</label>
                   </div>
                   <div class="col-md-4">

@@ -5,6 +5,7 @@ import { ContactRoutingModule } from './contact-routing.module';
 import { SharedModule } from '@shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { Ng2TelInputModule } from 'ng2-tel-input';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     ContactRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    Ng2TelInputModule
   ]
 })
 export class ContactModule { }
