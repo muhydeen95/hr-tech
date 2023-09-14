@@ -202,11 +202,7 @@ export class PaymentConfirmationComponent implements OnInit {
     this.sub.add(
       this._admin.sendprofileCard(id).subscribe({
         next: (res: ResponseModel<any>) => {
-          // console.log(res);
-          // this._toastr.showSuccess(
-          //   res.message,
-          //   'Success'
-          // );
+      
         },
         error: (error: HttpErrorResponse) => {
           // console.log(error);
