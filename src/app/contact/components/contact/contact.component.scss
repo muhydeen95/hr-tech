@@ -374,9 +374,9 @@ section {
 				margin-top: 1.5rem;
 				padding: 1.35rem 1.6rem;
 				border: none !important;
-				border-bottom: 2px solid #6f42c1 !important;
+				border-bottom: .2rem solid #6f42c1 !important;
 				transition: border-color 0.2s ease;
-				background-color: #fff !important;
+				background-color: $white-100 !important;
         font-size: 1.4rem !important;
         color: $black-300;
         &.is-invalid {
@@ -390,15 +390,15 @@ section {
           box-shadow: none;
         }
 			}
-      
+
 			select {
 				width: 100%;
 				margin-top: 2rem;
 				padding: 1.35rem 1.6rem;
 				border: none !important;
-				border-bottom: 2px solid #6f42c1 !important;
+				border-bottom: .2rem solid #6f42c1 !important;
 				transition: border-color 0.2s ease;
-				background-color: #fff !important;
+				background-color: $white-100 !important;
         font-size: 1.4rem !important;
         color: $black-300;
         &.is-invalid {
@@ -672,5 +672,17 @@ section {
 
 :host ::ng-deep .iti {
   width: 100% !important;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  padding-left: 0.8rem;
+  &.is-invalid {
+    border-bottom: 0.1rem solid $error !important;
+    background-color: $white-100;
+  }
+  &:focus {
+    background-color: $white-100;
+    color: $black-200;
+    border-bottom: 0.1rem solid rgba($blue-300, 0.4) !important;
+    box-shadow: none;
+  }
 }
+

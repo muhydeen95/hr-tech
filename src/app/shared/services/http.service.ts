@@ -27,7 +27,7 @@ export class HttpService {
   }
 
   makeRequestWithData<T>(
-    method: 'post' | 'put' | 'patch' | 'get',
+    method: 'post' | 'put' | 'patch' | 'get' | 'delete',
     endpoint: string,
     params: any,
     body?: any,

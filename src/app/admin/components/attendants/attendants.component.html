@@ -52,6 +52,7 @@
               [scrollable]="true"
               [columns]="cols"
               [scrollHeight]="'450px'"
+              styleClass="p-datatable-striped"
           >
               <ng-template pTemplate="caption">
                   <div class="row d-flex justify-content-between">
@@ -145,7 +146,7 @@
       class="text-right font20 font-light click"
       (click)="removeStudentDetails()"
     >
-      <i class="fa fa-close"></i>
+      <img src="assets/icons/close.svg" alt="">
     </div>
     <div class="text-center font20 mb-5">Attendant Information</div>
     <div class="text-center">

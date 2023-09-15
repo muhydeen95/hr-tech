@@ -3,9 +3,9 @@
   </div>
   <div class="page_wrapper">
     <section class="mt-5 mb-3 container">
-      <div class="row d-flex justify-content-between mt-5 mb-3">
-        <h3 class="col-md-3 font20">Event Speakers</h3>
-        <div class="col-md-1 d-flex">
+      <div class="d-flex justify-content-between mt-5 mb-3">
+        <h3 class="font20">Event Speakers</h3>
+        <div class="d-flex">
           <span
               mat-raised-button
               #tooltip="matTooltip"
@@ -48,6 +48,7 @@
               [scrollable]="true"
               [columns]="cols"
               [scrollHeight]="'450px'"
+              styleClass="p-datatable-striped"
           >
               <ng-template pTemplate="caption">
                   <div class="row d-flex justify-content-between">
@@ -92,15 +93,28 @@
                     }}
                   </td>
                   <td>{{ row?.phoneNumber || '--'  }}</td>
-                  <td>{{ row?.organization  }}</td>
-                  <td>{{ row?.position }}</td>
+                  <td>{{ row?.organization || '--'  }}</td>
+                  <td>{{ row?.position || '--' }}</td>
                   <td (click)="stopParentEvent($event)">
                     <div class="d-flex align-items-center me-2">
                       <span
-                        class="badge badge-info"
+                        class="badge badge-info me-3"
                         (click)="openDialog({isEditing: true, editObject: row})"
                       >
                         Edit
+                      </span>
+                      <span
+                        class="badge badge-error"
+                        (click)="deleteSpeaker(row)"
+                      >
+                        Delete
+                        <app-loader
+                          *ngIf="speakerId == row._id"
+                          class="ms-2"
+                          [loading]="speakerId == row._id"
+                          color="black"
+                          [width]="10"
+                        ></app-loader>
                       </span>
                     </div>
                   </td>
@@ -128,9 +142,9 @@
       class="text-right font20 font-light click"
       (click)="removeStudentDetails()"
     >
-      <i class="fa fa-close"></i>
+    <img src="assets/icons/close.svg" alt="">
     </div>
-    <div class="text-center font20 mb-5">Attendant Information</div>
+    <div class="text-center font20 mb-5">Speaker Information</div>
     <div class="text-center">
       <div class="detail-avater mb-3">
         <img
@@ -149,16 +163,17 @@
     <div class="row">
       <div class="col-lg-6 col-sm-12">
         <div class="mb-3">
-          <label class="font12 font-bold text-grey">REG. NO</label>
-          <h5 class="font16 text-break">
-            {{ candidateDetail.fullName }}
-          </h5>
-        </div>
-
-        <div class="mb-3">
           <label class="font12 font-bold text-grey">EMAIL</label>
           <h5 class="font16 text-break">
             {{ candidateDetail.email }}
+          </h5>
+        </div>
+        <div class="mb-3">
+          <label class="font12 font-bold text-grey">PHONE NO.</label>
+          <h5 class="font16 text-break">
+            {{
+              candidateDetail.phoneNumber ? candidateDetail.phoneNumber : "--"
+            }}
           </h5>
         </div>
       </div>
@@ -188,38 +203,11 @@
           </h5>
         </div>
         <div class="mb-3">
-          <label class="font12 font-bold text-grey">APPLICANT TYPE</label>
-          <h5 class="font16 text-break">
-            {{ candidateDetail.fullName ? candidateDetail.fullName : '--' }}
-          </h5>
-        </div>
-      </div>
-      <div class="col-lg-6 col-sm-12 sm-mt my-auto">
-        <div class="mb-3">
           <label class="font12 font-bold text-grey">POSITION</label>
           <h5 class="font16 text-break">
             {{ candidateDetail.position ? candidateDetail.position : '--' }}
           </h5>
         </div>
-        <div class="mb-3">
-          <label class="font12 font-bold text-grey">MEMBERSHIP</label>
-          <h5 class="font16 text-break">
-            {{ candidateDetail.fullName ? candidateDetail.fullName : '--' }}
-          </h5>
-        </div>
       </div>
     </div>
-    <div class="row my-4 py-4 line-under sm-mt-none sm-pt-none">
-      <div class="col-6 sm-mt mb-3">
-        <label class="font12 font-bold text-grey">MODE OF ATTENDANCE</label>
-        <h5 class="font16">{{ candidateDetail.fullName }}</h5>
-      </div>
-      <div class="col-6 sm-mt mb-3">
-        <label class="font12 font-bold text-grey">DATE REGISTERED</label>
-        <h5 class="font16">
-          {{ candidateDetail.createdAt | date : "short" }}
-        </h5>
-      </div>
-    </div>
-  </div>
 </div>

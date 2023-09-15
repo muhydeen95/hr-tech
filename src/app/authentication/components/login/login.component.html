@@ -9,11 +9,7 @@
       </div>
       <div class="login_wrapper-form">
         <form [formGroup]="loginForm">
-          <div class="my-3" *ngIf="isError">
-            <p class="alert alert-danger">
-              {{ err_message }}
-            </p>
-          </div>
+         <app-error [error_message]="err_message"></app-error>
           <div class="form_group mb-4">
             <label for="email_Address" class="form-label"
               >Email Address

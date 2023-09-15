@@ -111,7 +111,7 @@
                 <h5 class="card-title">
                   Global Experts in Talent Management, Technology and Leadership
                 </h5>
-                <p class="card-text">
+                <p class="card-text" align="justify">
                   Join renowned experts​. Our speakers are industry practitioners with extensive experience leading, running, and managing talents, technology and businesses. Over 20 experts will share their industry insights, best practices, and learnings with you.
                 </p>
               </div>
@@ -568,10 +568,9 @@
                       <label for="email">Email</label>
                   </div>
                   <div class="col-md-4">
-                    <input
-                      type="tel"
-                      id="phoneNumber"
-                      class="form-control"
+                    <!-- <input
+                      type="tel" id="phoneNumber"
+                      name="phoneNumber" placeholder=" "
                       formControlName="phoneNumber"
                       [ngClass]="{
                         'is-invalid':
@@ -579,12 +578,12 @@
                             registrationForm.get('phoneNumber')!.touched) ||
                           (registrationForm.get('phoneNumber')!.errors && regFormSubmitted)
                       }"
-                    />
-                    <!-- <input
+                    /> -->
+                    <input
                       type="tel"
                       id="phoneNumber"
+                      name="phoneNumber" placeholder=" "
                       ng2TelInput
-                      class="form-control text-right"
                       formControlName="phoneNumber"
                       [ng2TelInputOptions]="telOptions"
                       (keypress)="numericOnly($event)"
@@ -597,7 +596,7 @@
                             registrationForm.get('phoneNumber')!.touched) ||
                           (registrationForm.get('phoneNumber')!.errors && regFormSubmitted)
                       }"
-                    /> -->
+                    />
                       <label for="phoneNumber">Phone Number</label>
                   </div>
                   <div class="col-md-4">
@@ -775,6 +774,14 @@
                     />
                     <label for="file">Upload Passport Photograph</label>
                   </div>
+                  <div class="col-md-4 mt-4" *ngIf="file">
+                    <app-uploaded-doc
+                        [file_name]="file.name"
+                        [file_size]="file.size"
+                        [type]="file.type"
+                        (remove)="removeFile()"
+                    ></app-uploaded-doc>
+                </div>
                   <div class="col-md-12">
                     <textarea
                       name="comment" id="comment"

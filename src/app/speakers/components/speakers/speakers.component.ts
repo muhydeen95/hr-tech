@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import {
   Component,
   OnInit,
@@ -12,6 +13,7 @@ import { SpeakersService } from "app/speakers/services/speaker.service";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogModel } from "@shared/components/models/dialog.model";
 import { AddSpeakerDialogComponent } from "app/speakers/dialogs/add-speaker-dialog/add-speaker-dialog.component";
+import { Toastr } from "@GlobalService/toastr.service";
 
 @Component({
   selector: 'app-speakers',
@@ -51,12 +53,14 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   ];
   public sendReminder: boolean = false;
   public sendProfileCard: boolean = false;
+  public speakerId!: string;
 
 
   constructor(
     private _speaker: SpeakersService,
     private _helper: HelperService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private _toastr: Toastr
   ) {}
 
   ngOnInit() {
@@ -171,7 +175,28 @@ export class SpeakersComponent implements OnInit, OnDestroy {
         } else {
           this.candidates = [event?.editObject, ...this.candidates];
         }
+        this.speakerId = '';
       }
+    );
+  }
+
+  public deleteSpeaker(speaker: Speaker): void {
+    this.speakerId = speaker._id;
+    this.sub.add(
+      this._speaker.deleteSpeaker(speaker).subscribe({
+        next: (res: any) => {
+          this._toastr.showSuccess(res.message, 'success');
+          this.candidates.splice(
+            this.candidates.findIndex((a) => a._id == speaker._id),
+            1
+          );
+          this.speakerId = '';
+        },
+        error: (error: HttpErrorResponse) => {
+          this.speakerId =  '';
+          this._toastr.showError(error?.error?.message, 'error');
+        },
+      })
     );
   }
 

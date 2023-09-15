@@ -45,6 +45,13 @@ export class SpeakersService {
     return this.http.makeRequestWithData('put', endpoint, {}, payload);
   }
 
+  public deleteSpeaker(
+    payload: Speaker
+  ): Observable<ResponseModel<Speaker>> {
+    const endpoint = `speaker/delete/${payload._id}`;
+    return this.http.makeRequestWithData('delete', endpoint, {});
+  }
+
   public exportAllSpeakers(): Observable<ResponseModel<Speaker>> {
     const endpoint = 'Speaker/export';
     return this.http.getRequest(endpoint);

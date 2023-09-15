@@ -138,7 +138,7 @@ export class ContactComponent implements OnInit {
     this.registrationForm = this.fb.group({
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['+234', Validators.required],
       organization: ['', Validators.required],
       position: [''],
       registrationNo: [''],
@@ -305,6 +305,11 @@ export class ContactComponent implements OnInit {
       };
     }
 
+  }
+
+  public removeFile(): void {
+    this.inputFile.nativeElement.value = null;
+    this.file = null as any;
   }
 
   public submit() {

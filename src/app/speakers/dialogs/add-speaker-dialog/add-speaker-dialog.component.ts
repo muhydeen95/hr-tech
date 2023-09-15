@@ -88,6 +88,7 @@ export class AddSpeakerDialogComponent implements OnInit {
       phoneNumber: [this.data.editObject?.phoneNumber ?? ''],
       country: [this.data.editObject?.country ?? ''],
       biography: [this.data.editObject?.biography ?? ''],
+      fileUrl: [this.data.editObject?.fileUrl ?? ''],
       imgUrl: [null],
     });
 
@@ -153,7 +154,7 @@ export class AddSpeakerDialogComponent implements OnInit {
             // console.log(res)
             this.event.emit({
               isEditing: this.data?.isEditing,
-              editObject: payload,
+              editObject: res.response,
             });
             this.speakerFormSubmitted = false;
             this.close.nativeElement.click();
