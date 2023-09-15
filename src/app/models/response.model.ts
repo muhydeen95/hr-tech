@@ -29,3 +29,17 @@ export interface Attendant {
   createdAt: string,
 
 }
+
+export interface Speaker {
+  _id: string,
+  fullName: string,
+  email: string,
+  phoneNumber: string,
+  organization: string,
+  position: string,
+  country: string,
+  biography: string,
+  fileUrl: string,
+  imgUrl: string,
+  createdAt: string,
+}

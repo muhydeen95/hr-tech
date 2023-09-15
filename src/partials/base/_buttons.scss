@@ -152,6 +152,16 @@
     color: $success;
     border: 0.1rem solid $success;
   }
+  &-info {
+    background: rgba($primary, 0.1);
+    color: $primary;
+    border: 0.1rem solid $primary;
+  }
+  &-warning {
+    background: rgba($warning, 0.1);
+    color: $warning;
+    border: 0.1rem solid $warning;
+  }
 }
 // &-error {
 //   background: rgba($error, 0.1);

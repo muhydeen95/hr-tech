@@ -1,0 +1,25 @@
+<div class="form-group form_group">
+  <label
+    class="upload-document-wrapper click py-5"
+    [ngClass]="'bg-'+bgColor"
+    for="file-1"
+    (drop)="dropHandler($event)"
+    (dragover)="dragOverHandler($event)"
+  >
+    <div class="d-flex align-items-center justify-content-center flex-column">
+      <h2 class="text-center">Drag and drop document(s)</h2>
+      <p>Or</p>
+      <div class="btn btn-green btn-lg">Browse documents</div>
+      <p class="text-danger">Only Image is allowed</p>
+    </div>
+    <input
+      type="file"
+      name="file-1"
+      id="file-1"
+      accept="image/png, image/gif, image/jpeg"
+      hidden
+      [multiple]="isMultiple ? true : null"
+      (change)="onFileDropped($event)"
+    />
+  </label>
+</div>

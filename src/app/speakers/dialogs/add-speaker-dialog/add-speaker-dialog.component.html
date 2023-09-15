@@ -1,0 +1,185 @@
+<div class="d-flex justify-content-between" mat-dialog-title>
+  <h2 mat-dialog-title>{{ data.isEditing ? 'Edit' : 'Add' }} Speaker </h2>
+  <div class="click" mat-dialog-close>
+    <img src="assets/icons/close.svg" alt="" />
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="speakerForm">
+      <app-error [error_message]="error_message"></app-error>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                <label>Full Name <span class="text-red">●</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Full Name"
+                  formControlName="fullName"
+                  (keyup)="checkForKeyEnter($event)"
+                  [ngClass]="{
+                    'is-invalid':
+                      (speakerForm.get('fullName')?.errors &&
+                        speakerForm.get('fullName')?.touched) ||
+                      (speakerForm.get('fullName')?.hasError('required') &&
+                        speakerFormSubmitted)
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    speakerForm.get('fullName')?.hasError('required') &&
+                    speakerFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                  <label>Email <span class="text-red">●</span> </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter Email Address"
+                    formControlName="email"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (speakerForm.get('email')?.errors &&
+                          speakerForm.get('email')?.touched) ||
+                        (speakerForm.get('email')?.hasError('required') &&
+                          speakerFormSubmitted)
+                    }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    speakerForm.get('email')?.hasError('required') &&
+                    speakerFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                  <label>Organization <span class="text-red">●</span> </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Organization Name"
+                    formControlName="organization"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (speakerForm.get('organization')?.errors &&
+                          speakerForm.get('organization')?.touched) ||
+                        (speakerForm.get('organization')?.hasError('required') &&
+                          speakerFormSubmitted)
+                    }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    speakerForm.get('organization')?.hasError('required') &&
+                    speakerFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                  <label>Position <span class="text-red">●</span> </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter position"
+                    formControlName="position"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (speakerForm.get('position')?.errors &&
+                          speakerForm.get('position')?.touched) ||
+                        (speakerForm.get('position')?.hasError('required') &&
+                          speakerFormSubmitted)
+                    }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    speakerForm.get('position')?.hasError('required') &&
+                    speakerFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+              </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group form_group">
+                <label>Biography <span class="text-red">●</span> </label>
+                <angular-editor
+                  [config]="config"
+                  formControlName="biography"
+                  (keyup)="checkForKeyEnter($event)"
+                  [ngClass]="{
+                    'is-invalid':
+                      (speakerForm.get('biography')?.errors &&
+                        speakerForm.get('biography')?.touched) ||
+                      (speakerForm.get('biography')?.hasError('required') &&
+                        speakerFormSubmitted)
+                  }"
+                ></angular-editor>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  speakerForm.get('biography')?.hasError('required') &&
+                  speakerFormSubmitted
+                "
+              >
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <app-upload-doc
+                (selectedFiles)="onFileDropped($event)"
+            ></app-upload-doc>
+        </div>
+        <div class="col-md-6" *ngIf="file">
+            <app-uploaded-doc
+                [file_name]="file.name"
+                [file_size]="file.size"
+                [type]="file.type"
+                (remove)="removeFile()"
+            ></app-uploaded-doc>
+        </div>
+      </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    [mat-dialog-close]="false"
+    class="btn btn-outline-green btn-md me-4 px-4 d-none"
+    #close
+  >
+    No, cancel
+  </button>
+  <button
+    class="btn btn-green btn-md px-4"
+    [disabled]="isLoading || !speakerForm.valid"
+    (click)="submit()"
+  >
+    <app-loading-button
+      [text]="data.isEditing ? 'Edit Speaker' : 'Add Speaker' "
+      [condition]="isLoading"
+    ></app-loading-button>
+  </button>
+
+</mat-dialog-actions>

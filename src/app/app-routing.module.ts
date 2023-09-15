@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RouteGuard } from '@core/guards/route.guard';
+import { LayoutComponent } from '@shared/components/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -14,13 +15,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./authentication/authentication.module').then((m) => m.AuthenticationModule),
     data: { breadcrumb: 'Attendant' },
-  },
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('./admin/admin.module').then((m) => m.AdminModule),
-      data: { breadcrumb: 'Admin' },
-      canActivate: [RouteGuard],
   },
   {
     path: 'speaker/:id',
@@ -40,6 +34,30 @@ const routes: Routes = [
       import('./payment-confirmation/payment-confirmation.module').then((m) => m.PaymentConfirmationModule),
     data: { breadcrumb: 'Admin' },
   },
+  {
+    path: 'admin',
+    component: LayoutComponent,
+    canActivate: [RouteGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'attendants',
+        pathMatch: 'full',
+      },
+      {
+        path: 'attendants',
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
+          data: { breadcrumb: 'Admin' },
+      },
+      {
+        path: 'speakers',
+        loadChildren: () =>
+          import('./speakers/speakers.module').then((m) => m.SpeakersModule),
+          data: { breadcrumb: 'Speakers' },
+      },
+    ]
+  }
 ];
 
 @NgModule({

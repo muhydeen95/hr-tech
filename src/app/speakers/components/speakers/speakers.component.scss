@@ -135,8 +135,8 @@ label {
 }
 
 .detail-avater {
-  height: 20rem;
-  width: 20rem;
+  height: 30rem;
+  width: 30rem;
   margin: 0 auto;
   img {
     height: 100%;
@@ -147,4 +147,9 @@ label {
 
 .table-checkbox {
   max-width: 4rem;
+}
+
+
+th:first-child, td:first-child {
+  max-width: 4rem;;
 }

@@ -44,7 +44,18 @@ export const speakers = [
     name: 'Dr. Troy Hall',
     title: 'Global Expert in Talent Retention Strategies',
     institute: '',
-    detail:'',
+    detail:`
+      <p>Bestselling author on Talent Retention, international speaker, and founder of Cohesion Culture</p>
+      <p>
+      Recognized as one of the Top 20 Business Leaders by Valiant CEO Magazine, and featured on The Today Show, ABC, the Global BV-TV Network, Beyond the Business Radio Show, and CEO World, Dr. Troy Hall is an award-winning talent retention consultant, international speaker and author of the bestselling titles, Cohesion Culture: Proven Principles to Retain Your Top Talent, and Fanny Rules: A Mother’s Leadership Lessons That Never Grow Old.
+      </p>
+      <p>
+      As the founder of Cohesion Culture™, Dr. Troy has dedicated his career to establishing a cycle of culture wellness in the corporate and professional sphere. His consulting and executive coaching engagements are built on the strategic framework of Cohesion Culture™, making the concepts of belonging, value, and shared commitment easy for organizations to adopt and implement.
+      </p>
+      <p>
+      Dr. Troy has worked with these organizations: Salesforce, Volvo, Mercedes, Bosch, Industrial Packaging Supplies (IPS), <a href="https://www.apartments.com">Apartments.com</a>, One World Health, Cornerstone, and more. On a global basis, from the U.S. to Canada and the United Kingdom, from the Middle East to Africa, Asia, Europe, and Australia, Dr. Troy has spoken at global conferences as a subject matter expert on the topics of culture & leadership, strategy, and change.
+      </p>
+    `,
     imgSrc: 'https://imgs.search.brave.com/n1t84hezAa2Zgun2nonXieNGdKhnTAAk_LakUMIPX6A/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL1Mv/YW16bi1hdXRob3It/bWVkaWEtcHJvZC91/OTI1MW00NjY1aWJn/bzFuNmxldjdvYjBz/cS5fU1g0NTBfLmpw/Zw',
     imgUrl: 'assets/images/troy.png',
   },

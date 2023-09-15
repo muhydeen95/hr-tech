@@ -4,11 +4,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from 'app/contact/services/contact.service';
-import { Attendant, ResponseModel } from 'app/models/response.model';
+import { Attendant, ResponseModel, Speaker } from 'app/models/response.model';
 import { Subscription } from 'rxjs';
 import { Country } from '@shared/jsons/country-code';
 import { Router } from '@angular/router';
-import { speakers } from '@shared/jsons/speakers';
+// import { speakers } from '@shared/jsons/speakers';
+import { HelperService } from '@shared/services/helper.service';
+import { SpeakersService } from 'app/speakers/services/speaker.service';
 
 
 @Component({
@@ -24,6 +26,7 @@ export class ContactComponent implements OnInit {
   public isLoading!: boolean;
   public regFormSubmitted!: boolean;
   public responsiveOptions: any[] | undefined;
+  public speakers: Speaker[] = [];
   public images: {path: string }[] = [
     {path: 'assets/images/gallery1.jpeg'},
     {path: 'assets/images/gallery2.jpeg'},
@@ -41,7 +44,7 @@ export class ContactComponent implements OnInit {
   public attendant!: Attendant;
   public documentUrl: any;
   public file!: File;
-  public speakers = speakers;
+  // public speakers = speakers;
   public payments = [
     {
       countryname: 'Nigeria',
@@ -78,10 +81,13 @@ export class ContactComponent implements OnInit {
     private fb: FormBuilder,
     private _attendant: ContactService,
     private _toastr: Toastr,
-    private router: Router
+    private router: Router,
+    private _helper: HelperService,
+    private _speaker: SpeakersService
   ) { }
 
   ngOnInit(): void {
+    this.getSpeakers();
     this.initForm();
     this.responsiveOptions = [
       {
@@ -99,7 +105,29 @@ export class ContactComponent implements OnInit {
           numVisible: 1,
           numScroll: 1
       }
-  ];
+    ];
+  }
+
+  public getSpeakers() {
+    this.isLoading = true;
+    this._helper.startSpinner();
+    this.sub.add(
+      this._speaker
+        .getAllSpeakers()
+        .subscribe(
+          (res: ResponseModel<Speaker[]>) => {
+            // console.log(res);
+            this.isLoading = false;
+            this._helper.stopSpinner();
+            this.speakers = res["response"];
+          },
+          (error) => {
+            this.isLoading = false;
+            this._helper.stopSpinner();
+            console.log(error);
+          }
+        )
+    );
   }
 
   public moveToStructure():void {
@@ -259,11 +287,11 @@ export class ContactComponent implements OnInit {
     // console.log(event)
     let me = this;
     this.file = event.target.files[0];
-    const maxAllowedSize = 70000;
+    const maxAllowedSize = 500000;
     if(this.file.size > maxAllowedSize) {
-      this.inputFile.nativeElement.value = null;
+      // this.inputFile.nativeElement.value = null;
       this._toastr.showError(
-        'kindly upload a file not more than 70kb',
+        'kindly upload a file not more than 5MB',
         'info'
       );
     } else {

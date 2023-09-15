@@ -118,10 +118,10 @@
             </div>
           </div>
           <div class="col-md-3" *ngFor="let speaker of speakers">
-            <div class="profile-card" [routerLink]="['speaker', speaker.id]">
-              <img [src]="speaker.imgUrl" [alt]="speaker.name" style="width:100%">
-              <h1>{{ speaker.name }}</h1>
-              <p class="title">{{ speaker.title }}</p>
+            <div class="profile-card" [routerLink]="['speaker', speaker._id]">
+              <img [src]="speaker.fileUrl" [alt]="speaker.fullName" style="width:100%">
+              <h1>{{ speaker.fullName }}</h1>
+              <p class="title">{{ speaker.position + ', ' + speaker.organization }}</p>
               <!-- <p>{{ speaker.institute }}</p> -->
             </div>
           </div>

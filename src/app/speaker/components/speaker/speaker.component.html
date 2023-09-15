@@ -10,14 +10,14 @@
         <div class="row">
           <div class="col-md-6">
             <div>
-              <h2>{{ speaker.name }}</h2>
-              <h4>{{ speaker.title }}</h4>
-              <h3>{{ speaker.institute }}</h3>
+              <h2>{{ speaker?.fullName }}</h2>
+              <h4>{{ speaker?.position }}</h4>
+              <h3>{{ speaker?.organization }}</h3>
             </div>
           </div>
           <div
             class="col-md-6 d-none d-md-block"
-            [style.background-image]="'url(' + speaker.imgUrl+ ')'"
+            [style.background-image]="'url(' + speaker?.fileUrl+ ')'"
           >
           </div>
         </div>
@@ -27,7 +27,7 @@
   <ng-container >
     <div class="content">
       <div class="container">
-        <div class="detail" [innerHTML]="speaker.detail"></div>
+        <div class="detail" [innerHTML]="speaker?.biography"></div>
       </div>
     </div>
   </ng-container>
