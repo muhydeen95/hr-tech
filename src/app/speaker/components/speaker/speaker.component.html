@@ -10,6 +10,9 @@
         <div class="row">
           <div class="col-md-6">
             <div>
+              <div class="img_wrapper d-block d-md-none">
+                <img [src]="speaker?.fileUrl" alt="">
+              </div>
               <h2>{{ speaker?.fullName }}</h2>
               <h4>{{ speaker?.position }}</h4>
               <h3>{{ speaker?.organization }}</h3>

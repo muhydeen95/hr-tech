@@ -23,6 +23,17 @@ section {
           justify-content: center;
           align-items: center;
           text-align: left;
+          .img_wrapper {
+            width: 25rem;
+            height: 25rem;
+            margin-bottom: 2rem;
+            img {
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              border: .15rem solid $blue-300;
+            }
+          }
         }
       }
       h2 {
