@@ -168,6 +168,10 @@ export class AddSpeakerDialogComponent implements OnInit {
           this.isLoading = false;
           this.speakerFormSubmitted = false;
           this.error_message = error?.error?.message;
+          this._toastr.showError(
+            error?.error?.message,
+            'error'
+          );
         },
       });
     }
