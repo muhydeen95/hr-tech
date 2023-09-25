@@ -1,0 +1,262 @@
+<div class="d-flex justify-content-between" mat-dialog-title>
+  <h2 mat-dialog-title>{{ data.isEditing ? 'Edit' : data.editObject?.sponsorPlan }} Sponsor </h2>
+  <div class="click" mat-dialog-close>
+    <img src="assets/icons/close.svg" alt="" />
+  </div>
+</div>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="sponsorForm">
+      <app-error [error_message]="error_message"></app-error>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                <label>Company Name <span class="text-red">●</span></label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Company Name"
+                  formControlName="companyName"
+                  (keyup)="checkForKeyEnter($event)"
+                  [ngClass]="{
+                    'is-invalid':
+                      (sponsorForm.get('companyName')?.errors &&
+                        sponsorForm.get('companyName')?.touched) ||
+                      (sponsorForm.get('companyName')?.hasError('required') &&
+                        sponsorFormSubmitted)
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    sponsorForm.get('companyName')?.hasError('required') &&
+                    sponsorFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form_group">
+                <label>Contact Person <span class="text-red">●</span> </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Contact Person"
+                  formControlName="contactPerson"
+                  (keyup)="checkForKeyEnter($event)"
+                  [ngClass]="{
+                    'is-invalid':
+                      (sponsorForm.get('contactPerson')?.errors &&
+                        sponsorForm.get('contactPerson')?.touched) ||
+                      (sponsorForm.get('contactPerson')?.hasError('required') &&
+                        sponsorFormSubmitted)
+                  }"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  sponsorForm.get('contactPerson')?.hasError('required') &&
+                  sponsorFormSubmitted
+                "
+              >
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                  <label>Email <span class="text-red">●</span> </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter Email Address"
+                    formControlName="email"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (sponsorForm.get('email')?.errors &&
+                          sponsorForm.get('email')?.touched) ||
+                        (sponsorForm.get('email')?.hasError('required') &&
+                          sponsorFormSubmitted)
+                    }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    sponsorForm.get('email')?.hasError('required') &&
+                    sponsorFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form_group">
+                <label>Phone Number <span class="text-red">●</span> </label>
+                <input
+                  type="text"
+                  ng2TelInput
+                  class="form-control"
+                  [ng2TelInputOptions]="telOptions"
+                  placeholder="Enter Phone Number"
+                  formControlName="phoneNumber"
+                  (keypress)="numericOnly($event)"
+                  (hasError)="onError($event)"
+                  (intlTelInputObject)="telInputObject($event)"
+                  (countryChange)="onCountryChange($event)"
+                  (keyup)="checkForKeyEnter($event)"
+                  [ngClass]="{
+                    'is-invalid':
+                      (sponsorForm.get('phoneNumber')?.errors &&
+                        sponsorForm.get('phoneNumber')?.touched) ||
+                      (sponsorForm.get('phoneNumber')?.hasError('required') &&
+                        sponsorFormSubmitted)
+                  }"
+              />
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  sponsorForm.get('phoneNumber')?.hasError('required') &&
+                  sponsorFormSubmitted
+                "
+              >
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group form_group">
+                  <label>Website <span class="text-red">●</span> </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Enter Website (e.g: www.example.com)"
+                    formControlName="website"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (sponsorForm.get('website')?.errors &&
+                          sponsorForm.get('website')?.touched) ||
+                        (sponsorForm.get('website')?.hasError('required') &&
+                          sponsorFormSubmitted)
+                    }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    sponsorForm.get('website')?.hasError('required') &&
+                    sponsorFormSubmitted
+                  "
+                >
+                  Required
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    sponsorForm.get('website')?.hasError('pattern') &&
+                    sponsorFormSubmitted
+                  "
+                >
+                  Please enter a valid website
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form_group">
+                <label>Country <span class="text-red">●</span> </label>
+                <ng-select
+                  [items]="countries"
+                  bindLabel="name"
+                  bindValue="name"
+                  placeholder="Select Country"
+                  formControlName="country"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (sponsorForm.get('country')?.errors &&
+                          sponsorForm.get('country')?.touched) ||
+                        (sponsorForm.get('country')?.hasError('required') &&
+                          sponsorFormSubmitted)
+                  }"
+
+                ></ng-select>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  sponsorForm.get('country')?.hasError('required') &&
+                  sponsorFormSubmitted
+                "
+              >
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group form_group">
+                <label>Sponsor Plan <span class="text-red">●</span> </label>
+                <ng-select
+                  [items]="sponsorplan"
+                  bindLabel="name"
+                  bindValue="name"
+                  placeholder="Select Plan"
+                  formControlName="sponsorPlan"
+                    (keyup)="checkForKeyEnter($event)"
+                    [ngClass]="{
+                      'is-invalid':
+                        (sponsorForm.get('sponsorPlan')?.errors &&
+                          sponsorForm.get('sponsorPlan')?.touched) ||
+                        (sponsorForm.get('sponsorPlan')?.hasError('required') &&
+                          sponsorFormSubmitted)
+                  }"
+
+                ></ng-select>
+              <div
+                class="invalid-feedback"
+                *ngIf="
+                  sponsorForm.get('sponsorPlan')?.hasError('required') &&
+                  sponsorFormSubmitted
+                "
+              >
+                Required
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <app-upload-doc
+                (selectedFiles)="onFileDropped($event)"
+            ></app-upload-doc>
+        </div>
+        <div class="col-md-6" *ngIf="file">
+            <app-uploaded-doc
+                [file_name]="file.name"
+                [file_size]="file.size"
+                [type]="file.type"
+                (remove)="removeFile()"
+            ></app-uploaded-doc>
+        </div>
+      </div>
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    [mat-dialog-close]="false"
+    class="btn btn-outline-green btn-md me-4 px-4 d-none"
+    #close
+  >
+    No, cancel
+  </button>
+  <button
+    class="btn btn-green btn-md px-4"
+    [disabled]="isLoading || !sponsorForm.valid"
+    (click)="submit()"
+  >
+    <app-loading-button
+      [text]="data.isEditing ? 'Edit Speaker' : 'Add Sponsor' "
+      [condition]="isLoading"
+    ></app-loading-button>
+  </button>
+
+</mat-dialog-actions>

@@ -135,8 +135,8 @@ label {
 }
 
 .detail-avater {
-  height: 20rem;
-  width: 20rem;
+  height: 30rem;
+  width: 30rem;
   margin: 0 auto;
   img {
     height: 100%;
@@ -149,11 +149,14 @@ label {
   max-width: 4rem;
 }
 
+
+th:first-child, td:first-child {
+  max-width: 4rem;;
+}
+
+
 .font20 {
   font-size: 2rem;
-}
-.font16 {
-  font-size: 1.6rem;
 }
 
 .text-right {

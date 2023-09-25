@@ -1,0 +1,100 @@
+@import "partials/abstract/variables";
+@import "partials/abstract/mixins";
+
+section {
+    background-color: #FBF5EE;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.payment-card {
+    width: 450px;
+    min-height: 329px;
+    background: #fff;
+    margin: auto;
+    position: relative;
+    .img-wrapper {
+      position: absolute;
+      margin-top: -70px;
+      margin-left: 135px;
+      align-items: center;
+  }
+
+  .content {
+     margin-top: 120px;
+      text-align: center;
+  }
+
+  .btn {
+      background-color: #F8940F;
+      border: #F8940F;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: Montserrat;
+
+  }
+  .btn:focus {
+      box-shadow: none;
+  }
+}
+
+.exam-card-wrapper {
+  .card-wrapper {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    background: $white-100;
+    height: 469px;
+  }
+.nerc-logo{
+  width: 50px;
+}
+.bg-grey{
+  background:#f0f3f5 !important;
+}
+.qrcode-wrapper{
+  width: 170px;
+  height: 170px;
+  margin: auto;
+}
+  .card {
+    box-sizing: border-box;
+    box-shadow: 0px 2px 5px rgba(153, 153, 153, 0.25);
+    border-radius: 30px;
+  }
+
+  .card-top {
+    border-radius: 30px;
+  }
+
+  .profile-name {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .exam-no {
+    font-size: 0.4em;
+  }
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: auto;
+  }
+
+  .regNo {
+    padding-top: 3rem;
+  }
+
+  .footer p {
+    font-size: 0.8em;
+  }
+
+  .footer span {
+    font-size: 0.5em;
+  }
+}
+

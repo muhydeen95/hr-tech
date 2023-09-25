@@ -50,7 +50,7 @@ export class AuthInterceptor {
         })
       );
     } else {
-      this.router.navigate(['offline']);
+      this.router.navigate(['']);
       return throwError({ message: 'You are not connected to the internet' });
     }
   }

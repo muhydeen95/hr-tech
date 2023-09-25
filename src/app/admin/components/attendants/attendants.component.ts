@@ -22,10 +22,10 @@ import { Toastr } from "@GlobalService/toastr.service";
 export class AttendantsComponent implements OnInit, OnDestroy {
   @ViewChild('profileCard') profileCard!: ElementRef;
   public sub: Subscription = new Subscription();
-  candidates: Attendant[] = [];
-  selectedCandidates: Attendant[] = [];
-  selectedIds: string[] = [];
-  candidateDetail: Attendant = {
+  public attendants: Attendant[] = [];
+  public selectedAttendants: Attendant[] = [];
+  public selectedIds: string[] = [];
+  public attendantDetail: Attendant = {
     _id: '',
     fullName: '',
     email: '',
@@ -48,13 +48,9 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     registrationNo: '',
     createdAt: '',
   };;
-  candidatesToDisplay: any;
-  tempresult: any;
-  isInitial: boolean = false;
-  isShortlistingCandidates: boolean = false;
-  isUnShortlistingCandidates: boolean = false;
-  isLoading: boolean = false;
-  isExporting: boolean = false;
+  public isInitial: boolean = false;
+  public isLoading: boolean = false;
+  public isExporting: boolean = false;
   public cols: {header: string, field: string}[] = [];
   public hasPaid!: boolean;
   public statusOption: {name: string, value: any}[] = [
@@ -136,9 +132,6 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     ];
   }
 
-  public padWithLeadingZeros(num: any) {
-    return String(num).padStart(4, '0');
-  }
 
   public loadCandidates() {
     this.isLoading = true;
@@ -152,7 +145,7 @@ export class AttendantsComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             this.isInitial = true;
             this._helper.stopSpinner();
-            this.candidates = res["response"];
+            this.attendants = res["response"];
           },
           (error) => {
             this.isLoading = false;
@@ -179,7 +172,7 @@ export class AttendantsComponent implements OnInit, OnDestroy {
             this.isLoading = false;
             this.isInitial = false;
             this._helper.stopSpinner();
-            this.candidates = res["response"];
+            this.attendants = res["response"];
           },
           (error) => {
             this.isLoading = false;
@@ -210,16 +203,16 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     );
   }
 
-  showStudentDetails(candidates: Attendant) {
+  showStudentDetails(attendant: Attendant) {
     this.profileCard.nativeElement.classList.add("active");
-    this.candidateDetail = candidates;
+    this.attendantDetail = attendant;
   }
 
   removeStudentDetails() {
     this.profileCard.nativeElement.classList.remove("active");
   }
 
-  public paymentReminder(id: any) {
+  public paymentReminder(id: string) {
     this.sendReminder = true;
     this.sub.add(
       this._attendant.sendpaymentReminder(id).subscribe({
@@ -246,7 +239,7 @@ export class AttendantsComponent implements OnInit, OnDestroy {
   }
 
   public multiSendPaymentReminder() {
-    this.selectedCandidates.map((item) => {
+    this.selectedAttendants.map((item: Attendant) => {
       this.selectedIds.push(item._id);
     });
     const payload = {
@@ -277,7 +270,7 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     );
   }
 
-  public sendProfileCardToAttendant(id: any) {
+  public sendProfileCardToAttendant(id: string) {
     this.sendProfileCard = true;
     this.sub.add(
       this._attendant.sendprofileCard(id).subscribe({
@@ -303,7 +296,7 @@ export class AttendantsComponent implements OnInit, OnDestroy {
     );
   }
 
-  public confirmPayment(id: any) {
+  public confirmPayment(id: string) {
     this.sendProfileCard = true;
     const payload = {
       id: id,

@@ -4,7 +4,10 @@
   <div class="page_wrapper">
     <section class="mt-5 mb-3 container">
       <div class="row d-flex justify-content-between mt-5 mb-3">
-        <h3 class="col-md-3 font20">Registered Attendants</h3>
+        <h3 class="col-md-3">
+          <p class="font20">Registered Attendants</p>
+          <p class="font16 my-4">Total: {{ attendants.length + ' Attendants' }}</p>
+        </h3>
         <div class="col-md-4 row d-flex">
           <div class="col-8">
             <div class="form_group">
@@ -39,13 +42,13 @@
     </section>
     <section class="container">
       <div class="table-responsive bg-table p-3 mb-5">
-        <ng-container *ngIf="candidates.length > 0">
+        <ng-container *ngIf="attendants.length > 0">
           <p-table
               class="table table-striped custom-table datatable table-hover"
               #dt
-              [value]="candidates"
+              [value]="attendants"
               dataKey="_id"
-              [selection]="selectedCandidates"
+              [selection]="selectedAttendants"
               [paginator]="true"
               [rows]="10"
               [responsive]="true"
@@ -128,7 +131,7 @@
       </ng-container>
         <app-no-data
           name="Attendant"
-          *ngIf="candidates?.length == 0"
+          *ngIf="attendants?.length == 0"
           [is_initial]="isInitial"
           [showActionBtn]="false"
         >
@@ -154,23 +157,23 @@
         <img
           src="assets/img/profile-bg.png"
           [src]="
-            candidateDetail.fileUrl
-              ? candidateDetail.fileUrl
+            attendantDetail.fileUrl
+              ? attendantDetail.fileUrl
               : 'assets/images/avatar.png'
           "
         />
       </div>
       <h3 class="font24 font-bold mb-3">
-        {{ candidateDetail.fullName ? candidateDetail.fullName : "" }}
+        {{ attendantDetail.fullName ? attendantDetail.fullName : "" }}
       </h3>
       <div
         class="profile-block d-flex align-item-center justify-content-between mb-3"
       >
         <button
           class="btn btn-green btn-md me-2"
-          *ngIf="!candidateDetail.hasPaid"
+          *ngIf="!attendantDetail.hasPaid"
           [disabled]="sendReminder"
-          (click)="paymentReminder(candidateDetail._id)"
+          (click)="paymentReminder(attendantDetail._id)"
         >
           Payment Reminder
           <i
@@ -180,9 +183,9 @@
         </button>
         <button
           class="btn btn-green btn-md me-2"
-          *ngIf="!candidateDetail.hasPaid"
+          *ngIf="!attendantDetail.hasPaid"
           [disabled]="sendProfileCard"
-          (click)="confirmPayment(candidateDetail._id)"
+          (click)="confirmPayment(attendantDetail._id)"
         >
           Confirm Payment
           <i
@@ -192,8 +195,8 @@
         </button>
         <button
           class="btn btn-green btn-md me-2"
-          *ngIf="candidateDetail.hasPaid"
-          (click)="sendProfileCardToAttendant(candidateDetail._id)"
+          *ngIf="attendantDetail.hasPaid"
+          (click)="sendProfileCardToAttendant(attendantDetail._id)"
           [disabled]="sendProfileCard"
         >
           Send Profile Card
@@ -209,14 +212,14 @@
         <div class="mb-3">
           <label class="font12 font-bold text-grey">REG. NO</label>
           <h5 class="font16 text-break">
-            {{ candidateDetail.registrationNo }}
+            {{ attendantDetail.registrationNo }}
           </h5>
         </div>
 
         <div class="mb-3">
           <label class="font12 font-bold text-grey">EMAIL</label>
           <h5 class="font16 text-break">
-            {{ candidateDetail.email }}
+            {{ attendantDetail.email }}
           </h5>
         </div>
       </div>
@@ -225,14 +228,14 @@
           <label class="font12 font-bold text-grey">PHONE NO.</label>
           <h5 class="font16 text-break">
             {{
-              candidateDetail.phoneNumber ? candidateDetail.phoneNumber : "--"
+              attendantDetail.phoneNumber ? attendantDetail.phoneNumber : "--"
             }}
           </h5>
         </div>
         <div class="mb-3">
           <label class="font12 font-bold text-grey">COUNTRY</label>
           <h5 class="font16 text-break">
-            {{ candidateDetail.country }}
+            {{ attendantDetail.country }}
           </h5>
         </div>
       </div>
@@ -241,14 +244,14 @@
           <label class="font12 font-bold text-grey">ORGANIZATION</label>
           <h5 class="font16 text-break">
             {{
-              candidateDetail.organization ? candidateDetail.organization : "--"
+              attendantDetail.organization ? attendantDetail.organization : "--"
             }}
           </h5>
         </div>
         <div class="mb-3">
           <label class="font12 font-bold text-grey">APPLICANT TYPE</label>
           <h5 class="font16 text-break">
-            {{ candidateDetail.profMembership ? candidateDetail.profMembership : '--' }}
+            {{ attendantDetail.profMembership ? attendantDetail.profMembership : '--' }}
           </h5>
         </div>
       </div>
@@ -256,13 +259,13 @@
         <div class="mb-3">
           <label class="font12 font-bold text-grey">POSITION</label>
           <h5 class="font16 text-break">
-            {{ candidateDetail.position ? candidateDetail.position : '--' }}
+            {{ attendantDetail.position ? attendantDetail.position : '--' }}
           </h5>
         </div>
         <div class="mb-3">
           <label class="font12 font-bold text-grey">MEMBERSHIP</label>
           <h5 class="font16 text-break">
-            {{ candidateDetail.profMembership ? candidateDetail.profMembership : '--' }}
+            {{ attendantDetail.profMembership ? attendantDetail.profMembership : '--' }}
           </h5>
         </div>
       </div>
@@ -270,12 +273,12 @@
     <div class="row my-4 py-4 line-under sm-mt-none sm-pt-none">
       <div class="col-6 sm-mt mb-3">
         <label class="font12 font-bold text-grey">MODE OF ATTENDANCE</label>
-        <h5 class="font16">{{ candidateDetail.modeOfAttendance }}</h5>
+        <h5 class="font16">{{ attendantDetail.modeOfAttendance }}</h5>
       </div>
       <div class="col-6 sm-mt mb-3">
         <label class="font12 font-bold text-grey">DATE REGISTERED</label>
         <h5 class="font16">
-          {{ candidateDetail.createdAt | date : "short" }}
+          {{ attendantDetail.createdAt | date : "short" }}
         </h5>
       </div>
     </div>

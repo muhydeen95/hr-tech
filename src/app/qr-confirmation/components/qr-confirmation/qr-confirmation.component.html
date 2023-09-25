@@ -1,0 +1,72 @@
+<section class="d-flex justify-content-center">
+  <div class="payment-card" >
+
+    <div class="d-flex justify-content-center">
+      <div #pdfTable id="pdfTable" class="exam-card-wrapper my-5" *ngIf="attendant">
+        <div class="card-wrapper">
+          <div class="card">
+            <div class="bg-grey card-top">
+              <div
+                class="p-3 card-content d-flex justify-content-between"
+              >
+                <div class="profile-name text-left">
+                  <h4 class="profile-name">
+                    {{ attendant.fullName ? attendant.fullName : "--" }}
+                  </h4>
+                  <p class="exam-no">
+                    Email: {{ attendant.email ? attendant.email : "--" }}
+                  </p>
+                  <p class="exam-no">
+                    No. of Attendants: {{ attendant.noOfRegistrants ? attendant.noOfRegistrants : "--" }}
+                  </p>
+                </div>
+                <div>
+                  <img
+                    class="pb-1"
+                    src="assets/images/logo.png"
+                    alt="logo"
+                    class="nerc-logo"
+                  />
+                  <div class="exam-no">HR-Tech {{ currentYear }}</div>
+                </div>
+              </div>
+              <div class="pt-2 pb-4">
+                <img
+                  src="{{
+                          attendant.fileUrl ?
+                          attendant.fileUrl
+                          : 'https://imgs.search.brave.com/jLOzY9Dtq7uH7I2DkMqETsipUhW25GINawy7rLyCLNY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1pY29uL3Vz/ZXJfMzE4LTE1OTcx/MS5qcGc_c2l6ZT02/MjYmZXh0PWpwZw'
+                        }}"
+                  class="profile-img rounded-circle"
+                  alt=""
+                  width="40%"
+                />
+              </div>
+            </div>
+
+            <div class="py-3 qrcode-wrapper">
+              <qrcode
+                cssClass="qrcode"
+                [qrdata]="qrData"
+                [elementType]="'img'"
+                [errorCorrectionLevel]="'M'"
+                [allowEmptyString]="true"
+              ></qrcode>
+            </div>
+            <div class="regNo text-center">
+              <p class="font-bold mb-0">{{ attendant.registrationNo }}</p>
+            </div>
+            <div class="footer pt-3 pb-1 text-center">
+              <p class="mb-0">Only Valid For this event</p>
+              <span class="pt-0"
+                >&copy; {{ currentYear }} HR-Tech</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

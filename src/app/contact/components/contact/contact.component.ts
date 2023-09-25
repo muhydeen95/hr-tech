@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
 // import { speakers } from '@shared/jsons/speakers';
 import { HelperService } from '@shared/services/helper.service';
 import { SpeakersService } from 'app/speakers/services/speaker.service';
+import { SponsorPackages } from '@shared/jsons/sponsor';
+import { DialogModel } from '@shared/components/models/dialog.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AddSponsorDialogComponent } from 'app/sponsors/dialogs/add-sponsor-dialog/add-sponsor-dialog.component';
 
 
 @Component({
@@ -44,7 +48,7 @@ export class ContactComponent implements OnInit {
   public attendant!: Attendant;
   public documentUrl: any;
   public file!: File;
-  // public speakers = speakers;
+  public packages = SponsorPackages;
   public payments = [
     {
       countryname: 'Nigeria',
@@ -83,7 +87,8 @@ export class ContactComponent implements OnInit {
     private _toastr: Toastr,
     private router: Router,
     private _helper: HelperService,
-    private _speaker: SpeakersService
+    private _speaker: SpeakersService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -197,6 +202,21 @@ export class ContactComponent implements OnInit {
         noOfAccomodants: 0
       })
     }
+  }
+
+  public openDialog(
+    payload: { isEditing?: boolean; editObject?: Speaker } | any
+  ): void {
+    let object: DialogModel<Speaker> = payload;
+    const dialogRef = this.dialog.open(AddSponsorDialogComponent, {
+      data: object
+    });
+    // console.log(payload)
+    dialogRef.componentInstance.event.subscribe(
+      (event: DialogModel<Speaker>) => {
+        console.log(event)
+      }
+    );
   }
 
   numericOnly(event: any) {

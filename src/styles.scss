@@ -104,6 +104,10 @@ $brooks-theme: mat.define-light-theme(
   padding: 2.4rem 4rem 4rem 4rem !important;
 }
 
+.modal-width .mat-dialog-container {
+  max-width: 52rem !important;
+}
+
 .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: $white-100;

@@ -188,7 +188,7 @@ export class PaymentConfirmationComponent implements OnInit {
           this._helper.stopSpinner();
           if(res.response) {
             this.attendant = res.response;
-            this.qrData = `Name: ${this.attendant.fullName} Email:${this.attendant.email} RegistrationNo: ${this.attendant.registrationNo}`;
+            this.qrData = `https://hrtech.goserp.co.uk/#/qr-confirmation/${this.clientId}`;
           };
           this.sendprofileCard(this.clientId);
         }, error: (e: any) => {
@@ -202,7 +202,7 @@ export class PaymentConfirmationComponent implements OnInit {
     this.sub.add(
       this._admin.sendprofileCard(id).subscribe({
         next: (res: ResponseModel<any>) => {
-      
+
         },
         error: (error: HttpErrorResponse) => {
           // console.log(error);
@@ -213,10 +213,6 @@ export class PaymentConfirmationComponent implements OnInit {
         },
       })
     );
-  }
-
-  public padWithLeadingZeros(num: any) {
-    return String(num).padStart(4, '0');
   }
 
   public downloadAsPDF() {

@@ -7,34 +7,35 @@ import {
   ElementRef,
 } from "@angular/core";
 import { Subscription } from "rxjs";
-import { ResponseModel, Speaker } from "app/models/response.model";
+import { ResponseModel } from "app/models/response.model";
 import { HelperService } from "@shared/services/helper.service";
-import { SpeakersService } from "app/speakers/services/speaker.service";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogModel } from "@shared/components/models/dialog.model";
-import { AddSpeakerDialogComponent } from "app/speakers/dialogs/add-speaker-dialog/add-speaker-dialog.component";
 import { Toastr } from "@GlobalService/toastr.service";
+import { SponsorsService } from 'app/sponsors/services/sponsors.service';
+import { Sponsor } from 'app/contact/models/contact.model';
+import { AddSponsorDialogComponent } from 'app/sponsors/dialogs/add-sponsor-dialog/add-sponsor-dialog.component';
 
 @Component({
-  selector: 'app-speakers',
-  templateUrl: './speakers.component.html',
-  styleUrls: ['./speakers.component.scss']
+  selector: 'app-sponsors',
+  templateUrl: './sponsors.component.html',
+  styleUrls: ['./sponsors.component.scss']
 })
-export class SpeakersComponent implements OnInit, OnDestroy {
+export class SponsorsComponent implements OnInit, OnDestroy {
   @ViewChild('profileCard') profileCard!: ElementRef;
   public sub: Subscription = new Subscription();
-  public speakers: Speaker[] = [];
-  public selectedSpeakers: Speaker[] = [];
+  public sponsors: Sponsor[] = [];
+  public selectedSponsors: Sponsor[] = [];
   public selectedIds: string[] = [];
-  public speakerDetail: Speaker = {
+  public sponsorDetail: Sponsor = {
     _id: '',
-    fullName: '',
+    companyName: '',
     email: '',
     phoneNumber: '',
-    organization: '',
-    position: '',
+    contactPerson: '',
+    website: '',
     country: '',
-    biography: '',
+    sponsorPlan: '',
     fileUrl: '',
     imgUrl: '',
     createdAt: '',
@@ -43,11 +44,11 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public isExporting: boolean = false;
   public cols: {header: string, field: string}[] = [];
-  public speakerId!: string;
+  public sponsorId!: string;
 
 
   constructor(
-    private _speaker: SpeakersService,
+    private _sponsor: SponsorsService,
     private _helper: HelperService,
     private dialog: MatDialog,
     private _toastr: Toastr
@@ -57,8 +58,12 @@ export class SpeakersComponent implements OnInit, OnDestroy {
     this.loadCandidates();
     this.cols = [
       {
-        header: "fullName",
-        field: "fullName",
+        header: "companyName",
+        field: "companyName",
+      },
+      {
+        header: "contactPerson",
+        field: "contactPerson",
       },
       {
         header: "email",
@@ -69,12 +74,12 @@ export class SpeakersComponent implements OnInit, OnDestroy {
         field: "phoneNumber",
       },
       {
-        header: "organization",
-        field: "organization",
+        header: "website",
+        field: "website",
       },
       {
-        header: "position",
-        field: "position",
+        header: "sponsorPlan",
+        field: "sponsorPlan",
       },
       {
         header: "country",
@@ -83,20 +88,19 @@ export class SpeakersComponent implements OnInit, OnDestroy {
     ];
   }
 
-
   public loadCandidates() {
     this.isLoading = true;
     this._helper.startSpinner();
     this.sub.add(
-      this._speaker
-        .getAllSpeakers()
+      this._sponsor
+        .getAllSponsors()
         .subscribe(
-          (res: ResponseModel<Speaker[]>) => {
+          (res: ResponseModel<Sponsor[]>) => {
             // console.log(res);
             this.isLoading = false;
             this.isInitial = true;
             this._helper.stopSpinner();
-            this.speakers = res["response"];
+            this.sponsors = res["response"];
           },
           (error) => {
             this.isLoading = false;
@@ -108,42 +112,42 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   }
 
   public openDialog(
-    payload: { isEditing?: boolean; editObject?: Speaker } | any
+    payload: { isEditing?: boolean; editObject?: Sponsor } | any
   ): void {
-    let object: DialogModel<Speaker> = payload;
-    const dialogRef = this.dialog.open(AddSpeakerDialogComponent, {
+    let object: DialogModel<Sponsor> = payload;
+    const dialogRef = this.dialog.open(AddSponsorDialogComponent, {
       data: object
     });
     // console.log(payload)
     dialogRef.componentInstance.event.subscribe(
-      (event: DialogModel<Speaker>) => {
+      (event: DialogModel<Sponsor>) => {
         if (event?.isEditing) {
-          const index = this.speakers.findIndex((leave: Speaker) => {
+          const index = this.sponsors.findIndex((leave: Sponsor) => {
             return leave._id == event?.editObject?._id;
           });
-          this.speakers[index] = event?.editObject;
+          this.sponsors[index] = event?.editObject;
         } else {
-          this.speakers = [event?.editObject, ...this.speakers];
+          this.sponsors = [event?.editObject, ...this.sponsors];
         }
-        this.speakerId = '';
+        this.sponsorId = '';
       }
     );
   }
 
-  public deleteSpeaker(speaker: Speaker): void {
-    this.speakerId = speaker._id;
+  public deleteSpeaker(speaker: Sponsor): void {
+    this.sponsorId = speaker._id;
     this.sub.add(
-      this._speaker.deleteSpeaker(speaker).subscribe({
+      this._sponsor.deleteSponsor(speaker).subscribe({
         next: (res: any) => {
           this._toastr.showSuccess(res.message, 'success');
-          this.speakers.splice(
-            this.speakers.findIndex((a: Speaker) => a._id == speaker._id),
+          this.sponsors.splice(
+            this.sponsors.findIndex((a: Sponsor) => a._id == speaker._id),
             1
           );
-          this.speakerId = '';
+          this.sponsorId = '';
         },
         error: (error: HttpErrorResponse) => {
-          this.speakerId =  '';
+          this.sponsorId =  '';
           this._toastr.showError(error?.error?.message, 'error');
         },
       })
@@ -154,8 +158,8 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   public exportAttendants() {
     this.isExporting = true;
     this.sub.add(
-      this._speaker
-        .exportAllSpeakers()
+      this._sponsor
+        .exportAllSponsors()
         .subscribe(
           (res: any) => {
             console.log(res);
@@ -171,9 +175,9 @@ export class SpeakersComponent implements OnInit, OnDestroy {
     );
   }
 
-  showStudentDetails(speaker: Speaker) {
+  showStudentDetails(sponsor: Sponsor) {
     this.profileCard.nativeElement.classList.add("active");
-    this.speakerDetail = speaker;
+    this.sponsorDetail = sponsor;
   }
 
   removeStudentDetails() {

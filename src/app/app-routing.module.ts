@@ -35,6 +35,12 @@ const routes: Routes = [
     data: { breadcrumb: 'Admin' },
   },
   {
+    path: 'qr-confirmation/:id',
+    loadChildren: () =>
+      import('./qr-confirmation/qr-confirmation.module').then((m) => m.QrConfirmationModule),
+    data: { breadcrumb: 'Admin' },
+  },
+  {
     path: 'admin',
     component: LayoutComponent,
     canActivate: [RouteGuard],
@@ -55,6 +61,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./speakers/speakers.module').then((m) => m.SpeakersModule),
           data: { breadcrumb: 'Speakers' },
+      },
+      {
+        path: 'sponsors',
+        loadChildren: () =>
+          import('./sponsors/sponsors.module').then((m) => m.SponsorsModule),
+          data: { breadcrumb: 'Sponsors' },
       },
     ]
   }

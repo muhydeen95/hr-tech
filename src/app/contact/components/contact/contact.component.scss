@@ -76,6 +76,7 @@ section {
       height: 10rem;
       min-width: 3rem;
       margin: auto 0;
+      z-index: -50000;
       img {
         height: 100%;
         width: 100%;
@@ -113,6 +114,45 @@ section {
         text-align: center;
         line-height: 3.2rem;
         margin-bottom: 3rem;
+      }
+      .sponsor-card {
+        min-height: 45rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        position: relative;
+        border-radius: .8rem;
+        .card-title {
+          align-items: center;
+          .plan {
+            font-size: 2.3rem;
+            font-weight: 500;
+          }
+          .cost {
+            font-size: 3rem;
+            font-weight: 700;
+            padding: 2rem;
+            border-bottom: .1rem solid $text-body;
+          }
+        }
+        ul{
+          li{
+            text-decoration: none;
+            list-style-type: none;
+            font-size: 1.4rem;
+            padding: .5rem;
+            .col-11 {
+              text-align: left;
+            }
+          }
+        }
+        button {
+          width: 90%;
+          position: absolute;
+          bottom: 1rem;
+          left: 2rem;
+        }
+        &:hover {
+          transform: scale(1.1);
+        }
       }
   }
 
@@ -468,6 +508,14 @@ section {
 
   }
 
+  .text-green {
+    color: $blue-300;
+  }
+
+  .text-amber {
+    color: $warning;
+  }
+
 }
 
 @include maxSize($canvas: M) {
@@ -583,6 +631,45 @@ section {
         font-size: 2.2rem;
         line-height: 3rem;
         padding: 1.2rem 1rem;
+      }
+      .sponsor-card {
+        min-height: 48rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        position: relative;
+        border-radius: .8rem;
+        .card-title {
+          align-items: center;
+          .plan {
+            font-size: 2.3rem;
+            font-weight: 500;
+          }
+          .cost {
+            font-size: 3rem;
+            font-weight: 700;
+            padding: 2rem;
+            border-bottom: .1rem solid $text-body;
+          }
+        }
+        ul{
+          li{
+            text-decoration: none;
+            list-style-type: none;
+            font-size: 1.4rem;
+            padding: .5rem;
+            .col-11 {
+              text-align: left;
+            }
+          }
+        }
+        button {
+          width: 90%;
+          position: absolute;
+          bottom: 1rem;
+          left: 2rem;
+        }
+        &:hover {
+          transform: scale(1.1);
+        }
       }
    }
 

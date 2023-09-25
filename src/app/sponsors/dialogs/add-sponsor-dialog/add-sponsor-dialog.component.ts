@@ -13,85 +13,82 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Toastr } from '@GlobalService/toastr.service';
-import { SpeakersService } from 'app/speakers/services/speaker.service';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Speaker } from 'app/models/response.model';
+import { Sponsor } from 'app/contact/models/contact.model';
+import { Country } from '@shared/jsons/country-code';
+import { SponsorsService } from 'app/sponsors/services/sponsors.service';
 
 @Component({
-  selector: 'app-add-speaker-dialog',
-  templateUrl: './add-speaker-dialog.component.html',
-  styleUrls: ['./add-speaker-dialog.component.scss']
+  selector: 'app-add-sponsor-dialog',
+  templateUrl: './add-sponsor-dialog.component.html',
+  styleUrls: ['./add-sponsor-dialog.component.scss']
 })
-export class AddSpeakerDialogComponent implements OnInit {
+export class AddSponsorDialogComponent implements OnInit {
   public sub: Subscription = new Subscription();
   @ViewChild('inputFile') public inputFile!: ElementRef;
   @ViewChild('close') close!: ElementRef;
-  public speakerForm!: FormGroup;
+  public sponsorForm!: FormGroup;
   public isLoading: boolean = false;
-  public speakerFormSubmitted: boolean = false;
+  public sponsorFormSubmitted: boolean = false;
   public error_message: string = '';
   public documentUrl: any;
   public file!: File;
-  public config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '45rem',
-    minHeight: '10rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    toolbarHiddenButtons: [
-      ['bold']
-      ],
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote",
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
-      },
-    ]
-  };
+  public countries = Country;
+  public sponsorplan: string[] = ['Platinum', 'Gold', 'Customized'];
+  public telOptions = {initialCountry: 'ng', preferredCountries: ['ng', 'gh']};
+  public hasError!: boolean;
 
 
   @Output() event: EventEmitter<{
-    editObject?: Speaker;
+    editObject?: Sponsor;
     isEditing: boolean;
-  }> = new EventEmitter<{ editObject?: Speaker; isEditing: boolean }>();
+  }> = new EventEmitter<{ editObject?: Sponsor; isEditing: boolean }>();
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: DialogModel<Speaker>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogModel<Sponsor>,
     private fb: FormBuilder,
     public dialog: MatDialog,
     public _toastr: Toastr,
-    private _speaker: SpeakersService,
+    private _sponsor: SponsorsService,
   ) {}
 
   ngOnInit(): void {
-    this.initSpeakerForm();
+    this.initsponsorForm();
   }
 
-  initSpeakerForm() {
-    this.speakerForm = this.fb.group({
-      fullName: [this.data.editObject?.fullName ?? '', Validators.required],
-      email: [this.data.editObject?.email ?? '', Validators.email],
-      organization: [this.data.editObject?.organization ?? ''],
-      position: [this.data.editObject?.position ?? ''],
-      phoneNumber: [this.data.editObject?.phoneNumber ?? ''],
-      country: [this.data.editObject?.country ?? ''],
-      biography: [this.data.editObject?.biography ?? ''],
+  initsponsorForm() {
+    this.sponsorForm = this.fb.group({
+      companyName: [this.data.editObject?.companyName ?? '', Validators.required],
+      email: [this.data.editObject?.email ?? '', [Validators.required, Validators.email]],
+      contactPerson: [this.data.editObject?.contactPerson ?? '', Validators.required],
+      website: [this.data.editObject?.website ?? '', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
+      phoneNumber: [this.data.editObject?.phoneNumber ?? '+234'],
+      country: [this.data.editObject?.country ?? null, Validators.required],
+      sponsorPlan: [this.data.editObject?.sponsorPlan ?? null],
       fileUrl: [this.data.editObject?.fileUrl ?? ''],
       imgUrl: [null],
     });
 
+  }
+
+  numericOnly(event: any) {
+    let patt = /^([0-9])$/;
+    let result = patt.test(event.key);
+    return result;
+  }
+
+  onError(obj: any) {
+    this.hasError = obj;
+    // console.log('hasError: ', obj);
+}
+
+  public telInputObject(obj: any) {
+
+  }
+
+  public onCountryChange(country: any) {
+    this.sponsorForm.patchValue({
+      phoneNumber: '+' + country.dialCode
+    })
   }
 
   public checkForKeyEnter(event: KeyboardEvent): void {
@@ -130,8 +127,8 @@ export class AddSpeakerDialogComponent implements OnInit {
   }
 
   public submit(): void {
-    this.speakerFormSubmitted = true;
-    const payload: Speaker = this.speakerForm.value;
+    this.sponsorFormSubmitted = true;
+    const payload: Sponsor = this.sponsorForm.value;
     if(!this.file && !this.data.isEditing) {
       return this._toastr.showInfo(
         'You are required to upload a passport photograph not more than 2mb',
@@ -142,13 +139,13 @@ export class AddSpeakerDialogComponent implements OnInit {
       const imgUrl = this.documentUrl.split(",");
       payload.imgUrl = imgUrl[1];
     }
-    if (this.speakerForm.valid) {
+    if (this.sponsorForm.valid) {
       this.isLoading = true;
       if(this.data.isEditing) {
         payload._id = this.data.editObject._id;
       }
-      const operation = !this.data.isEditing ? 'addSpeaker' : 'updateSpeaker';
-      this._speaker[operation](payload).subscribe({
+      const operation = !this.data.isEditing ? 'addSponsor' : 'updateSponsor';
+      this._sponsor[operation](payload).subscribe({
         next: (res: any) => {
           this.isLoading = false;
             // console.log(res)
@@ -156,7 +153,7 @@ export class AddSpeakerDialogComponent implements OnInit {
               isEditing: this.data?.isEditing,
               editObject: res.response,
             });
-            this.speakerFormSubmitted = false;
+            this.sponsorFormSubmitted = false;
             this.close.nativeElement.click();
             this._toastr.showSuccess(
               res.message,
@@ -166,7 +163,7 @@ export class AddSpeakerDialogComponent implements OnInit {
         error: (error: HttpErrorResponse) => {
           console.log(error);
           this.isLoading = false;
-          this.speakerFormSubmitted = false;
+          this.sponsorFormSubmitted = false;
           this.error_message = error?.error?.message;
           this._toastr.showError(
             error?.error?.message,

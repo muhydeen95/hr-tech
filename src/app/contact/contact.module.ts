@@ -1,3 +1,4 @@
+import { NgSelectModule } from '@ng-select/ng-select';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactComponent } from './components/contact/contact.component';
@@ -18,7 +19,8 @@ import { Ng2TelInputModule } from 'ng2-tel-input';
     SharedModule,
     ReactiveFormsModule,
     IvyCarouselModule,
-    Ng2TelInputModule
+    Ng2TelInputModule,
+    NgSelectModule
   ]
 })
 export class ContactModule { }
