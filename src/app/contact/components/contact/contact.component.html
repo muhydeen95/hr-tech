@@ -91,36 +91,6 @@
   <ng-container>
     <div class="about">
       <div class="container">
-        <div class="my-5">
-          <div class="text-center">
-            <h2>For Sponsorship</h2>
-          </div>
-          <div class="row">
-            <div class="col-md-4 mb-4" *ngFor="let package of packages">
-              <div class="card sponsor-card">
-                <div class="card-body">
-                  <h5 class="card-title text-center">
-                    <span class="plan">{{ package.sponsorPlan }}</span>
-                    <h3 class="cost" [ngClass]="'text-'+package.color">
-                      {{ package.cost ? (package.cost | currency:'$') : 'Based on Discussion' }}
-                    </h3>
-                    <button class="btn btn-lg" [ngClass]="'btn-'+package.color" (click)="openDialog({isEditing: false, editObject: package})">
-                      Subscribe
-                    </button>
-                  </h5>
-                  <ul class="card-text">
-                    <li class="row justify-content-between" *ngFor="let feature of package.features">
-                      <span class="col-1">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 7.34189C18.6095 6.95136 17.9763 6.95136 17.5858 7.34189L10.3407 14.587C9.95016 14.9775 9.31699 14.9775 8.92647 14.587L6.38507 12.0456C5.99454 11.6551 5.36138 11.6551 4.97085 12.0456C4.58033 12.4361 4.58033 13.0693 4.97085 13.4598L7.51774 16C8.68969 17.1689 10.5869 17.1677 11.7574 15.9974L19 8.7561C19.3905 8.36558 19.3905 7.73241 19 7.34189Z" fill="#43b863"></path> </g></svg>
-                      </span>
-                      <span class="col-11">{{ feature.label }}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row my-auto d-flex justify-content-center">
           <div class="col-10 col-md-8 col-lg-8">
             <h2>The Largest Gathering of People Managers, HR Professionals and Technology Experts in West Africa</h2>
@@ -336,6 +306,36 @@
         <button class="btn btn-green btn-lg" (click)="moveToStructure()">
           Register Now
         </button>
+      </div>
+      <div class="my-5">
+        <div class="title text-center">
+          <h2>For Sponsorship</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let package of packages">
+            <div class="card sponsor-card">
+              <div class="card-body">
+                <h5 class="card-title text-center">
+                  <span class="plan">{{ package.sponsorPlan }}</span>
+                  <h3 class="cost" [ngClass]="'text-'+package.color">
+                    {{ package.cost ? (package.cost | currency:'$') : 'Based on Discussion' }}
+                  </h3>
+                  <button class="btn btn-lg" [ngClass]="'btn-'+package.color" (click)="openDialog({isEditing: false, editObject: package})">
+                    Subscribe
+                  </button>
+                </h5>
+                <ul class="card-text">
+                  <li class="row justify-content-between" *ngFor="let feature of package.features">
+                    <span class="col-1">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 7.34189C18.6095 6.95136 17.9763 6.95136 17.5858 7.34189L10.3407 14.587C9.95016 14.9775 9.31699 14.9775 8.92647 14.587L6.38507 12.0456C5.99454 11.6551 5.36138 11.6551 4.97085 12.0456C4.58033 12.4361 4.58033 13.0693 4.97085 13.4598L7.51774 16C8.68969 17.1689 10.5869 17.1677 11.7574 15.9974L19 8.7561C19.3905 8.36558 19.3905 7.73241 19 7.34189Z" fill="#43b863"></path> </g></svg>
+                    </span>
+                    <span class="col-11">{{ feature.label }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
      </div>
     </div>

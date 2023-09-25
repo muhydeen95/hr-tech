@@ -115,45 +115,6 @@ section {
         line-height: 3.2rem;
         margin-bottom: 3rem;
       }
-      .sponsor-card {
-        min-height: 45rem;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        position: relative;
-        border-radius: .8rem;
-        .card-title {
-          align-items: center;
-          .plan {
-            font-size: 2.3rem;
-            font-weight: 500;
-          }
-          .cost {
-            font-size: 3rem;
-            font-weight: 700;
-            padding: 2rem;
-            border-bottom: .1rem solid $text-body;
-          }
-        }
-        ul{
-          li{
-            text-decoration: none;
-            list-style-type: none;
-            font-size: 1.4rem;
-            padding: .5rem;
-            .col-11 {
-              text-align: left;
-            }
-          }
-        }
-        button {
-          width: 90%;
-          position: absolute;
-          bottom: 1rem;
-          left: 2rem;
-        }
-        &:hover {
-          transform: scale(1.1);
-        }
-      }
   }
 
   .speakers_container {
@@ -271,6 +232,46 @@ section {
         font-weight: 400;
         line-height: 2.25rem;
         text-align: justify;
+      }
+    }
+
+    .sponsor-card {
+      min-height: 45rem;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      position: relative;
+      border-radius: .8rem;
+      .card-title {
+        align-items: center;
+        .plan {
+          font-size: 2.3rem;
+          font-weight: 500;
+        }
+        .cost {
+          font-size: 3rem;
+          font-weight: 700;
+          padding: 2rem;
+          border-bottom: .1rem solid $text-body;
+        }
+      }
+      ul{
+        li{
+          text-decoration: none;
+          list-style-type: none;
+          font-size: 1.4rem;
+          padding: .5rem;
+          .col-11 {
+            text-align: left;
+          }
+        }
+      }
+      button {
+        width: 90%;
+        position: absolute;
+        bottom: 1rem;
+        left: 2rem;
+      }
+      &:hover {
+        transform: scale(1.1);
       }
     }
   }
@@ -632,6 +633,36 @@ section {
         line-height: 3rem;
         padding: 1.2rem 1rem;
       }
+
+   }
+
+   .speakers_container {
+      .card {
+        background-color: rgba(86, 86, 155, 0.82);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: auto;
+        text-align: left;
+        font-family: arial;
+        border-radius: 2rem;
+        min-height: 450px;
+        margin-bottom: 3rem;
+        color: $white-100;
+        padding: 2.5rem;
+        &-title {
+          font-size: 2.5rem;
+          font-weight: 900;
+          line-height: 3.5rem;
+          margin-bottom: 3rem;
+        }
+        &-text {
+          font-size: 1.8rem;
+          font-weight: 400;
+          line-height: 3.2rem;
+        }
+      }
+    }
+
+    .sessions {
       .sponsor-card {
         min-height: 48rem;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -669,32 +700,6 @@ section {
         }
         &:hover {
           transform: scale(1.1);
-        }
-      }
-   }
-
-   .speakers_container {
-      .card {
-        background-color: rgba(86, 86, 155, 0.82);
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        margin: auto;
-        text-align: left;
-        font-family: arial;
-        border-radius: 2rem;
-        min-height: 450px;
-        margin-bottom: 3rem;
-        color: $white-100;
-        padding: 2.5rem;
-        &-title {
-          font-size: 2.5rem;
-          font-weight: 900;
-          line-height: 3.5rem;
-          margin-bottom: 3rem;
-        }
-        &-text {
-          font-size: 1.8rem;
-          font-weight: 400;
-          line-height: 3.2rem;
         }
       }
     }
