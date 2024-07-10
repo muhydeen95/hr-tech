@@ -2,7 +2,7 @@ export const SponsorPackages = [
   {
     id: 2,
     sponsorPlan: 'Gold',
-    cost: 2000,
+    cost: 500,
     color: 'amber',
     features: [
       {label: 'Company Name and Logo will feature Prominently on all conference materials (banners, flyers, websites etc.)' },
@@ -16,7 +16,7 @@ export const SponsorPackages = [
   {
     id: 1,
     sponsorPlan: 'Platinum',
-    cost: 5000,
+    cost: 1000,
     color: 'green',
     features: [
       {label: 'Inclusion on the Panel of Discussants' },

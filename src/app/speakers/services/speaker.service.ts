@@ -18,7 +18,6 @@ const EXCEL_EXTENSION = ".xlsx";
 export class SpeakersService {
   constructor(private http: HttpService) {}
 
-
   public getAllSpeakers(): Observable<ResponseModel<Speaker[]>> {
     const endpoint = 'speaker';
     return this.http.getRequest(endpoint);

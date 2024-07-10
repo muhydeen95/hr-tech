@@ -16,10 +16,34 @@ export class HttpService {
     return this.http.get(baseUrl + endpoint);
   }
 
+  getGodpRequest<T>(
+    endpoint: string,
+    baseUrl: string = environment.godp_Api
+  ): Observable<T> | any {
+    return this.http.get(baseUrl + endpoint);
+  }
+
+  getIpRequest<T>(
+    endpoint: string,
+    baseUrl: string = environment.Ip
+  ): Observable<T> | any {
+    return this.http.get(baseUrl + endpoint);
+  }
+
   getRequestWithParams<T>(
     endpoint: string,
     params = {},
     baseUrl = environment.api_url
+  ): Observable<T> | any {
+    return this.http.get(baseUrl + endpoint, {
+      params,
+    });
+  }
+
+  getGodpRequestWithParams<T>(
+    endpoint: string,
+    params = {},
+    baseUrl = environment.godp_Api
   ): Observable<T> | any {
     return this.http.get(baseUrl + endpoint, {
       params,
@@ -33,6 +57,21 @@ export class HttpService {
     body?: any,
     headers: HttpHeaders = new HttpHeaders({}),
     baseUrl: string = environment.api_url
+  ): Observable<T> | any {
+    return this.http.request(method, baseUrl + endpoint, {
+      params,
+      body,
+      headers,
+    });
+  }
+
+  makeRequestWithGodpData<T>(
+    method: 'post' | 'put' | 'patch' | 'get' | 'delete',
+    endpoint: string,
+    params: any,
+    body?: any,
+    headers: HttpHeaders = new HttpHeaders({}),
+    baseUrl: string = environment.godp_Api
   ): Observable<T> | any {
     return this.http.request(method, baseUrl + endpoint, {
       params,

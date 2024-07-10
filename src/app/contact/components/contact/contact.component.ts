@@ -7,8 +7,6 @@ import { ContactService } from 'app/contact/services/contact.service';
 import { Attendant, ResponseModel, Speaker } from 'app/models/response.model';
 import { Subscription } from 'rxjs';
 import { Country } from '@shared/jsons/country-code';
-import { Router } from '@angular/router';
-// import { speakers } from '@shared/jsons/speakers';
 import { HelperService } from '@shared/services/helper.service';
 import { SpeakersService } from 'app/speakers/services/speaker.service';
 import { SponsorPackages } from '@shared/jsons/sponsor';
@@ -30,15 +28,17 @@ export class ContactComponent implements OnInit {
   public isLoading!: boolean;
   public regFormSubmitted!: boolean;
   public responsiveOptions: any[] | undefined;
+  public ipAddress: string = '102.88.71.189';
+  public training: any;
+  public trainingFee: any;
+  public trainingMode: any;
   public speakers: Speaker[] = [];
   public images: {path: string }[] = [
-    {path: 'assets/images/gallery1.jpeg'},
-    {path: 'assets/images/gallery2.jpeg'},
-    {path: 'assets/images/gallery3.jpeg'},
-    {path: 'assets/images/gallery4.jpeg'},
-    {path: 'assets/images/gallery5.jpeg'},
-    {path: 'assets/images/gallery6.jpeg'},
-    {path: 'assets/images/gallery7.jpeg'},
+    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/1e25acc4c5fda917d4159ac1717e315f.jpg?ca=10&ce=1&s=1024x'},
+    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/fe5f7006ad55b5faf0aca836872df500.jpg?ca=10&ce=1&s=1024x'},
+    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/2bc0a08b633da8841d4bdddbb88e020b.jpg?ca=10&ce=1&s=1024x'},
+    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/1f526c4b06cb4b5cfeabf8dfb2283164.jpg?ca=10&ce=1&s=1024x'},
+    {path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS04J60XDu2UjgzT2vnjrQWxjitlQNy7aeF2g&s'},
   ];
   public countries = Country;
   public currencies = Currencies;
@@ -85,13 +85,13 @@ export class ContactComponent implements OnInit {
     private fb: FormBuilder,
     private _attendant: ContactService,
     private _toastr: Toastr,
-    private router: Router,
     private _helper: HelperService,
     private _speaker: SpeakersService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
+    this.getTrainingDetail();
     this.getSpeakers();
     this.initForm();
     this.responsiveOptions = [
@@ -111,6 +111,34 @@ export class ContactComponent implements OnInit {
           numScroll: 1
       }
     ];
+  }
+
+  public getTrainingDetail() {
+    this.isLoading = true;
+    this._helper.startSpinner();
+    const payload = {
+      ip: this.ipAddress,
+      friendly_name: 'THEBF',
+      trainingId: 145
+    }
+    this.sub.add(
+      this._attendant
+        .getTrainingById(payload)
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+            this.isLoading = false;
+            this._helper.stopSpinner();
+            this.training = res.trainings[0];
+            this.trainingFee = this.training?.streams[0]?.trainingfee;
+          },
+          (error) => {
+            this.isLoading = false;
+            this._helper.stopSpinner();
+            console.log(error);
+          }
+        )
+    );
   }
 
   public getSpeakers() {
@@ -141,67 +169,17 @@ export class ContactComponent implements OnInit {
 
   public initForm() {
     this.registrationForm = this.fb.group({
-      fullName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['+234', Validators.required],
-      organization: ['', Validators.required],
-      position: [''],
-      registrationNo: [''],
-      country: ['', Validators.required],
-      registrationType: ['Single', Validators.required],
-      applicantType: ['', Validators.required],
-      noOfRegistrants: [1, Validators.required],
-      modeOfAttendance: ['Physical', Validators.required],
-      profMembership: [''],
-      requireAccomodation: [false, Validators.required],
-      noOfAccomodants: [0, Validators.required],
-      comment: [''],
-      hasPaid: [false],
-      amountToPay: [0],
-      currency: [''],
+      name: ["", Validators.required],
+      company: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      phone: ["", Validators.required],
+      position: ["", Validators.required],
+      sex: ["", Validators.required],
+      trainingMode: ["classroom", Validators.required],
+      trainingid: [145, Validators.required],
+      signup_date: [new Date(), Validators.required],
+      isFree: [false, Validators.required]
     })
-  }
-
-  public getCurrencyCode() {
-    let country = this.registrationForm.get('country')!.value;
-    let applicantype = this.registrationForm.get('applicantType')!.value;
-    switch (country) {
-      case 'Nigeria':
-        this.currency = '₦';
-        this.currencyCode = 'NGN';
-        break;
-      case 'Ghana':
-        this.currency = 'GH₵';
-        this.currencyCode = 'GHS';
-        break;
-      default:
-        this.currency = '$';
-        this.currencyCode = 'USD';
-        break;
-    }
-    if(applicantype) {
-      this.validateApplicanttype();
-    }
-    return this.currency;
-  }
-
-
-
-  public validateRegType() {
-    if(this.registrationForm.get('registrationType')!.value === 'Single') {
-      this.registrationForm.patchValue({
-        noOfRegistrants: 1
-      })
-    };
-    this.updatePaymentAmount();
-  }
-
-  public validateAccomodation() {
-    if (!this.registrationForm.get('requireAccomodation')!.value ) {
-      this.registrationForm.patchValue({
-        noOfAccomodants: 0
-      })
-    }
   }
 
   public openDialog(
@@ -240,141 +218,38 @@ export class ContactComponent implements OnInit {
     })
   }
 
-  public validateApplicanttype() {
-    const applicantType = this.registrationForm.get('applicantType')!.value;
-    const noOfRegistrants = this.registrationForm.get('noOfRegistrants')!.value;
-    const country = this.registrationForm.get('country')!.value;
-    if(country) {
-      if ( country === 'Nigeria' && applicantType === "Member") {
-        this.registrationForm.patchValue({
-          currency: 'NGN',
-          amountToPay: 130000 * noOfRegistrants
-        })
-      } else if ( country === 'Nigeria' && applicantType === "Student") {
-        this.registrationForm.patchValue({
-          currency: 'NGN',
-          amountToPay: 120000 * noOfRegistrants
-        })
-      } else if ( country === 'Nigeria' && applicantType === "Others") {
-        this.registrationForm.patchValue({
-          currency: 'NGN',
-          amountToPay: 150000 * noOfRegistrants
-        })
-      } else if ( country === 'Ghana' && applicantType === "Member") {
-        this.registrationForm.patchValue({
-          currency: 'GHS',
-          amountToPay: 1000 * noOfRegistrants
-        })
-      } else if ( country === 'Ghana' && applicantType === "Student") {
-        this.registrationForm.patchValue({
-          currency: 'GHS',
-          amountToPay: 800 * noOfRegistrants
-        })
-      } else if ( country === 'Ghana' && applicantType === "Others") {
-        this.registrationForm.patchValue({
-          currency: 'GHS',
-          amountToPay: 1100 * noOfRegistrants
-        })
-      } else if ( (country !== 'Nigeria' || country !== 'Ghana') && applicantType === "Member") {
-        this.registrationForm.patchValue({
-          currency: 'USD',
-          amountToPay: 175 * noOfRegistrants
-        })
-      } else if ( (country !== 'Nigeria' || country !== 'Ghana') && applicantType === "Student") {
-        this.registrationForm.patchValue({
-          currency: 'USD',
-          amountToPay: 150 * noOfRegistrants
-        })
-      } else {
-        this.registrationForm.patchValue({
-          currency: 'USD',
-          amountToPay: 200 * noOfRegistrants
-        })
-      }
-    };
-    this.amountToPay = this.registrationForm.get('amountToPay')!.value;
-  }
-
-  public updatePaymentAmount() {
-    const noOfRegistrants = this.registrationForm.get('noOfRegistrants')!.value;
-    const newAmountToPay = this.amountToPay * noOfRegistrants;
-    this.registrationForm.patchValue({
-      amountToPay: newAmountToPay
-    })
-  }
-
-  public onFileDropped(event: any) {
-    // console.log(event)
-    let me = this;
-    this.file = event.target.files[0];
-    const maxAllowedSize = 500000;
-    if(this.file.size > maxAllowedSize) {
-      // this.inputFile.nativeElement.value = null;
-      this._toastr.showError(
-        'kindly upload a file not more than 5MB',
-        'info'
-      );
-    } else {
-      let reader = new FileReader();
-      reader.readAsDataURL(this.file);
-      reader.onload = () =>{
-        me.documentUrl = reader.result;
-      };
-      reader.onerror = (error) => {
-        console.log('Error: ', error);
-      };
-    }
-
-  }
-
-  public removeFile(): void {
-    this.inputFile.nativeElement.value = null;
-    this.file = null as any;
-  }
-
   public submit() {
     this.regFormSubmitted = true;
-    const payload: Attendant = this.registrationForm.value;
-    if(!this.file) {
-      return this._toastr.showInfo(
-        'You are required to upload a passport photograph not more than 2mb',
-        'Passport image'
-      );
-    }
-    if(this.file) {
-      const fileUrl = this.documentUrl.split(",");
-      payload.fileUrl = fileUrl[1];
-    }
+    const payload: any = this.registrationForm.value;
+    payload.ip = this.ipAddress;
     if(this.registrationForm.valid) {
       this.isLoading = true;
       this.sub.add(
-        this._attendant.createAttendant(payload).subscribe({
-          next: (res: ResponseModel<Attendant>) => {
+        this._attendant.registerEvent(payload).subscribe({
+          next: (res: any) => {
             // console.log(res);
-            this.inputFile.nativeElement.value = null;
-            this.attendant = res.response;
             this.isLoading = false;
             this.regFormSubmitted = false;
-            this._toastr.showSuccess(
-              res.message,
-              'Success'
-            );
-            this.registrationForm.reset();
-            this.router.navigate(['/payment', res.response._id], {
-              queryParams: {
-                amount: payload.amountToPay,
-                currency: payload.currency,
-                bulk: payload.noOfRegistrants,
-                type: payload.applicantType
-              }
-            });
+            if(res?.status?.isSuccessful) {
+              this._toastr.showSuccess(
+                'You have successfully register for the training',
+                'Success'
+              );
+              this.registrationForm.reset();
+            } else {
+              this._toastr.showError(
+                'Error occured',
+                'Failed'
+              );
+            }
+            
           },
           error: (error: HttpErrorResponse) => {
             // console.log(error);
             this.isLoading = false;
             this.regFormSubmitted = false;
             this._toastr.showError(
-              error.error?.message,
+              'Error occured',
               'Failed'
             );
           },
