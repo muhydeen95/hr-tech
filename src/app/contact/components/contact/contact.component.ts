@@ -34,11 +34,11 @@ export class ContactComponent implements OnInit {
   public trainingMode: any;
   public speakers: Speaker[] = [];
   public images: {path: string }[] = [
-    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/1e25acc4c5fda917d4159ac1717e315f.jpg?ca=10&ce=1&s=1024x'},
-    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/fe5f7006ad55b5faf0aca836872df500.jpg?ca=10&ce=1&s=1024x'},
-    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/2bc0a08b633da8841d4bdddbb88e020b.jpg?ca=10&ce=1&s=1024x'},
-    {path: 'https://pix8.agoda.net/hotelImages/12375842/-1/1f526c4b06cb4b5cfeabf8dfb2283164.jpg?ca=10&ce=1&s=1024x'},
-    {path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS04J60XDu2UjgzT2vnjrQWxjitlQNy7aeF2g&s'},
+    {path: 'https://cdn.ostrovok.ru/t/640x400/content/02/df/02dfb3813e50fad07d45e959d96b01674e2bc1b1.jpeg'},
+    {path: 'https://res.klook.com/klook-hotel/image/upload/fl_lossy.progressive,c_fill,f_auto,w_750,q_85/trip/220v0t000000j2q5e61F9_R_550_412_R5.jpg'},
+    {path: 'https://media-cdn.tripadvisor.com/media/photo-s/0d/90/8b/9d/la-palm-royal-beach-hotel.jpg'},
+    {path: 'https://images.squarespace-cdn.com/content/v1/63d00d1c53a7c9092821a94f/ed39194d-6c35-4ef8-9414-c797d6527499/Labadi_Exterior.jpg'},
+    {path: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu4nfRVEL1YLGsEnxJ9RwQWQadX1dpcuDyOA&s'},
   ];
   public countries = Country;
   public currencies = Currencies;
