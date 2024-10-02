@@ -25,7 +25,11 @@ header {
     overflow-y: hidden;
 
     .logo{
-      width: 100%;
+      width: 10rem;
+    }
+    .line {
+      width: 1rem;
+      color: rgba($text-body, 1);
     }
     .nav-item {
       font-size: 2rem;
